@@ -1,0 +1,24 @@
+{
+  "name": "ditate.me",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rash2x/ditate.me.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rash2x/ditate.me/issues"
+  },
+  "homepage": "https://github.com/rash2x/ditate.me#readme",
+  "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/styles": "^4.11.3",
+    "react-confetti-canvas": "^1.0.3"
+  }
+}
