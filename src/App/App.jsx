@@ -2,26 +2,46 @@ import React from 'react';
 import Header from '../Header/Header';
 import Form from '../Question/Form';
 import Footer from '../Footer/Footer';
-import { Container, createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core';
+import {
+  Container,
+  createMuiTheme,
+  CssBaseline,
+  makeStyles,
+  ThemeProvider,
+} from '@material-ui/core';
 import Success from '../Question/Success';
-const theme = createMuiTheme();
 
-const styles = makeStyles(theme => ({
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#FFF59D',
+      light: '#FFF9C4',
+    },
+  },
+});
+
+/**
+ * 1 Добавить img
+ * 2
+ */
+const styles = makeStyles({
   container: {
     display: 'flex',
     flexDirection: 'column',
     height: '100vh',
   },
-}));
+});
+
 const App = () => {
   const classes = styles();
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Container maxWidth="xlg" className={classes.container}>
         <Header />
-        {/* <Form /> */}
-        <Success />
+        <Form />
+        {/* <Success /> */}
         <Footer />
       </Container>
     </ThemeProvider>
