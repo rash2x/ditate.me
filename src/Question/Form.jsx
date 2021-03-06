@@ -78,9 +78,7 @@ const Form = ({ onSubmit }) => {
         <Button className={classes.button} type="submit" size="medium" variant="contained" color="primary">
           Отправить
         </Button>
-
       </form>
-
     </div>
   );
 };

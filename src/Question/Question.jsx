@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Snackbar } from '@material-ui/core';
 import React, { useCallback, useState } from 'react';
 import Form from './Form';
 import Success from './Success';
@@ -7,6 +7,9 @@ const styles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flex: 1
+  },
+  anchorOriginBottomCenter: {
+    bottom: theme.spacing(12)
   }
 }));
 
@@ -14,6 +17,7 @@ const Question = () => {
   const classes = styles();
 
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isFailed, setIsFailed] = useState(false)
 
   function encode(data) {
     return Object.keys(data)
@@ -33,12 +37,32 @@ const Question = () => {
       })
     }).then((response) => {
       setIsSubmitted(true);
-    }).catch(error => alert(error))
-  }, [setIsSubmitted]);
+    }).catch(error => {
+      setIsFailed(true)
+    })
+  }, [setIsSubmitted, setIsFailed]);
+
+  const handleSnackbarClose = useCallback(() => {
+    setIsFailed(false);
+  }, [setIsFailed])
 
   return (
     <div className={classes.root}>
       {isSubmitted ? <Success /> : <Form onSubmit={handleSubmit} />}
+
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        open={isFailed}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+        message="Не получилось отправить вопрос 😭"
+        classes={{
+          anchorOriginBottomCenter: classes.anchorOriginBottomCenter
+        }}
+      />
     </div>
   );
 };
