@@ -1,6 +1,6 @@
 import React from 'react';
 import ConfettiCanvas from 'react-confetti-canvas';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 
 const styles = makeStyles(theme => ({
   container: {
@@ -16,6 +16,7 @@ const styles = makeStyles(theme => ({
     position: 'absolute',
     top: '0',
     left: '0',
+
     '& > canvas': {
       width: '100% !important',
       height: '100% !important',
@@ -24,8 +25,8 @@ const styles = makeStyles(theme => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
-    maxWidth: '600px',
     textAlign: 'center',
+    padding: theme.spacing(0, 3),
   },
   clap: {
     width: '95px',
@@ -33,24 +34,17 @@ const styles = makeStyles(theme => ({
     marginBottom: '20px',
   },
   title: {
-    fontWeight: '600',
-    fontSize: '40px',
+    fontSize: 32,
     color: theme.palette.primary.main,
     marginBottom: '20px',
   },
   text: {
     fontWeight: '500',
-    fontSize: '20px',
     color: '#fff',
     margin: 0,
   },
   icon: {
     fontSize: 80
-  },
-  '@media (max-width: 768px)': {
-    text: {
-      fontSize: '18px',
-    },
   },
 }));
 
@@ -63,7 +57,7 @@ const Success = () => {
       </div>
       <div className={classes.wrapper}>
         <div className={classes.icon}>👏</div>
-        <span className={classes.title}>Успешно!</span>
+        <Typography variant="h1" className={classes.title} color="primary">Успешно!</Typography>
         <p className={classes.text}>Мы получили твой вопрос, скоро ты получишь ответ на него.</p>
       </div>
     </div>
