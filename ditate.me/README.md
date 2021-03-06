@@ -1,1 +1,0 @@
-# ditate.me
