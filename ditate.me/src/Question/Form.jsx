@@ -1,5 +1,6 @@
-import { Button, InputBase, makeStyles, TextField } from '@material-ui/core';
-import React from 'react';
+import { Button, makeStyles, TextField } from '@material-ui/core';
+import React, { useState } from 'react';
+import Media from 'react-media';
 
 const styles = makeStyles(theme => ({
   wrapper: {
@@ -11,6 +12,14 @@ const styles = makeStyles(theme => ({
   text: {
     fontWeight: '500',
     fontSize: '20px',
+    color: '#fff',
+    lineHeight: '28px',
+    textAlign: 'center',
+    margin: '0 0 40px 0',
+  },
+  text768: {
+    fontWeight: '500',
+    fontSize: '16px',
     color: '#fff',
     lineHeight: '28px',
     textAlign: 'center',
@@ -28,6 +37,7 @@ const styles = makeStyles(theme => ({
     boxSizing: 'border-box',
     borderRadius: '16px',
     minHeight: '240px',
+    color: '#fff',
     padding: '20px',
     outline: 'none',
     resize: 'none',
@@ -49,30 +59,39 @@ const styles = makeStyles(theme => ({
 
 const Form = () => {
   const classes = styles();
+
+  const [messege, setMessege] = useState('');
+
   return (
     <div className={classes.wrapper}>
-      <p className={classes.text}>
-        <span className={classes.colored}>Задай любой вопрос</span>, мы разберем его на следующих
-        подкастах. Ближайший выпуск 13.03
-        <a className={classes.link}> про активную медитацию Шодхан ICON</a>
-      </p>
+      <Media query="(max-width: 768px)">
+        {matches =>
+          matches ? (
+            <p className={(classes.text, classes.text768)}>
+              <span className={classes.colored}>Задай любой вопрос</span>, мы разберем его на
+              следующих подкастах. Ближайший выпуск 13.03
+              <a className={classes.link}> про активную медитацию Шодхан ICON</a>
+            </p>
+          ) : (
+            <p className={classes.text}>
+              <span className={classes.colored}>Задай любой вопрос</span>, мы разберем его на
+              следующих подкастах. Ближайший выпуск 13.03
+              <a className={classes.link}> про активную медитацию Шодхан ICON</a>
+            </p>
+          )
+        }
+      </Media>
       <form className={classes.form}>
-        {/* <TextField
+        <TextField
           fullWidth
           id="outlined-multiline-static"
           multiline
           placeholder="Напиши свой вопрос"
+          onChange={e => setMessege(e.target.value)}
           InputProps={{ classes: { input: classes.textarea } }}
-        /> */}
-        <InputBase
-          className={classes.margin}
-          placeholder="Напиши свой вопрос"
-          fullWidth
-          multiline
-          className={classes.textarea}
         />
       </form>
-      <Button className={classes.button} size="medium" variant="contained">
+      <Button className={classes.button} type="submit" size="medium" variant="contained">
         Отправить
       </Button>
     </div>
