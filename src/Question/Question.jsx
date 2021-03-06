@@ -19,19 +19,27 @@ const Question = () => {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isFailed, setIsFailed] = useState(false)
 
+  const handleSuccess = useCallback(() => {
+    setIsSubmitted(true);
+  }, [setIsSubmitted]);
+
+  const handleFailure = useCallback(() => {
+    setIsFailed(true);
+  }, [setIsFailed]);
+
   const handleSnackbarClose = useCallback(() => {
     setIsFailed(false);
   }, [setIsFailed]);
 
   useEffect(() => {
-    if ( window.location.search.includes('success=true') ) {
+    if ( window.location.search.includes('?success') ) {
       setIsSubmitted(true);
     }
   }, [setIsSubmitted]);
 
   return (
     <div className={classes.root}>
-      {isSubmitted ? <Success /> : <Form />}
+      {isSubmitted ? <Success /> : <Form onSuccess={handleSuccess} onFailure={handleFailure} />}
 
       <Snackbar
         anchorOrigin={{

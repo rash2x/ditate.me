@@ -1,5 +1,6 @@
 import { Button, makeStyles, TextField } from '@material-ui/core';
 import React, { useCallback, useState } from 'react';
+import { NetlifyForm } from 'react-netlify-forms';
 
 const styles = makeStyles(theme => ({
   wrapper: {
@@ -42,7 +43,7 @@ const styles = makeStyles(theme => ({
   },
 }));
 
-const Form = () => {
+const Form = ({ onSuccess, onFailure }) => {
   const classes = styles();
 
   const [message, setMessage] = useState('');
@@ -56,30 +57,31 @@ const Form = () => {
       <p className={classes.text}>
         <span>Задай любой вопрос</span>, мы разберем его на следующих подкастах. Ближайший выпуск 13.03 <span> про активную медитацию Шодхан 🐆</span>
       </p>
-      <form className={classes.form}
-            name="question"
-            method="POST"
-            action="?success"
-            data-netlify="true">
-        <TextField
-          fullWidth
-          multiline
-          name="message"
-          variant="outlined"
-          placeholder="Напиши свой вопрос"
-          onChange={handleMessageChange}
-          value={message}
-          className={classes.textarea}
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-            },
-          }}
-        />
-        <Button className={classes.button} type="submit" size="medium" variant="contained" color="primary">
-          Отправить
-        </Button>
-      </form>
+      <NetlifyForm name="Questions"
+                   action="?success"
+                   onSuccess={onSuccess}
+                   onFailure={onFailure}>
+        <div className={classes.form}>
+          <TextField
+            fullWidth
+            multiline
+            name="message"
+            variant="outlined"
+            placeholder="Напиши свой вопрос"
+            onChange={handleMessageChange}
+            value={message}
+            className={classes.textarea}
+            InputProps={{
+              classes: {
+                notchedOutline: classes.notchedOutline,
+              },
+            }}
+          />
+          <Button className={classes.button} type="submit" size="medium" variant="contained" color="primary">
+            Отправить
+          </Button>
+        </div>
+      </NetlifyForm>
     </div>
   );
 };
