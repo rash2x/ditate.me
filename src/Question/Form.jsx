@@ -42,7 +42,7 @@ const styles = makeStyles(theme => ({
   },
 }));
 
-const Form = () => {
+const Form = ({ onSubmit }) => {
   const classes = styles();
 
   const [message, setMessage] = useState('');
@@ -51,26 +51,9 @@ const Form = () => {
     setMessage(event.target.value);
   }, [setMessage]);
 
-  function encode(data) {
-    return Object.keys(data)
-      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-      .join('&')
-  }
-
   const handleSubmit = useCallback((event) => {
-    event.preventDefault();
-
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': event.target.getAttribute('name'),
-        'message': message
-      })
-    }).then(() => {
-      console.log('success')
-    }).catch(error => alert(error))
-  }, [message]);
+    onSubmit(event, message);
+  }, [message, onSubmit]);
 
   return (
     <div className={classes.wrapper}>

@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import {
   Container,
   createMuiTheme,
@@ -8,7 +6,10 @@ import {
   makeStyles,
   ThemeProvider,
 } from '@material-ui/core';
-import Form from '../Question/Form';
+
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import Question from '../Question/Question';
 
 const theme = createMuiTheme({
   palette: {
@@ -53,7 +54,7 @@ const App = () => {
       <CssBaseline />
       <Container maxWidth="xlg" className={classes.container}>
         <Header />
-        <Form />
+        <Question />
         <Footer />
       </Container>
     </ThemeProvider>
