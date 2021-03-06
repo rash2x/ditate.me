@@ -7,6 +7,7 @@ const styles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     padding: '20px 0',
+    flex: '0 0 auto',
   },
   list: {
     margin: 0,

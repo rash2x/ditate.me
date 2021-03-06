@@ -7,7 +7,8 @@ const styles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     maxWidth: '600px',
-    margin: '120px auto 220px',
+    margin: 'auto',
+    flex: '1 0 auto',
   },
   text: {
     fontWeight: '500',
