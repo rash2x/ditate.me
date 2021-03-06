@@ -8,7 +8,7 @@ import {
   makeStyles,
   ThemeProvider,
 } from '@material-ui/core';
-import Success from '../Question/Success';
+import Form from '../Question/Form';
 
 const theme = createMuiTheme({
   palette: {
@@ -21,6 +21,10 @@ const theme = createMuiTheme({
       default: '#262626',
     },
   },
+  typography: {
+    fontFamily: '"Montserrat", sans-serif',
+    fontSize: 16,
+  }
 });
 
 const styles = makeStyles({
@@ -40,7 +44,6 @@ const App = () => {
       <Container maxWidth="xlg" className={classes.container}>
         <Header />
         <Form />
-        {/* <Success /> */}
         <Footer />
       </Container>
     </ThemeProvider>
