@@ -1,6 +1,5 @@
 import { Button, makeStyles, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
-import Media from 'react-media';
 
 const styles = makeStyles(theme => ({
   wrapper: {
@@ -8,7 +7,7 @@ const styles = makeStyles(theme => ({
     flexDirection: 'column',
     maxWidth: '600px',
     margin: 'auto',
-    flex: '1 0 auto',
+    flex: '0 0 auto',
   },
   text: {
     fontWeight: '500',
@@ -16,25 +15,17 @@ const styles = makeStyles(theme => ({
     color: '#fff',
     lineHeight: '28px',
     textAlign: 'center',
-    margin: '0 0 40px 0',
-  },
-  text768: {
-    fontWeight: '500',
-    fontSize: '16px',
-    color: '#fff',
-    lineHeight: '28px',
-    textAlign: 'center',
-    margin: '0 0 40px 0',
+    margin: '0 0 25px 0',
   },
   colored: {
-    color: '#FFF59D',
+    color: theme.palette.primary.main,
   },
   link: {
     color: '#FFF59D',
     cursor: 'pointer',
   },
   textarea: {
-    border: '1px solid #FFF9C4',
+    border: `1px solid ${theme.palette.primary.light}`,
     boxSizing: 'border-box',
     borderRadius: '16px',
     minHeight: '240px',
@@ -46,14 +37,39 @@ const styles = makeStyles(theme => ({
       color: '#fff',
     },
   },
+  notchedOutline: {
+    border: 'none',
+  },
   button: {
     maxWidth: '180px',
     color: '#000',
-    background: '#FFF59D',
+    background: theme.palette.primary.main,
     textTransform: 'Capitalize',
     margin: '20px auto 0',
     '&:hover': {
-      background: '#FFF9C4',
+      background: theme.palette.primary.light,
+    },
+  },
+  '@media (max-width: 768px)': {
+    text: {
+      fontSize: '18px',
+      margin: '0 0 10px 0',
+    },
+  },
+  '@media (max-width: 480px)': {
+    wrapper: {
+      padding: '0 20px',
+      marginTop: '40px',
+      marginBottom: '80px',
+    },
+    text: {
+      fontSize: '14px',
+    },
+    textarea: {
+      minHeight: '170px',
+    },
+    button: {
+      margin: '0 auto',
     },
   },
 }));
@@ -65,31 +81,25 @@ const Form = () => {
 
   return (
     <div className={classes.wrapper}>
-      <Media query="(max-width: 768px)">
-        {matches =>
-          matches ? (
-            <p className={(classes.text, classes.text768)}>
-              <span className={classes.colored}>Задай любой вопрос</span>, мы разберем его на
-              следующих подкастах. Ближайший выпуск 13.03
-              <a className={classes.link}> про активную медитацию Шодхан ICON</a>
-            </p>
-          ) : (
-            <p className={classes.text}>
-              <span className={classes.colored}>Задай любой вопрос</span>, мы разберем его на
-              следующих подкастах. Ближайший выпуск 13.03
-              <a className={classes.link}> про активную медитацию Шодхан ICON</a>
-            </p>
-          )
-        }
-      </Media>
+      <p className={classes.text}>
+        <span className={classes.colored}>Задай любой вопрос</span>, мы разберем его на следующих
+        подкастах. Ближайший выпуск 13.03
+        <a className={classes.link}> про активную медитацию Шодхан ICON</a>
+      </p>
       <form className={classes.form}>
         <TextField
           fullWidth
           id="outlined-multiline-static"
           multiline
+          variant="outlined"
           placeholder="Напиши свой вопрос"
           onChange={e => setMessege(e.target.value)}
-          InputProps={{ classes: { input: classes.textarea } }}
+          InputProps={{
+            classes: {
+              input: classes.textarea,
+              notchedOutline: classes.notchedOutline,
+            },
+          }}
         />
       </form>
       <Button className={classes.button} type="submit" size="medium" variant="contained">

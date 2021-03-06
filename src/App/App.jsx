@@ -17,13 +17,13 @@ const theme = createMuiTheme({
       main: '#FFF59D',
       light: '#FFF9C4',
     },
+    type: 'dark',
+    background: {
+      default: '#262626',
+    },
   },
 });
 
-/**
- * 1 Добавить img
- * 2
- */
 const styles = makeStyles({
   container: {
     display: 'flex',
