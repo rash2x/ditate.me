@@ -60,10 +60,12 @@ const Form = ({ onSubmit }) => {
       <p className={classes.text}>
         <span>Задай любой вопрос</span>, мы разберем его на следующих подкастах. Ближайший выпуск 13.03 <span> про активную медитацию Шодхан 🐆</span>
       </p>
-      <form className={classes.form} name="question" onSubmit={handleSubmit} method="POST" data-netlify="true">
+      <form className={classes.form} onSubmit={handleSubmit}>
+        <input type="hidden" name="form-name" value="Question" />
         <TextField
           fullWidth
           multiline
+          name="message"
           variant="outlined"
           placeholder="Напиши свой вопрос"
           onChange={handleMessageChange}
