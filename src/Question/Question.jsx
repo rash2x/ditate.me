@@ -19,27 +19,21 @@ const Question = () => {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isFailed, setIsFailed] = useState(false)
 
-  function encode(data) {
-    return Object.keys(data)
-      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-      .join('&')
-  }
-
   const handleSubmit = useCallback((event, message) => {
     event.preventDefault();
 
+    let myForm = event.target;
+    let formData = new FormData(myForm)
     fetch('/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': event.target.getAttribute('name'),
-        'message': message
-      })
-    }).then((response) => {
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString()
+    }).then(() => {
       setIsSubmitted(true);
-    }).catch(error => {
-      setIsFailed(true)
+    }).catch((error) => {
+      setIsFailed(true);
     })
+
   }, [setIsSubmitted, setIsFailed]);
 
   const handleSnackbarClose = useCallback(() => {

@@ -56,7 +56,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth="xlg" className={classes.container}>
+      <Container className={classes.container}>
         <Header />
         <Question />
         <Footer />
