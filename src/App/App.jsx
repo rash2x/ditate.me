@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../Header/Header';
-import Form from '../Question/Form';
 import Footer from '../Footer/Footer';
 import { Container, createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core';
 import Success from '../Question/Success';
