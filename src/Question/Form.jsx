@@ -42,7 +42,7 @@ const styles = makeStyles(theme => ({
   },
 }));
 
-const Form = ({ onSubmit }) => {
+const Form = () => {
   const classes = styles();
 
   const [message, setMessage] = useState('');
@@ -51,19 +51,20 @@ const Form = ({ onSubmit }) => {
     setMessage(event.target.value);
   }, [setMessage]);
 
-  const handleSubmit = useCallback((event) => {
-    onSubmit(event, message);
-  }, [message, onSubmit]);
-
   return (
     <div className={classes.wrapper}>
       <p className={classes.text}>
         <span>Задай любой вопрос</span>, мы разберем его на следующих подкастах. Ближайший выпуск 13.03 <span> про активную медитацию Шодхан 🐆</span>
       </p>
-      <form className={classes.form} name="question" onSubmit={handleSubmit} method="POST" data-netlify="true">
+      <form className={classes.form}
+            name="question"
+            method="POST"
+            action="?success"
+            data-netlify="true">
         <TextField
           fullWidth
           multiline
+          name="message"
           variant="outlined"
           placeholder="Напиши свой вопрос"
           onChange={handleMessageChange}

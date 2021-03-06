@@ -1,5 +1,5 @@
 import { makeStyles, Snackbar } from '@material-ui/core';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Form from './Form';
 import Success from './Success';
 
@@ -19,36 +19,19 @@ const Question = () => {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isFailed, setIsFailed] = useState(false)
 
-  function encode(data) {
-    return Object.keys(data)
-      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-      .join('&')
-  }
-
-  const handleSubmit = useCallback((event, message) => {
-    event.preventDefault();
-
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': event.target.getAttribute('name'),
-        'message': message
-      })
-    }).then((response) => {
-      setIsSubmitted(true);
-    }).catch(error => {
-      setIsFailed(true)
-    })
-  }, [setIsSubmitted, setIsFailed]);
-
   const handleSnackbarClose = useCallback(() => {
     setIsFailed(false);
-  }, [setIsFailed])
+  }, [setIsFailed]);
+
+  useEffect(() => {
+    if ( window.location.search.includes('success=true') ) {
+      setIsSubmitted(true);
+    }
+  }, [setIsSubmitted]);
 
   return (
     <div className={classes.root}>
-      {isSubmitted ? <Success /> : <Form onSubmit={handleSubmit} />}
+      {isSubmitted ? <Success /> : <Form />}
 
       <Snackbar
         anchorOrigin={{
