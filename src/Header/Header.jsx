@@ -27,9 +27,6 @@ const styles = makeStyles(theme => ({
     textDecoration: 'none',
     color: '#fff',
   },
-  // icon: {
-  //   width: '35px',
-  // },
   colored: {
     color: theme.palette.primary.main,
   },
@@ -45,7 +42,6 @@ const Header = () => {
       <ul className={classes.list}>
         <li></li>
         <li></li>
-
         <li></li>
       </ul>
       <a href="#" className={classes.link}>
