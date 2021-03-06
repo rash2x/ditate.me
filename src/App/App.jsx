@@ -24,6 +24,16 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: '"Montserrat", sans-serif',
     fontSize: 16,
+  },
+  shape: {
+    borderRadius: 8,
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        textTransform: 'capitalize'
+      }
+    }
   }
 });
 

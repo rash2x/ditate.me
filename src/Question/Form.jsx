@@ -5,72 +5,40 @@ const styles = makeStyles(theme => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
-    maxWidth: '600px',
     margin: 'auto',
     flex: '0 0 auto',
   },
+  form: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    marginTop: theme.spacing(0, 1)
+  },
   text: {
     fontWeight: '500',
-    fontSize: '20px',
     color: '#fff',
     lineHeight: '28px',
     textAlign: 'center',
-    margin: '0 0 25px 0',
-  },
-  colored: {
-    color: theme.palette.primary.main,
-  },
-  link: {
-    color: '#FFF59D',
-    cursor: 'pointer',
+    padding: theme.spacing(0, 1, 5),
+    margin: 0,
+
+    '& > span': {
+      color: theme.palette.primary.light
+    }
   },
   textarea: {
     border: `1px solid ${theme.palette.primary.light}`,
-    boxSizing: 'border-box',
-    borderRadius: '16px',
-    minHeight: '240px',
-    color: '#fff',
-    padding: '20px',
+    borderRadius: 16,
+    minHeight: 200,
     outline: 'none',
     resize: 'none',
-    '&::placeholder': {
-      color: '#fff',
-    },
   },
   notchedOutline: {
     border: 'none',
   },
   button: {
-    maxWidth: '180px',
-    color: '#000',
-    background: theme.palette.primary.main,
-    textTransform: 'Capitalize',
-    margin: '20px auto 0',
-    '&:hover': {
-      background: theme.palette.primary.light,
-    },
-  },
-  '@media (max-width: 768px)': {
-    text: {
-      fontSize: '18px',
-      margin: '0 0 10px 0',
-    },
-  },
-  '@media (max-width: 480px)': {
-    wrapper: {
-      padding: '0 20px',
-      marginTop: '40px',
-      marginBottom: '80px',
-    },
-    text: {
-      fontSize: '14px',
-    },
-    textarea: {
-      minHeight: '170px',
-    },
-    button: {
-      margin: '0 auto',
-    },
+    margin: theme.spacing(2),
   },
 }));
 
@@ -79,18 +47,37 @@ const Form = () => {
 
   const [message, setMessage] = useState('');
 
-  const handleMessageChange = useCallback((event, value) => {
-    setMessage(value);
-  }, [setMessage])
+  const handleMessageChange = useCallback((event) => {
+    setMessage(event.target.value);
+  }, [setMessage]);
+
+  function encode(data) {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&')
+  }
+
+  const handleSubmit = useCallback((event) => {
+    event.preventDefault();
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': event.target.getAttribute('name'),
+        'message': message
+      })
+    }).then(() => {
+      console.log('success')
+    }).catch(error => alert(error))
+  }, [message]);
 
   return (
     <div className={classes.wrapper}>
       <p className={classes.text}>
-        <span className={classes.colored}>Задай любой вопрос</span>, мы разберем его на следующих
-        подкастах. Ближайший выпуск 13.03
-        <a className={classes.link}> про активную медитацию Шодхан ICON</a>
+        <span>Задай любой вопрос</span>, мы разберем его на следующих подкастах. Ближайший выпуск 13.03 <span> про активную медитацию Шодхан 🐆</span>
       </p>
-      <form className={classes.form}>
+      <form className={classes.form} name="question" onSubmit={handleSubmit} method="POST">
         <TextField
           fullWidth
           multiline
@@ -98,17 +85,19 @@ const Form = () => {
           placeholder="Напиши свой вопрос"
           onChange={handleMessageChange}
           value={message}
+          className={classes.textarea}
           InputProps={{
             classes: {
-              input: classes.textarea,
               notchedOutline: classes.notchedOutline,
             },
           }}
         />
+        <Button className={classes.button} type="submit" size="medium" variant="contained" color="primary">
+          Отправить
+        </Button>
+
       </form>
-      <Button className={classes.button} type="submit" size="medium" variant="contained">
-        Отправить
-      </Button>
+
     </div>
   );
 };
