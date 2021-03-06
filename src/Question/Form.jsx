@@ -3,10 +3,10 @@ import React, { useCallback, useState } from 'react';
 
 const styles = makeStyles(theme => ({
   wrapper: {
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
     margin: 'auto',
-    flex: '0 0 auto',
   },
   form: {
     display: 'flex',

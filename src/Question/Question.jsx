@@ -4,7 +4,10 @@ import Form from './Form';
 import Success from './Success';
 
 const styles = makeStyles(theme => ({
-  root: {}
+  root: {
+    display: 'flex',
+    flex: 1
+  }
 }));
 
 const Question = () => {
