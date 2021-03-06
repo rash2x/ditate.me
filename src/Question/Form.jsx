@@ -1,5 +1,5 @@
 import { Button, makeStyles, TextField } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 const styles = makeStyles(theme => ({
   wrapper: {
@@ -77,7 +77,11 @@ const styles = makeStyles(theme => ({
 const Form = () => {
   const classes = styles();
 
-  const [setMessege] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleMessageChange = useCallback((event, value) => {
+    setMessage(value);
+  }, [setMessage])
 
   return (
     <div className={classes.wrapper}>
@@ -89,11 +93,11 @@ const Form = () => {
       <form className={classes.form}>
         <TextField
           fullWidth
-          id="outlined-multiline-static"
           multiline
           variant="outlined"
           placeholder="Напиши свой вопрос"
-          onChange={e => setMessege(e.target.value)}
+          onChange={handleMessageChange}
+          value={message}
           InputProps={{
             classes: {
               input: classes.textarea,
