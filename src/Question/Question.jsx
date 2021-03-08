@@ -1,5 +1,5 @@
 import { makeStyles, Snackbar } from '@material-ui/core';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Form from './Form';
 import Success from './Success';
 
