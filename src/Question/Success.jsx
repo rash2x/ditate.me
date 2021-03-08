@@ -66,7 +66,7 @@ const Success = () => {
       <div className={classes.wrapper}>
         <div className={classes.icon}>👏</div>
         <Typography variant="h1" className={classes.title} color="primary">Успешно!</Typography>
-        <p className={classes.text}>Мы получили твой вопрос, на ближайшем подкасте мы ответим на него.</p>
+        <p className={classes.text}>Мы получили твой вопрос, на ближайшем подкасте мы ответим на него 😉</p>
       </div>
     </div>
   );
