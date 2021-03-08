@@ -56,7 +56,6 @@ const styles = makeStyles(theme => ({
     fontSize: 80
   },
   youtubeButton: {
-    color: '#EB3223',
     alignSelf: 'center',
     marginTop: theme.spacing(2),
 
@@ -80,11 +79,12 @@ const Success = () => {
         <Typography variant="h1" className={classes.title} color="primary">Успешно!</Typography>
         <p className={classes.text}>Мы получили твой вопрос, на ближайшем подкасте мы ответим на него 😉</p>
         <Button className={classes.youtubeButton}
+                variant="outlined"
                 component="a"
                 href="https://www.youtube.com/channel/UCsh-ikLkVMI-gtpKWJn0XAA"
                 target="_blank">
           <YouTubePlayIcon />
-          Смотри наши подкасты на YouTube
+          Подкасты на YouTube
         </Button>
       </div>
     </div>
