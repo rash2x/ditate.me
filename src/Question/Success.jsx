@@ -10,7 +10,7 @@ const styles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    maxWidth: 500
+    maxWidth: 520
   },
   canvas: {
     zIndex: -1,
@@ -77,7 +77,7 @@ const Success = () => {
       <div className={classes.wrapper}>
         <div className={classes.icon}>👏</div>
         <Typography variant="h1" className={classes.title} color="primary">Успешно!</Typography>
-        <p className={classes.text}>Мы получили твой вопрос, на ближайшем подкасте мы ответим на него 😉</p>
+        <p className={classes.text}>Мы получили твой вопрос и на ближайшем подкасте мы ответим на него 😉</p>
         <Button className={classes.youtubeButton}
                 variant="outlined"
                 component="a"
