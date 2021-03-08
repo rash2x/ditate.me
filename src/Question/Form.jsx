@@ -66,7 +66,7 @@ const Form = ({ onSubmit, isFetching }) => {
   return (
     <div className={classes.container}>
       <p className={classes.text}>
-        <span>Задай любой вопрос</span>, мы разберем его на следующих подкастах. Ближайший выпуск 13.03 <span> про активную медитацию Шодхан 🐆</span> с <a href="https://www.instagram.com/rich_tsvetkov/" target="_blank">Романом Цветковым</a>
+        <span>Задай любой вопрос</span>, мы разберем его на следующих подкастах. Ближайший выпуск 13.03 <span> про активную медитацию Шодхан 🐆</span> с <a href="https://www.instagram.com/rich_tsvetkov/" target="_blank" rel="noreferrer">Романом Цветковым</a>
       </p>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)} data-netlify="true">
         <input type="hidden" name="form-name" value="question" ref={register()} />

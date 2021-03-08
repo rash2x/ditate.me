@@ -52,8 +52,11 @@ const styles = makeStyles({
   container: {
     display: 'flex',
     flexDirection: 'column',
+    // eslint-disable-next-line no-dupe-keys
     height: '100vh',
-  },
+    // eslint-disable-next-line no-dupe-keys
+    maxHeight: '-webkit-fill-available',
+},
 });
 
 const App = () => {

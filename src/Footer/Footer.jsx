@@ -25,8 +25,11 @@ const styles = makeStyles(theme => ({
     display: 'flex',
 
     '& > a': {
-      marginLeft: 16,
       display: 'flex',
+
+      [theme.breakpoints.up('md')]: {
+        marginLeft: 16,
+      },
     },
 
     '& svg': {
@@ -45,7 +48,7 @@ const Footer = () => {
   const classes = styles();
   return (
     <footer className={classes.footer}>
-      <span className={classes.copyright}>2021 &copy; <strong>#Минибудды</strong> отвечают 👌</span>
+      <div className={classes.copyright}>2021 &copy; <strong>#Минибудды</strong> отвечают 👌</div>
       <div className={classes.social}>
         <Button href="https://www.youtube.com/channel/UCsh-ikLkVMI-gtpKWJn0XAA" component="a" target="/blank">
           <YouTubePlayIcon />
