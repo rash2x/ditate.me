@@ -43,7 +43,7 @@ const styles = makeStyles(theme => ({
   },
 }));
 
-const Form = ({ onSubmit }) => {
+const Form = ({ onSubmit, isFetching }) => {
   const classes = styles();
   const { register, handleSubmit, setValue, errors } = useForm();
 
@@ -75,7 +75,7 @@ const Form = ({ onSubmit }) => {
           onChange={handleMessageChange}
           className={classes.textarea}
         />
-        <Button className={classes.button} type="submit" size="medium" variant="contained" color="primary">
+        <Button className={classes.button} type="submit" size="medium" variant="contained" color="primary" disabled={isFetching}>
           Отправить
         </Button>
       </form>

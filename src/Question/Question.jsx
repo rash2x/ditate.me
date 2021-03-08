@@ -16,8 +16,9 @@ const styles = makeStyles(theme => ({
 const Question = () => {
   const classes = styles();
 
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [isFailed, setIsFailed] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isFailed, setIsFailed] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
 
   const handleSubmit = useCallback((data, event) => {
     event.preventDefault();
@@ -28,17 +29,21 @@ const Question = () => {
         .join("&")
     }
 
+    setIsFetching(true);
+
     fetch('/', {
       method: 'POST',
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode(data)
     }).then(() => {
       setIsSubmitted(true);
+      setIsFetching(false);
     }).catch((error) => {
       setIsFailed(true);
+      setIsFetching(false);
     })
 
-  }, [setIsSubmitted, setIsFailed]);
+  }, [setIsSubmitted, setIsFailed, setIsFetching]);
 
   const handleSnackbarClose = useCallback(() => {
     setIsFailed(false);
@@ -46,7 +51,7 @@ const Question = () => {
 
   return (
     <div className={classes.root}>
-      {isSubmitted ? <Success /> : <Form onSubmit={handleSubmit} />}
+      {isSubmitted ? <Success /> : <Form onSubmit={handleSubmit} isFetching={isFetching} />}
 
       <Snackbar
         anchorOrigin={{
