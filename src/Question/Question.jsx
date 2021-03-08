@@ -25,10 +25,16 @@ const Question = () => {
     let myForm = event.target;
     let formData = new FormData(myForm)
 
+    function encode(data) {
+      return Object.keys(data)
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&")
+    }
+
     fetch('/', {
       method: 'POST',
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString()
+      body: encode(Object.fromEntries(formData))
     }).then(() => {
       setIsSubmitted(true);
     }).catch((error) => {
