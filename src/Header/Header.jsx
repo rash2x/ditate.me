@@ -10,6 +10,7 @@ const styles = makeStyles(theme => ({
   logoIcon: {
     display: 'flex',
     fontSize: 24,
+    textDecoration: 'none',
   },
   logoName: {
     fontSize: 20,
@@ -26,7 +27,7 @@ const Header = () => {
   const classes = styles();
   return (
     <header className={classes.header}>
-      <div className={classes.logoIcon}>👁👈🗿</div>
+      <a href="/" className={classes.logoIcon}>👁👈🗿</a>
       <a href="/" className={classes.logoName}>
         ditate<span>.me</span>
       </a>
