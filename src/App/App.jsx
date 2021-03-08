@@ -39,6 +39,11 @@ const theme = createMuiTheme({
       root: {
         textTransform: 'capitalize'
       }
+    },
+    MuiOutlinedInput: {
+      notchedOutline: {
+        borderColor: '#FFF9C4'
+      }
     }
   }
 });

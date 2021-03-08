@@ -32,11 +32,7 @@ const styles = makeStyles(theme => ({
     },
   },
   textarea: {
-    border: `1px solid ${theme.palette.primary.light}`,
     borderRadius: 16,
-    minHeight: 200,
-    outline: 'none',
-    resize: 'none',
   },
   notchedOutline: {
     border: 'none',
@@ -69,17 +65,13 @@ const Form = ({ onSubmit }) => {
         <TextField
           fullWidth
           multiline
+          rows={6}
           name="message"
           variant="outlined"
           placeholder="Чтобы ты хотел узнать про медитацию?"
           onChange={handleMessageChange}
           value={message}
           className={classes.textarea}
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-            },
-          }}
         />
         <Button className={classes.button} type="submit" size="medium" variant="contained" color="primary">
           Отправить
