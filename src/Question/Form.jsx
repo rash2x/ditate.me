@@ -52,7 +52,7 @@ const Form = ({ onSubmit }) => {
   }, [setValue]);
 
   const messageHasError = errors.hasOwnProperty('message');
-  const messageErrorText = messageHasError ? errors.message.type === 'required' ? 'Без вопроса - нет ответа!' : 'Краткость сестра таланта - но тут это уже слишком!' : false;
+  const messageErrorText = messageHasError ? errors.message.type === 'required' ? 'Без вопроса - нет ответа 😛' : 'Без вопроса - нет ответа 😛 (10 символов минимум)' : false;
 
   return (
     <div className={classes.container}>
