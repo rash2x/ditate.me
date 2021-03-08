@@ -26,6 +26,7 @@ const theme = createMuiTheme({
     fontFamily: '"Montserrat", sans-serif',
     fontWeight: 600,
     fontSize: 16,
+
     h1: {
       fontSize: 32,
     }

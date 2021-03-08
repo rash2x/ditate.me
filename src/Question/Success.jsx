@@ -8,6 +8,8 @@ const styles = makeStyles(theme => ({
     flex: 1,
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
+    maxWidth: 500
   },
   canvas: {
     zIndex: -1,
@@ -34,14 +36,20 @@ const styles = makeStyles(theme => ({
     marginBottom: '20px',
   },
   title: {
-    fontSize: 32,
-    color: theme.palette.primary.main,
     marginBottom: '20px',
+
+    [theme.breakpoints.up('md')]: {
+      fontSize: 40
+    },
   },
   text: {
     fontWeight: '500',
     color: '#fff',
     margin: 0,
+
+    [theme.breakpoints.up('md')]: {
+      fontSize: 20
+    },
   },
   icon: {
     fontSize: 80
@@ -58,7 +66,7 @@ const Success = () => {
       <div className={classes.wrapper}>
         <div className={classes.icon}>👏</div>
         <Typography variant="h1" className={classes.title} color="primary">Успешно!</Typography>
-        <p className={classes.text}>Мы получили твой вопрос, скоро ты получишь ответ на него.</p>
+        <p className={classes.text}>Мы получили твой вопрос, на ближайшем подкасте мы ответим на него.</p>
       </div>
     </div>
   );

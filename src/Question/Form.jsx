@@ -2,11 +2,12 @@ import { Button, makeStyles, TextField } from '@material-ui/core';
 import React, { useCallback, useState } from 'react';
 
 const styles = makeStyles(theme => ({
-  wrapper: {
+  container: {
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
     margin: 'auto',
+    maxWidth: 600
   },
   form: {
     display: 'flex',
@@ -18,14 +19,17 @@ const styles = makeStyles(theme => ({
   text: {
     fontWeight: '500',
     color: '#fff',
-    lineHeight: '28px',
     textAlign: 'center',
     padding: theme.spacing(0, 1, 5),
     margin: 0,
 
     '& > span': {
       color: theme.palette.primary.light
-    }
+    },
+
+    [theme.breakpoints.up('md')]: {
+      fontSize: 20
+    },
   },
   textarea: {
     border: `1px solid ${theme.palette.primary.light}`,
@@ -56,9 +60,9 @@ const Form = ({ onSubmit }) => {
   }, [message, onSubmit]);
 
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.container}>
       <p className={classes.text}>
-        <span>Задай любой вопрос</span>, мы разберем его на следующих подкастах. Ближайший выпуск 13.03 <span> про активную медитацию Шодхан 🐆</span>
+        <span>Задай любой вопрос</span>, мы разберем его на следующих подкастах. Ближайший выпуск 13.03 <span> про активную медитацию Шодхан 🐆</span> с Романом Цветковым
       </p>
       <form className={classes.form} onSubmit={handleSubmit} data-netlify="true">
         <input type="hidden" name="form-name" value="question" />
@@ -67,7 +71,7 @@ const Form = ({ onSubmit }) => {
           multiline
           name="message"
           variant="outlined"
-          placeholder="Напиши свой вопрос"
+          placeholder="Чтобы ты хотел узнать про медитацию?"
           onChange={handleMessageChange}
           value={message}
           className={classes.textarea}

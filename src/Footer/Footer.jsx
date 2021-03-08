@@ -1,50 +1,39 @@
 import { makeStyles } from '@material-ui/core';
 import React from 'react';
 
-const styles = makeStyles({
+const styles = makeStyles(theme => ({
   footer: {
     display: 'flex',
-    justifyContent: 'space-between',
-    padding: '20px 0',
-    flex: '0 0 auto',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: theme.spacing(4, 0),
+    fontSize: 14,
+    color: '#fff',
+
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
   },
   copyright: {
     fontWeight: '500',
-    fontSize: '14px',
-    color: '#fff',
   },
-  hash: {
-    display: 'flex',
-    textAlign: 'center',
-    fontWeight: '500',
-    fontSize: '14px',
-    color: '#fff',
-  },
-  hashBold: {
-    fontWeight: '700',
-  },
-  icon: {
-    width: '35px',
-  },
-  '@media (max-width: 480px)': {
-    footer: {
-      flexDirection: 'column',
-      alignItems: 'center',
+  social: {
+    marginTop: theme.spacing(1),
+
+    [theme.breakpoints.up('md')]: {
+      marginTop: 0
     },
-    copyright: {
-      marginBottom: '10px',
-    },
-  },
-});
+  }
+}));
 
 const Footer = () => {
   const classes = styles();
   return (
     <footer className={classes.footer}>
-      <span className={classes.copyright}>2021 &copy; Можно все</span>
-      <div className={classes.hash}>
-        <strong className={classes.hashBold}>#Минибудды</strong>
-        отвечают
+      <span className={classes.copyright}>2021 &copy; <strong>#Минибудды</strong> отвечают 👌</span>
+      <div className={classes.social}>
+        Instagram Youtube
       </div>
     </footer>
   );
