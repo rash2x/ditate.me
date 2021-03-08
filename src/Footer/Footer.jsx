@@ -1,5 +1,7 @@
-import { makeStyles } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
 import React from 'react';
+import {ReactComponent as YouTubePlayIcon} from '../assets/icons8-youtube-play.svg';
+import {ReactComponent as InstagramIcon} from '../assets/icons8-instagram.svg';
 
 const styles = makeStyles(theme => ({
   footer: {
@@ -20,6 +22,18 @@ const styles = makeStyles(theme => ({
   },
   social: {
     marginTop: theme.spacing(1),
+    display: 'flex',
+
+    '& > a': {
+      marginLeft: 16,
+      display: 'flex',
+    },
+
+    '& svg': {
+      width: 28,
+      height: 28,
+      marginRight: 8
+    },
 
     [theme.breakpoints.up('md')]: {
       marginTop: 0
@@ -33,7 +47,14 @@ const Footer = () => {
     <footer className={classes.footer}>
       <span className={classes.copyright}>2021 &copy; <strong>#Минибудды</strong> отвечают 👌</span>
       <div className={classes.social}>
-        Instagram Youtube
+        <Button href="https://www.youtube.com/channel/UCsh-ikLkVMI-gtpKWJn0XAA" component="a" target="/blank">
+          <YouTubePlayIcon />
+          YouTube
+        </Button>
+        <Button href="https://www.instagram.com/rash2x/" component="a" target="/blank">
+          <InstagramIcon />
+          Instagram
+        </Button>
       </div>
     </footer>
   );
