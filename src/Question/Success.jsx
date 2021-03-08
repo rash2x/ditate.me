@@ -1,6 +1,7 @@
 import React from 'react';
 import ConfettiCanvas from 'react-confetti-canvas';
 import { Button, makeStyles, Typography } from '@material-ui/core';
+import { ReactComponent as YouTubePlayIcon } from '../assets/icons8-youtube-play.svg';
 
 const styles = makeStyles(theme => ({
   container: {
@@ -55,7 +56,15 @@ const styles = makeStyles(theme => ({
     fontSize: 80
   },
   youtubeButton: {
-    backgroundColor: '#EB3223'
+    color: '#EB3223',
+    alignSelf: 'center',
+    marginTop: theme.spacing(2),
+
+    '& svg': {
+      width: 28,
+      height: 28,
+      marginRight: theme.spacing(1)
+    }
   }
 }));
 
@@ -70,7 +79,13 @@ const Success = () => {
         <div className={classes.icon}>👏</div>
         <Typography variant="h1" className={classes.title} color="primary">Успешно!</Typography>
         <p className={classes.text}>Мы получили твой вопрос, на ближайшем подкасте мы ответим на него 😉</p>
-        <Button className={classes.youtubeButton} component="a" href="https://www.youtube.com/channel/UCsh-ikLkVMI-gtpKWJn0XAA" target="_blank">Смотри наши подкасты на YouTube</Button>
+        <Button className={classes.youtubeButton}
+                component="a"
+                href="https://www.youtube.com/channel/UCsh-ikLkVMI-gtpKWJn0XAA"
+                target="_blank">
+          <YouTubePlayIcon />
+          Смотри наши подкасты на YouTube
+        </Button>
       </div>
     </div>
   );
