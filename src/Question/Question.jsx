@@ -24,6 +24,7 @@ const Question = () => {
 
     let myForm = event.target;
     let formData = new FormData(myForm)
+
     fetch('/', {
       method: 'POST',
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -39,12 +40,6 @@ const Question = () => {
   const handleSnackbarClose = useCallback(() => {
     setIsFailed(false);
   }, [setIsFailed]);
-
-  useEffect(() => {
-    if ( window.location.search.includes('?success') ) {
-      setIsSubmitted(true);
-    }
-  }, [setIsSubmitted]);
 
   return (
     <div className={classes.root}>
