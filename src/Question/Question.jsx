@@ -19,11 +19,8 @@ const Question = () => {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isFailed, setIsFailed] = useState(false)
 
-  const handleSubmit = useCallback((event, message) => {
+  const handleSubmit = useCallback((data, event) => {
     event.preventDefault();
-
-    let myForm = event.target;
-    let formData = new FormData(myForm)
 
     function encode(data) {
       return Object.keys(data)
@@ -34,7 +31,7 @@ const Question = () => {
     fetch('/', {
       method: 'POST',
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode(Object.fromEntries(formData))
+      body: encode(data)
     }).then(() => {
       setIsSubmitted(true);
     }).catch((error) => {

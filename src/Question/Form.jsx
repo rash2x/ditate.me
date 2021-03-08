@@ -1,5 +1,6 @@
 import { Button, makeStyles, TextField } from '@material-ui/core';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
+import { useForm } from 'react-hook-form';
 
 const styles = makeStyles(theme => ({
   container: {
@@ -44,33 +45,34 @@ const styles = makeStyles(theme => ({
 
 const Form = ({ onSubmit }) => {
   const classes = styles();
-
-  const [message, setMessage] = useState('');
+  const { register, handleSubmit, setValue, errors } = useForm();
 
   const handleMessageChange = useCallback((event) => {
-    setMessage(event.target.value);
-  }, [setMessage]);
+    setValue('message', event.target.value);
+  }, [setValue]);
 
-  const handleSubmit = useCallback((event) => {
-    onSubmit(event, message);
-  }, [message, onSubmit]);
+  const messageHasError = errors.hasOwnProperty('message');
+  const messageErrorText = messageHasError ? errors.message.type === 'required' ? 'Пожалуйста заполните поле' : 'Слишком короткий вопрос :)' : false;
 
   return (
     <div className={classes.container}>
       <p className={classes.text}>
-        <span>Задай любой вопрос</span>, мы разберем его на следующих подкастах. Ближайший выпуск 13.03 <span> про активную медитацию Шодхан 🐆</span> с Романом Цветковым
+        <span>Задай любой вопрос</span>, мы разберем его на следующих подкастах. Ближайший выпуск 13.03 <span> про активную медитацию Шодхан 🐆</span> с
+        Романом Цветковым
       </p>
-      <form className={classes.form} onSubmit={handleSubmit} data-netlify="true">
-        <input type="hidden" name="form-name" value="question" />
+      <form className={classes.form} onSubmit={handleSubmit(onSubmit)} data-netlify="true">
+        <input type="hidden" name="form-name" value="question" ref={register()} />
         <TextField
           fullWidth
           multiline
           rows={6}
+          error={messageHasError}
+          helperText={messageErrorText}
+          inputRef={register({ required: true, minLength: 10 })}
           name="message"
           variant="outlined"
           placeholder="Чтобы ты хотел узнать про медитацию?"
           onChange={handleMessageChange}
-          value={message}
           className={classes.textarea}
         />
         <Button className={classes.button} type="submit" size="medium" variant="contained" color="primary">
