@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button, Chip, Typography } from '@material-ui/core';
+import { Button, Drawer, Typography } from '@material-ui/core';
+import About from './About';
+import Partnership from './Partnership';
+import { Link } from 'react-router-dom';
 
 const Base = styled.div`
   padding-top: ${props => props.theme.spacing(3)}px;
@@ -20,11 +23,11 @@ const Title = styled(Typography).attrs({
 const Beta = styled.div`
   background: #FFF;
   display: inline-flex;
-  
+
   position: relative;
   top: ${props => props.theme.spacing(-1.5)}px;
   left: ${props => props.theme.spacing(0.5)}px;
-  
+
   color: #000;
   font-size: 0.875rem;
   border-radius: 3px;
@@ -74,6 +77,15 @@ const Links = styled.div`
 `;
 
 const Home = () => {
+  const [drawers, setDrawer] = React.useState({
+    about: false,
+    partnership: false,
+  });
+
+  const toggleDrawer = (anchor, open) => () => {
+    setDrawer({ ...drawers, [anchor]: open });
+  };
+
   return (
     <Base>
       <Content>
@@ -86,16 +98,26 @@ const Home = () => {
           <Indigo>Динамические медитации</Indigo>, <Cyan>экстатик дэнс</Cyan>,
           шодхан, гвоздестояние, <Pink>тантра</Pink>, <Lime>гонг медитация</Lime>, даосские практики,
           <LightGreen>хиллинг массаж</LightGreen>, <LightBlue>банные церемонии</LightBlue> и остальные практики</Text>
-        <ScheduleButton size="large" color="primary" variant="contained">🎯 Посмотреть расписание</ScheduleButton>
+        <ScheduleButton size="large" color="primary" variant="contained" component={Link} to="/practices">🎯 Посмотреть расписание</ScheduleButton>
       </Content>
       <Footer>
         <Links>
-          <Button size="medium" color="secondary" variant="contained">🎯 Связаться в телеграме</Button>
-          <Button size="medium" color="secondary" variant="contained">👁 О проекте</Button>
-          <Button size="medium" color="secondary" variant="contained">🤝 Партнёрство</Button>
+          <Button size="medium" color="secondary" variant="contained" onClick={toggleDrawer('partnership', true)}>🎯 Связаться в телеграме</Button>
+          <Button size="medium" color="secondary" variant="contained" onClick={toggleDrawer('about', true)}>
+            👁 О проекте
+          </Button>
+          <Button size="medium" color="secondary" variant="contained" onClick={toggleDrawer('partnership', true)}>🤝 Партнёрство</Button>
         </Links>
         <Copyright>2021 &copy; <strong>#Минибудды</strong> обучают 👌</Copyright>
       </Footer>
+
+      <Drawer anchor="bottom" open={drawers['about']} onClose={toggleDrawer('about', false)}>
+        <About />
+      </Drawer>
+
+      <Drawer anchor="bottom" open={drawers['partnership']} onClose={toggleDrawer('partnership', false)}>
+        <Partnership />
+      </Drawer>
     </Base>
   );
 };

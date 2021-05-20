@@ -17,10 +17,16 @@ export const theme = createMuiTheme({
   typography: {
     fontFamily: '"Montserrat", sans-serif',
     fontWeight: 600,
-    fontSize: 13,
+    fontSize: 14,
 
     h1: {
       fontSize: 22,
+      fontWeight: 700,
+      lineHeight: 1.54
+    },
+
+    h2: {
+      fontSize: 20,
       fontWeight: 700,
       lineHeight: 1.54
     },
