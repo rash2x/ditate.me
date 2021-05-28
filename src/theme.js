@@ -15,12 +15,12 @@ export const theme = createMuiTheme({
     },
   },
   typography: {
-    fontFamily: '"Montserrat", sans-serif',
-    fontWeight: 600,
+    htmlFontSize: 10,
+    fontFamily: '"Nunito", sans-serif',
     fontSize: 14,
 
     h1: {
-      fontSize: 22,
+      fontSize: 24,
       fontWeight: 700,
       lineHeight: 1.54
     },
@@ -39,12 +39,6 @@ export const theme = createMuiTheme({
     borderRadius: 8,
   },
   overrides: {
-    MuiContainer: {
-      root: {
-        paddingLeft: 24,
-        paddingRight: 20
-      }
-    },
     MuiButton: {
       root: {
         textTransform: 'capitalize',
@@ -59,6 +53,13 @@ export const theme = createMuiTheme({
       notchedOutline: {
         borderColor: '#FFF9C4'
       }
-    }
-  }
+    },
+    MuiCssBaseline: {
+      '@global': {
+        html: {
+          fontSize: 10
+        },
+      },
+    },
+  },
 });

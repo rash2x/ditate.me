@@ -1,38 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, Drawer, Typography } from '@material-ui/core';
-import About from './About';
 import Partnership from './Partnership';
-import { Link } from 'react-router-dom';
+import Logo from './Logo';
 
 const Base = styled.div`
-  padding-top: ${props => props.theme.spacing(3)}px;
+  background: ${props => props.theme.palette.primary.main};
+  color: ${props => props.theme.palette.common.black};
+  padding: ${props => props.theme.spacing(3, 2.5)};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  max-height: -webkit-fill-available;
 `;
 
 const Title = styled(Typography).attrs({
   variant: 'h1'
-})`
-
-`;
-
-const Beta = styled.div`
-  background: #FFF;
-  display: inline-flex;
-
-  position: relative;
-  top: ${props => props.theme.spacing(-1.5)}px;
-  left: ${props => props.theme.spacing(0.5)}px;
-
-  color: #000;
-  font-size: 0.875rem;
-  border-radius: 3px;
-  padding: ${props => props.theme.spacing(0.25, 1)};
-`;
+})``;
 
 const Text = styled(Typography).attrs({
   variant: 'h1'
@@ -46,10 +30,6 @@ const Pink = styled.span`color: #FF80AB`;
 const Lime = styled.span`color: #F4FF81`;
 const LightGreen = styled.span`color: #CCFF90`;
 const LightBlue = styled.span`color: #80D8FF`;
-
-const ScheduleButton = styled(Button)`
-  margin-top: ${props => props.theme.spacing(3)}px;
-`;
 
 const Content = styled.div`
 
@@ -76,7 +56,7 @@ const Links = styled.div`
   }
 `;
 
-const Home = () => {
+const About = () => {
   const [drawers, setDrawer] = React.useState({
     about: false,
     partnership: false,
@@ -90,30 +70,21 @@ const Home = () => {
     <Base>
       <Content>
         <Title>
-          Ditate.me <Beta>Beta</Beta> <br />
-          помогаем найти расписание медитаций
-          в Санкт-Петербурге
+          <Logo inverse={true} /> <br />
+          Мы сообщество, медитирующих людей 👁
         </Title>
         <Text>
           <Indigo>Динамические медитации</Indigo>, <Cyan>экстатик дэнс</Cyan>,
           шодхан, гвоздестояние, <Pink>тантра</Pink>, <Lime>гонг медитация</Lime>, даосские практики,
           <LightGreen>хиллинг массаж</LightGreen>, <LightBlue>банные церемонии</LightBlue> и остальные практики</Text>
-        <ScheduleButton size="large" color="primary" variant="contained" component={Link} to="/practices">🎯 Посмотреть расписание</ScheduleButton>
       </Content>
       <Footer>
         <Links>
           <Button size="medium" color="secondary" variant="contained" onClick={toggleDrawer('partnership', true)}>🎯 Связаться в телеграме</Button>
-          <Button size="medium" color="secondary" variant="contained" onClick={toggleDrawer('about', true)}>
-            👁 О проекте
-          </Button>
           <Button size="medium" color="secondary" variant="contained" onClick={toggleDrawer('partnership', true)}>🤝 Партнёрство</Button>
         </Links>
         <Copyright>2021 &copy; <strong>#Минибудды</strong> обучают 👌</Copyright>
       </Footer>
-
-      <Drawer anchor="bottom" open={drawers['about']} onClose={toggleDrawer('about', false)}>
-        <About />
-      </Drawer>
 
       <Drawer anchor="bottom" open={drawers['partnership']} onClose={toggleDrawer('partnership', false)}>
         <Partnership />
@@ -122,4 +93,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default About;
