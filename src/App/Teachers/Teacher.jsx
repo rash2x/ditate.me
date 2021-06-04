@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Typography } from '@material-ui/core';
+import {Typography} from '@material-ui/core';
 
 const Base = styled.div`
   display: flex;
@@ -11,7 +11,9 @@ const Base = styled.div`
 
 const Name = styled(Typography)`
   font-size: 1.3rem;
+  color: white;
 `;
+
 const Image = styled.img`
   width: 72px;
   height: 72px;
@@ -19,13 +21,18 @@ const Image = styled.img`
 `;
 
 
-const Teacher = ({ name, thumbnail, ...rest }) => {
-  return (
-    <Base {...rest}>
-      <Image src={thumbnail} alt={name} />
-      <Name>{name}</Name>
-    </Base>
-  );
+const Teacher = ({name, thumbnail, id, ...rest}) => {
+
+    const redirect = (id) => window.location.href = `/${id}`;
+
+    console.log(id)
+
+    return (
+        <Base onClick={() => redirect(id)} {...rest}>
+            <Image src={thumbnail} alt={name}/>
+            <Name>{name}</Name>
+        </Base>
+    );
 };
 
 export default Teacher;

@@ -1,9 +1,19 @@
-import { createContext } from 'react';
+import React, {createContext, useReducer} from 'react';
+import reducer, {initialState} from "./reducer";
 
-const initialValue = {
-  teachers: [],
-  practices: [],
-  meditations: []
+export const StateContext = createContext(initialState);
+export const DispatchContext = createContext();
+
+const Store = ({children}) => {
+    const [state, dispatch] = useReducer(reducer, initialState)
+
+    return (
+        <StateContext.Provider value={state}>
+            <DispatchContext.Provider value={dispatch}>
+                {children}
+            </DispatchContext.Provider>
+        </StateContext.Provider>
+    )
 }
 
-export const AirtableContext = createContext(initialValue);
+export default Store
