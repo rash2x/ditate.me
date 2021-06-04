@@ -1,8 +1,4 @@
-export const initialState = {
-    teachers: null,
-    practices: null,
-    meditations: null
-}
+import {initialState} from "./context";
 
 export default function reducer(state = initialState, action) {
     const { type, payload } = action;

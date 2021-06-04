@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Typography} from '@material-ui/core';
 import Airtable from 'airtable';
 import Teacher from './Teacher';
-import {DispatchContext, StateContext} from "../airtable/context";
+import {Context} from "../airtable/context";
 import {setPractices, setTeachers} from "../airtable/reducer";
 
 const Base = styled.div`
@@ -39,8 +39,7 @@ export const airtableBase = new Airtable({
 
 const Teachers = () => {
 
-    const state = useContext(StateContext)
-    const dispatch = useContext(DispatchContext)
+    const [state, dispatch] = useContext(Context)
 
     useEffect(() => {
         if(state.practices === null){
@@ -53,7 +52,7 @@ const Teachers = () => {
                     fetchNextPage();
                 })
         }
-    }, [state.teachers])
+    }, [])
 
     useEffect(() => {
         if(state.teachers === null){
@@ -72,7 +71,6 @@ const Teachers = () => {
         return state.teachers?.find(t => t.id === teacherId);
     };
 
-    console.log(state)
 
     return (
         <Base>

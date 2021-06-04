@@ -1,18 +1,21 @@
-import React, {createContext, useReducer} from 'react';
-import reducer, {initialState} from "./reducer";
+import React, {createContext, useEffect, useReducer} from 'react';
+import reducer from "./reducer";
 
-export const StateContext = createContext(initialState);
-export const DispatchContext = createContext();
+export const initialState = {
+    teachers: null,
+    practices: null,
+    meditations: null
+}
+
+export const Context = createContext(initialState);
 
 const Store = ({children}) => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
     return (
-        <StateContext.Provider value={state}>
-            <DispatchContext.Provider value={dispatch}>
+        <Context.Provider value={[state, dispatch]}>
                 {children}
-            </DispatchContext.Provider>
-        </StateContext.Provider>
+        </Context.Provider>
     )
 }
 

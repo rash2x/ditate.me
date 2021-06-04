@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import styled from 'styled-components';
 import {AppBar, Container, Drawer, Toolbar} from '@material-ui/core';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Router} from 'react-router-dom';
 
 import Teachers from './Teachers/Teachers';
 import About from './About';
@@ -42,16 +42,15 @@ const App = () => {
                 </Header>
             </AppBar>
 
-            <Store>
-                <Switch>
+            <Switch>
                     <Route exact path="/">
                         <Teachers/>
                     </Route>
                     <Route path="/:teacherId">
                         <TeacherInfo/>
                     </Route>
-                </Switch>
-            </Store>
+            </Switch>
+        
 
             <AboutDrawer anchor="left" open={drawers['about']} onClose={toggleDrawer('about', false)}>
                 <About/>

@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from "react";
 import styled from 'styled-components';
 import {withRouter} from "react-router";
-import {DispatchContext, StateContext} from "../airtable/context";
+import {Context} from "../airtable/context";
 import {setTeachers} from "../airtable/reducer";
 import {airtableBase} from "./Teachers";
 import {Button, Typography} from "@material-ui/core";
@@ -29,20 +29,9 @@ const Name = styled(Typography)`
 
 const TeacherInfo = (props) => {
 
-    const state = useContext(StateContext)
-    const dispatch = useContext(DispatchContext)
-    const teacherId = props.match.params.teacherId
+    const [state, dispatch] = useContext(Context)
 
-    useEffect(() => {
-        airtableBase('Teachers')
-            .select({
-                view: 'Grid view'
-            })
-            .eachPage((records, fetchNextPage) => {
-                dispatch(setTeachers(records))
-                fetchNextPage();
-            })
-    }, []);
+    const teacherId = props.match.params.teacherId
 
     return (
         <>
@@ -56,7 +45,8 @@ const TeacherInfo = (props) => {
                         <Base key={item.id}>
                             <Name>{name}</Name>
                             <Image src={imageUrl} alt={""}/>
-                            <Grid style={{marginTop: "15px", marginBottom: "10px", textAlign:"center"}} container spacing={1}>
+                            <Grid style={{marginTop: "15px", marginBottom: "10px", textAlign:"center", display:"flex", justifyContent: "center"}}
+                                  container spacing={1}>
                                 <Grid item xs={4} sm={3}>
                                     <Box style={{borderRadius:"3px", color:"black"}} bgcolor="primary.main" color="secondary.contrastText" p={0.3}>
                                         secondary.main
