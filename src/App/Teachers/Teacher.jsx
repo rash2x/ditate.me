@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Typography} from '@material-ui/core';
-import { createBrowserHistory } from 'history';
 import {Link} from "react-router-dom"
-
 
 const Base = styled.div`
   display: flex;
@@ -23,18 +21,10 @@ const Image = styled.img`
   border-radius: 50%;
 `;
 
-
 const Teacher = ({name, thumbnail, id, ...rest}) => {
-
-    const history = createBrowserHistory();
-    
-    let redirect = (id) => history.push(`/${id}`);
-
-    console.log(id)
-
     return (
       <Link style={{textDecoration:"none"}} to={`/${id}`}>
-          <Base onClick={() => redirect(id)} {...rest}>
+          <Base {...rest}>
               <Image src={thumbnail} alt={name}/>
               <Name>{name}</Name>
           </Base>

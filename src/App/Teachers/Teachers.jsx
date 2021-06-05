@@ -1,13 +1,11 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import {Typography} from '@material-ui/core';
-import Airtable from 'airtable';
-import Teacher from './Teacher';
-import {Context} from "../airtable/context";
-import {setPractices, setTeachers} from "../airtable/reducer";
 
-const Base = styled.div`
-`;
+import {AirtableContext} from "../airtable/context"
+import Teacher from './Teacher';
+
+const Base = styled.div``;
 
 const Group = styled.div`
   margin-top: 16px;
@@ -33,44 +31,17 @@ const GroupTitle = styled(Typography).attrs({
   color: ${props => props.color};
 `;
 
-export const airtableBase = new Airtable({
-    apiKey: 'keyEXP4qnVysxeAWt'
-}).base('appAB6mLnImrAFBWa');
-
 const Teachers = () => {
-
-    const [state, dispatch] = useContext(Context)
-
-    useEffect(() => {
-        if(state.practices === null){
-            airtableBase('Practices')
-                .select({
-                    view: 'Grid view'
-                })
-                .eachPage((records, fetchNextPage) => {
-                    dispatch(setPractices(records));
-                    fetchNextPage();
-                })
-        }
-    }, [])
-
-    useEffect(() => {
-        if(state.teachers === null){
-            airtableBase('Teachers')
-                .select({
-                    view: 'Grid view'
-                })
-                .eachPage((records, fetchNextPage) => {
-                    dispatch(setTeachers(records))
-                    fetchNextPage();
-                })
-        }
-    }, []);
 
     const getTeacher = (teacherId) => {
         return state.teachers?.find(t => t.id === teacherId);
     };
 
+    const [state, dispatch] = useContext(AirtableContext)
+
+    if(!state.practices && !state.teachers){
+        return <span>Loading...</span>
+    }
 
     return (
         <Base>

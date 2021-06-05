@@ -3,7 +3,7 @@ import {initialState} from "./context";
 export default function reducer(state = initialState, action) {
     const { type, payload } = action;
     switch (type){
-        case "SET_TEACHER":
+        case "SET_TEACHERS":
             return{
                 ...state,
                 teachers: payload
@@ -23,6 +23,6 @@ export default function reducer(state = initialState, action) {
     }
 }
 
-export const setTeachers = (teachers) => ({type: "SET_TEACHER", payload: teachers})
+export const setTeachers = (teachers) => ({type: "SET_TEACHERS", payload: teachers})
 export const setPractices = (practices) => ({type: "SET_PRACTICES", payload: practices})
 export const setMeditations = (teachers) => ({type: "SET_MEDITATIONS", payload: teachers})

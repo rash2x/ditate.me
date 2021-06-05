@@ -1,13 +1,17 @@
-import React, {useContext, useState} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import {Switch, Route} from 'react-router-dom';
+
 import styled from 'styled-components';
 import {AppBar, Container, Drawer, Toolbar} from '@material-ui/core';
-import {Switch, Route, Router} from 'react-router-dom';
+import Airtable from 'airtable';
 
 import Teachers from './Teachers/Teachers';
 import About from './About';
 import Logo from './Logo';
-import Store from "./airtable/context";
-import TeacherInfo from "./Teachers/TeacherInfo";
+import TeacherInfo from "./TeachersInfo/TeachersInfo";
+
+import {AirtableContext} from "./airtable/context";
+import {setPractices, setTeachers} from "./airtable/reducer";
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
@@ -25,7 +29,13 @@ const AboutDrawer = styled(Drawer)`
   }
 `;
 
+export const airtableBase = new Airtable({
+    apiKey: 'keyEXP4qnVysxeAWt'
+}).base('appAB6mLnImrAFBWa');
+
 const App = () => {
+
+    const [state, dispatch] = useContext(AirtableContext)
     const [drawers, setDrawer] = useState({
         about: false
     });
@@ -34,6 +44,28 @@ const App = () => {
         setDrawer({...drawers, [anchor]: open});
     };
 
+    useEffect(() => {
+            airtableBase('Practices')
+                .select({
+                    view: 'Grid view'
+                })
+                .eachPage((records, fetchNextPage) => {
+                    dispatch(setPractices(records));
+                    fetchNextPage();
+                })
+    }, [])
+
+    useEffect(() => {
+        airtableBase('Teachers')
+            .select({
+                view: 'Grid view'
+            })
+            .eachPage((records, fetchNextPage) => {
+                dispatch(setTeachers(records))
+                fetchNextPage();
+            })
+    }, []);
+    
     return (
         <Base>
             <AppBar color={'transparent'}>
