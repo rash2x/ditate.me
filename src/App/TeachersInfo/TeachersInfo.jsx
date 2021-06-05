@@ -10,26 +10,25 @@ const TeachersInfo = (props) => {
 
     const teacherId = props.match.params.teacherId
 
-    const findTeacherId = () => {
-        return state.teachers.find(t => t.id === teacherId);
-    }
-
     return (
         <>
-            {state.teachers && state.teachers.map(item => {
-                const items = findTeacherId()
-                const imageUrl = items.fields['Avatar'][0].thumbnails.large.url
-                const instagram = items.fields.Instagram
-                const name = items.fields.Name
-                return (
-                    <TeacherInfo
-                        key={item.id}
-                        imageUrl={imageUrl}
-                        instagram={instagram}
-                        name={name}
-                    />
-                )
-            })}
+            {
+                state.teachers?.filter(t => t.id === teacherId).map(item => {
+                    const instagram = item.fields.Instagram
+                    const imageUrl = item.fields['Avatar'][0].thumbnails.large.url
+                    const name = item.fields["Name"]
+                    return (
+                        <TeacherInfo
+                            key={item.id}
+                            imageUrl={imageUrl}
+                            instagram={instagram}
+                            name={name}
+                        />
+                    )
+                })
+
+            }
+
         </>
     );
 };

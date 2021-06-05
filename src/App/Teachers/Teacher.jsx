@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styled from 'styled-components';
 import {Typography} from '@material-ui/core';
 import {Link} from "react-router-dom"
@@ -13,6 +14,7 @@ const Base = styled.div`
 const Name = styled(Typography)`
   font-size: 1.3rem;
   color: white;
+  margin-top: 5px;
 `;
 
 const Image = styled.img`

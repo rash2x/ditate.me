@@ -1,6 +1,8 @@
 import React, {useContext} from 'react';
+
 import styled from 'styled-components';
 import {Typography} from '@material-ui/core';
+import ReactLoading from "react-loading";
 
 import {AirtableContext} from "../airtable/context"
 import Teacher from './Teacher';
@@ -31,6 +33,12 @@ const GroupTitle = styled(Typography).attrs({
   color: ${props => props.color};
 `;
 
+const LoadingBar = styled.div`
+  display: grid;
+  justify-content: center;
+  margin-top: 10px;
+`
+
 const Teachers = () => {
 
     const getTeacher = (teacherId) => {
@@ -40,7 +48,9 @@ const Teachers = () => {
     const [state, dispatch] = useContext(AirtableContext)
 
     if(!state.practices && !state.teachers){
-        return <span>Loading...</span>
+        return <LoadingBar>
+            <ReactLoading type={"bubbles"} color="#fff" />
+        </LoadingBar>
     }
 
     return (

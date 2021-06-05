@@ -45,14 +45,14 @@ const App = () => {
     };
 
     useEffect(() => {
-            airtableBase('Practices')
-                .select({
-                    view: 'Grid view'
-                })
-                .eachPage((records, fetchNextPage) => {
-                    dispatch(setPractices(records));
-                    fetchNextPage();
-                })
+        airtableBase('Practices')
+            .select({
+                view: 'Grid view'
+            })
+            .eachPage((records, fetchNextPage) => {
+                dispatch(setPractices(records));
+                fetchNextPage();
+            })
     }, [])
 
     useEffect(() => {
@@ -65,7 +65,7 @@ const App = () => {
                 fetchNextPage();
             })
     }, []);
-    
+
     return (
         <Base>
             <AppBar color={'transparent'}>
@@ -75,14 +75,14 @@ const App = () => {
             </AppBar>
 
             <Switch>
-                    <Route exact path="/">
-                        <Teachers/>
-                    </Route>
-                    <Route path="/:teacherId">
-                        <TeacherInfo/>
-                    </Route>
+                <Route exact path="/">
+                    <Teachers/>
+                </Route>
+                <Route path="/:teacherId?">
+                    <TeacherInfo/>
+                </Route>
             </Switch>
-        
+
 
             <AboutDrawer anchor="left" open={drawers['about']} onClose={toggleDrawer('about', false)}>
                 <About/>
