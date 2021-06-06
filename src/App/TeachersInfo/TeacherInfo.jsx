@@ -1,9 +1,9 @@
 import React from 'react'
 
 import styled from 'styled-components';
-import {Typography} from "@material-ui/core";
+import { Typography } from '@material-ui/core';
 
-import instagramLogo from "../../assets/icons8-instagram.svg"
+import instagramLogo from '../../assets/icons8-instagram.svg'
 
 const Base = styled.div`
   display: grid;
@@ -45,20 +45,20 @@ const Logo = styled(Typography)`
   margin-top: -0.7em;
 `;
 
-function TeacherInfo({imageUrl, name, instagram}) {
+function TeacherInfo({ imageUrl, name, instagram }) {
 
-    let click = () => window.open(`http://instagram.com/${instagram}`,'_blank')
+  let click = () => window.open(`http://instagram.com/${instagram}`, '_blank')
 
-    return (
-        <Base>
-            <Name>{name}</Name>
-            <Image src={imageUrl} alt={""}/>
-            <Button onClick={click}>
-                <img src={instagramLogo} width="30px" alt="" />
-                <Logo>Instagram</Logo>
-            </Button>
-        </Base>
-    )
+  return (
+    <Base>
+      <Name>{name}</Name>
+      <Image src={imageUrl} alt={''} />
+      <Button onClick={click}>
+        <img src={instagramLogo} width="30px" alt="" />
+        <Logo>Instagram</Logo>
+      </Button>
+    </Base>
+  )
 }
 
 export default TeacherInfo
