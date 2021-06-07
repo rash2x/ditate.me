@@ -2,6 +2,8 @@ import React from 'react'
 
 import styled from 'styled-components';
 import { Typography } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 
 import instagramLogo from '../../assets/icons8-instagram.svg'
 
@@ -26,26 +28,23 @@ const Name = styled(Typography)`
   margin-top: 5px;
 `;
 
-const Button = styled.button`
-  margin-top: 1em;
-  background: #707070;
-  border: none;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  padding: 5px;
-  box-shadow: 0 0 3px #707070;
-`;
-
 const Logo = styled(Typography)`
   color: white;
-  font-size: 1.7rem;
-  position: relative;
-  top: 50%;
-  margin-top: -0.7em;
+  font-size: 1.8rem;
 `;
 
-function TeacherInfo({ imageUrl, name, instagram }) {
+const StyledButton = withStyles({
+  root: {
+    marginTop: '10px',
+    background: 'dimgray',
+    borderRadius: '5px',
+    border: 0,
+    padding: '10px',
+    boxShadow: '0 0 3px dimgray',
+  }
+})(Button);
+
+const TeacherInfo = ({ imageUrl, name, instagram }) => {
 
   let click = () => window.open(`http://instagram.com/${instagram}`, '_blank')
 
@@ -53,10 +52,10 @@ function TeacherInfo({ imageUrl, name, instagram }) {
     <Base>
       <Name>{name}</Name>
       <Image src={imageUrl} alt={''} />
-      <Button onClick={click}>
+      <StyledButton onClick={click}>
         <img src={instagramLogo} width="30px" alt="" />
         <Logo>Instagram</Logo>
-      </Button>
+      </StyledButton>
     </Base>
   )
 }

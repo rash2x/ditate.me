@@ -29,11 +29,11 @@ const Beta = styled.div`
 
 
 const Logo = (props) => {
-    return (
-        <Base {...props}>
-            ditate.Me <Beta inverse={props.inverse}>Beta</Beta>
-        </Base>
-    );
+  return (
+    <Base {...props}>
+      ditate.Me <Beta inverse={props.inverse}>Beta</Beta>
+    </Base>
+  );
 };
 
 export default Logo;

@@ -18,10 +18,6 @@ const Base = styled(Container)`
   max-height: -webkit-fill-available;
 `;
 
-const Header = styled(Toolbar)`
-  justify-content: center;
-`;
-
 const AboutDrawer = styled(Drawer)`
   .MuiDrawer-paper {
     width: 340px;
