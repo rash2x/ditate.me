@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 import styled from 'styled-components';
-import { AppBar, Container, Drawer, Toolbar } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import Airtable from 'airtable';
 
 import Teachers from './Teachers/Teachers';
-import About from './About';
-import Logo from './Logo';
 import TeacherInfo from './TeachersInfo/TeachersInfo';
+import Header from './components/Header';
 
 import { AirtableContext } from './airtable/context';
 import { setPractices, setTeachers } from './airtable/reducer';
@@ -18,13 +17,6 @@ const Base = styled(Container)`
   max-height: -webkit-fill-available;
 `;
 
-const AboutDrawer = styled(Drawer)`
-  .MuiDrawer-paper {
-    width: 340px;
-    max-width: 92%;
-  }
-`;
-
 export const airtableBase = new Airtable({
   apiKey: 'keyEXP4qnVysxeAWt'
 }).base('appAB6mLnImrAFBWa');
@@ -32,13 +24,7 @@ export const airtableBase = new Airtable({
 const App = () => {
 
   const [dispatch] = useContext(AirtableContext)
-  const [drawers, setDrawer] = useState({
-    about: false
-  });
 
-  const toggleDrawer = (anchor, open) => () => {
-    setDrawer({ ...drawers, [anchor]: open });
-  };
 
   useEffect(() => {
     airtableBase('Practices')
@@ -64,11 +50,8 @@ const App = () => {
 
   return (
     <Base>
-      <AppBar color={'transparent'}>
-        <Header>
-          <Logo onClick={toggleDrawer('about', true)} />
-        </Header>
-      </AppBar>
+
+      <Header />
 
       <Switch>
         <Route exact path="/">
@@ -79,9 +62,7 @@ const App = () => {
         </Route>
       </Switch>
 
-      <AboutDrawer anchor="left" open={drawers['about']} onClose={toggleDrawer('about', false)}>
-        <About />
-      </AboutDrawer>
+
     </Base>
   );
 };
