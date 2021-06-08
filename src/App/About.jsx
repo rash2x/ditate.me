@@ -1,6 +1,8 @@
 import React from 'react';
+
 import styled from 'styled-components';
 import { Button, Drawer, Typography } from '@material-ui/core';
+
 import Partnership from './Partnership';
 import Logo from './Logo';
 
@@ -12,6 +14,7 @@ const Base = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
+  z-index: 4;
 `;
 
 const Title = styled(Typography).attrs({
@@ -80,8 +83,10 @@ const About = () => {
       </Content>
       <Footer>
         <Links>
-          <Button size="medium" color="secondary" variant="contained" onClick={toggleDrawer('partnership', true)}>🎯 Связаться в телеграме</Button>
-          <Button size="medium" color="secondary" variant="contained" onClick={toggleDrawer('partnership', true)}>🤝 Партнёрство</Button>
+          <Button size="medium" color="secondary" variant="contained" onClick={toggleDrawer('partnership', true)}>🎯
+            Связаться в телеграме</Button>
+          <Button size="medium" color="secondary" variant="contained" onClick={toggleDrawer('partnership', true)}>🤝
+            Партнёрство</Button>
         </Links>
         <Copyright>2021 &copy; <strong>#Минибудды</strong> обучают 👌</Copyright>
       </Footer>

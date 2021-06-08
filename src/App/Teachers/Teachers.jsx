@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Typography } from '@material-ui/core';
 import ReactLoading from 'react-loading';
 
-import { AirtableContext } from '../airtable/context'
+import { AirtableContext } from '../airtable/context';
 import Teacher from './Teacher';
 
 const Base = styled.div``;
@@ -37,19 +37,19 @@ const LoadingBar = styled.div`
   display: grid;
   justify-content: center;
   margin-top: 10px;
-`
+`;
 
 const Teachers = () => {
   const getTeacher = (teacherId) => {
     return state.teachers?.find(t => t.id === teacherId);
   };
 
-  const [state] = useContext(AirtableContext)
+  const [state] = useContext(AirtableContext);
 
   if (!state.practices && !state.teachers) {
     return <LoadingBar>
       <ReactLoading type={'bubbles'} color="#fff" />
-    </LoadingBar>
+    </LoadingBar>;
   }
 
   return (
@@ -66,7 +66,7 @@ const Teachers = () => {
                            id={teacherId}
                            name={teacher.Instagram}
                            thumbnail={teacher['Avatar'][0].thumbnails.large.url} />
-                )
+                );
               })}
             </GroupList>
           </Group>

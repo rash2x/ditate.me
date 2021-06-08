@@ -1,63 +1,73 @@
-import React from 'react'
+import React, { useContext } from 'react';
 
 import styled from 'styled-components';
 import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
 
-import instagramLogo from '../../assets/icons8-instagram.svg'
+import { AirtableContext } from '../airtable/context';
+
+import instagramLogo from '../../assets/icons8-instagram.svg';
+
 
 const Base = styled.div`
   display: grid;
   justify-content: center;
-  padding-top: 10px;
+  padding-top: 30px;
 `;
 
 const Image = styled.img`
-  width: 40%;
+  width: 38%;
   border-radius: 50%;
-  margin: 5px auto;
-  box-shadow: 0 0 3px black;
-`;
-
-const Name = styled(Typography)`
-  font-size: 2rem;
-  font-weight: 600;
-  color: white;
-  text-align: center;
-  margin-top: 5px;
+  margin: 0 auto;
 `;
 
 const Logo = styled(Typography)`
   color: white;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
+  margin-left: 10px;
 `;
 
-const StyledButton = withStyles({
-  root: {
-    marginTop: '10px',
-    background: 'dimgray',
-    borderRadius: '5px',
-    border: 0,
-    padding: '10px',
-    boxShadow: '0 0 3px dimgray',
-  }
-})(Button);
+const StyledButton = styled(Button)`
+  margin-top: 20px;
+  background: #2f3237;
+  border-radius: 3px;
+  border: 1px black;
+  padding: 7px;
+  box-shadow: none;
+`;
 
-const TeacherInfo = ({ imageUrl, name, instagram }) => {
+const PracticeItem = styled(Button)`
+  padding: 3px;
+  font-size: 1.3rem;
+  border-radius: 5px;
+  background: ${props => props.color};
+`;
 
-  let click = () => window.open(`http://instagram.com/${instagram}`, '_blank')
+const Case = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+`;
 
-  return (
+const TeacherInfo = () => {
+  const [state, dispatch] = useContext(AirtableContext);
+
+  const currentTeacher = state.currentTeacher;
+
+  let click = () => window.open(`http://instagram.com/${currentTeacher.instagram}`, '_blank');
+
+  return currentTeacher ? (
     <Base>
-      <Name>{name}</Name>
-      <Image src={imageUrl} alt={''} />
+      <Image src={currentTeacher.imageUrl} alt={''} />
+      <Case>
+        <PracticeItem color={currentTeacher.practicesColor}>{currentTeacher.practicesName}</PracticeItem>
+      </Case>
       <StyledButton onClick={click}>
-        <img src={instagramLogo} width="30px" alt="" />
+        <img src={instagramLogo} width="25px" alt="" />
         <Logo>Instagram</Logo>
       </StyledButton>
     </Base>
-  )
-}
+  ) : null;
+};
 
-export default TeacherInfo
+export default TeacherInfo;

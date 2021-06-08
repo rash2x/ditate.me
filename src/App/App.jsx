@@ -6,7 +6,7 @@ import { Container } from '@material-ui/core';
 import Airtable from 'airtable';
 
 import Teachers from './Teachers/Teachers';
-import TeacherInfo from './TeachersInfo/TeachersInfo';
+import TeacherInfo from './TeachersInfo/TeacherInfo';
 import Header from './components/Header';
 
 import { AirtableContext } from './airtable/context';
@@ -23,8 +23,7 @@ export const airtableBase = new Airtable({
 
 const App = () => {
 
-  const [dispatch] = useContext(AirtableContext)
-
+  const [state, dispatch] = useContext(AirtableContext)
 
   useEffect(() => {
     airtableBase('Practices')
