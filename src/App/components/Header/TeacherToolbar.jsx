@@ -34,6 +34,8 @@ const TeacherLogo = () => {
 
   useEffect(() => {
     dispatch(setCurrentTeacher(mapTeacher(teacherId, state)));
+    /* TODO: we have to map all data inside of loading */
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [dispatch]);
 
   return (
