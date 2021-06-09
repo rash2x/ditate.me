@@ -1,6 +1,8 @@
 import React from 'react';
+
 import styled from 'styled-components';
 import { Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const Base = styled.div`
   display: flex;
@@ -11,20 +13,24 @@ const Base = styled.div`
 
 const Name = styled(Typography)`
   font-size: 1.3rem;
+  color: white;
+  margin-top: 5px;
 `;
+
 const Image = styled.img`
   width: 72px;
   height: 72px;
   border-radius: 50%;
 `;
 
-
-const Teacher = ({ name, thumbnail, ...rest }) => {
+const Teacher = ({ name, thumbnail, id, ...rest }) => {
   return (
-    <Base {...rest}>
-      <Image src={thumbnail} alt={name} />
-      <Name>{name}</Name>
-    </Base>
+    <Link style={{ textDecoration: 'none' }} to={`/${id}`}>
+      <Base {...rest}>
+        <Image src={thumbnail} alt={name} />
+        <Name>{name}</Name>
+      </Base>
+    </Link>
   );
 };
 

@@ -2,12 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Base = styled.div`
+  cursor: default;
   font-size: 1.8rem;
   font-weight: ${props => props.theme.typography.fontWeightBold};
-  text-transform: none;
-  cursor: default;
-  
-  ${props => props.inverse && 'color: inherit'};
 `;
 
 const Beta = styled.div`
@@ -15,18 +12,17 @@ const Beta = styled.div`
           props.theme.palette.common.black :
           props.theme.palette.primary.main};
   border-radius: 2px;
-  padding: 0 6px;
+  
   display: inline-block;
-
+  padding: 0 6px;
   position: relative;
-  top: -2px;
   left: 2px;
+  top: -2px;
 
   font-size: 1.3rem;
   font-weight: ${props => props.theme.typography.fontWeightBold};
   color: ${props => props.inverse ? props.theme.palette.common.white : props.theme.palette.primary.contrastText};
 `;
-
 
 const Logo = (props) => {
   return (
