@@ -34,7 +34,7 @@ const TeacherLogo = () => {
 
   useEffect(() => {
     dispatch(setCurrentTeacher(mapTeacher(teacherId, state)));
-  }, [dispatch, state, teacherId]);
+  }, [dispatch]);
 
   return (
     <Toolbar>
