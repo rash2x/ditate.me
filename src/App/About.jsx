@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Button, Drawer, Typography } from '@material-ui/core';
 
 import Partnership from './Partnership';
-import Logo from './Logo';
+import Logo from './components/Header/Logo';
 
 const Base = styled.div`
   background: ${props => props.theme.palette.primary.main};

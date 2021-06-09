@@ -7,7 +7,7 @@ import Airtable from 'airtable';
 
 import Teachers from './Teachers/Teachers';
 import TeacherInfo from './TeacherInfo/TeacherInfo';
-import Header from './components/Header';
+import Header from './components/Header/Header';
 
 import { AirtableContext } from './airtable/context';
 import { setPractices, setTeachers } from './airtable/reducer';

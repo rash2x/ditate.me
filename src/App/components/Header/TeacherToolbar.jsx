@@ -1,16 +1,13 @@
 import React, { useContext, useEffect } from 'react';
-import { useRouter } from '../hooks/useRouter';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
-import { IconButton, Typography } from '@material-ui/core';
+import { IconButton, Toolbar, Typography } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 
-import styled from 'styled-components';
-
-import { AirtableContext } from '../airtable/context';
-import { setCurrentTeacher } from '../airtable/reducer';
-import { mapTeacher } from '../airtable/mappers';
-
+import { useRouter } from '../../hooks/useRouter';
+import { AirtableContext } from '../../airtable/context';
+import { setCurrentTeacher } from '../../airtable/reducer';
+import { mapTeacher } from '../../airtable/mappers';
 
 const Base = styled.div`
   display: flex;
@@ -28,10 +25,6 @@ const Name = styled(Typography)`
   margin-left: -25px;
 `;
 
-const BackBtn = styled(ArrowBack)`
-  position: absolute;
-`;
-
 const TeacherLogo = () => {
   const [state, dispatch] = useContext(AirtableContext);
   const router = useRouter();
@@ -44,16 +37,14 @@ const TeacherLogo = () => {
   }, [dispatch, state, teacherId]);
 
   return (
-    <>
-      <Link to="/">
-        <IconButton>
-          <BackBtn />
-        </IconButton>
-      </Link>
+    <Toolbar>
+      <IconButton component={Link} to="/">
+        <ArrowBack />
+      </IconButton>
       <Base>
-        <Name>{currentTeacher ? currentTeacher.name : null}</Name>
+        <Name>{currentTeacher && currentTeacher.name}</Name>
       </Base>
-    </>
+    </Toolbar>
   );
 };
 
