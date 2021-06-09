@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import styled from 'styled-components';
-import { Typography } from '@material-ui/core';
+import { Chip, fade, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 import { AirtableContext } from '../airtable/context';
@@ -35,33 +35,39 @@ const StyledButton = styled(Button)`
   box-shadow: none;
 `;
 
-const PracticeItem = styled(Button)`
-  padding: 3px;
-  font-size: 1.3rem;
-  border-radius: 5px;
-  background: ${props => props.color};
+const PracticeChip = styled(Chip)`
+  border-radius: ${props => props.theme.shape.borderRadius}px;
+  height: 24px;
+  
+  font-size: 1.4rem;
+  font-weight: ${props => props.theme.typography.fontWeightBold};
+  
+  span {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 `;
 
-const Case = styled.div`
-  margin-top: 20px;
+const PracticeList = styled.div`
+  margin-top: ${props => props.theme.spacing(3)}px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 const TeacherInfo = () => {
   const [state] = useContext(AirtableContext);
-
   const currentTeacher = state.currentTeacher;
-
-  let click = () => window.open(`http://instagram.com/${currentTeacher.instagram}`, '_blank');
 
   return currentTeacher ? (
     <Base>
       <Image src={currentTeacher.imageUrl} alt={''} />
-      <Case>
-        <PracticeItem color={currentTeacher.practicesColor}>{currentTeacher.practicesName}</PracticeItem>
-      </Case>
-      <StyledButton onClick={click}>
+      <PracticeList>
+        <PracticeChip style={{
+          color: currentTeacher.practicesColor,
+          backgroundColor: fade(currentTeacher.practicesColor, 0.12)
+        }} label={currentTeacher.practicesName} />
+      </PracticeList>
+      <StyledButton component={'a'} href={`http://instagram.com/${currentTeacher.instagram}`} target="_blank">
         <img src={instagramLogo} width="25px" alt="" />
         <Logo>Instagram</Logo>
       </StyledButton>
