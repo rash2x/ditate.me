@@ -8,7 +8,6 @@ import { AirtableContext } from '../airtable/context';
 
 import instagramLogo from '../../assets/icons8-instagram.svg';
 
-
 const Base = styled.div`
   display: grid;
   justify-content: center;
@@ -50,7 +49,7 @@ const Case = styled.div`
 `;
 
 const TeacherInfo = () => {
-  const [state, dispatch] = useContext(AirtableContext);
+  const [state] = useContext(AirtableContext);
 
   const currentTeacher = state.currentTeacher;
 

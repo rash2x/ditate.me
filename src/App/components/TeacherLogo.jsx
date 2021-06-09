@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useRouter } from '../hooks/useRouter';
 import { Link } from 'react-router-dom';
 
@@ -33,7 +33,6 @@ const BackBtn = styled(ArrowBack)`
 `;
 
 const TeacherLogo = () => {
-
   const [state, dispatch] = useContext(AirtableContext);
   const router = useRouter();
 
@@ -42,7 +41,7 @@ const TeacherLogo = () => {
 
   useEffect(() => {
     dispatch(setCurrentTeacher(mapTeacher(teacherId, state)));
-  }, [dispatch]);
+  }, [dispatch, state, teacherId]);
 
   return (
     <>

@@ -6,7 +6,7 @@ import { Container } from '@material-ui/core';
 import Airtable from 'airtable';
 
 import Teachers from './Teachers/Teachers';
-import TeacherInfo from './TeachersInfo/TeacherInfo';
+import TeacherInfo from './TeacherInfo/TeacherInfo';
 import Header from './components/Header';
 
 import { AirtableContext } from './airtable/context';
@@ -23,7 +23,7 @@ export const airtableBase = new Airtable({
 
 const App = () => {
 
-  const [state, dispatch] = useContext(AirtableContext)
+  const [, dispatch] = useContext(AirtableContext);
 
   useEffect(() => {
     airtableBase('Practices')
@@ -33,8 +33,8 @@ const App = () => {
       .eachPage((records, fetchNextPage) => {
         dispatch(setPractices(records));
         fetchNextPage();
-      })
-  }, [dispatch])
+      });
+  }, [dispatch]);
 
   useEffect(() => {
     airtableBase('Teachers')
@@ -42,16 +42,14 @@ const App = () => {
         view: 'Grid view'
       })
       .eachPage((records, fetchNextPage) => {
-        dispatch(setTeachers(records))
+        dispatch(setTeachers(records));
         fetchNextPage();
-      })
+      });
   }, [dispatch]);
 
   return (
     <Base>
-
       <Header />
-
       <Switch>
         <Route exact path="/">
           <Teachers />
@@ -60,8 +58,6 @@ const App = () => {
           <TeacherInfo />
         </Route>
       </Switch>
-
-
     </Base>
   );
 };

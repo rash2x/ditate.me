@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu';
-import { IconButton, Typography } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 
 const Base = styled.div`
   font-size: 1.8rem;
