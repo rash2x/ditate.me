@@ -56,7 +56,8 @@ const Teachers = () => {
     <Base>
       {state.practices && state.practices.map((practice) => (
         practice && (<Group key={practice.id}>
-            <GroupTitle color={practice.fields.Color}>{practice.fields.Name}</GroupTitle>
+            <GroupTitle color="inherit"
+                        style={{ color: practice.fields.Color }}>{practice.fields.Name}</GroupTitle>
             <GroupList>
               {practice.fields['Teachers'] && practice.fields['Teachers'].map(teacherId => {
                 const teacher = getTeacher(teacherId)?.fields;
