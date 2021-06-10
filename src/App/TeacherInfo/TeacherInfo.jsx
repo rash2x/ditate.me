@@ -67,7 +67,7 @@ const TeacherInfo = () => {
           backgroundColor: fade(currentTeacher.practicesColor, 0.12)
         }} label={currentTeacher.practicesName} />
       </PracticeList>
-      <StyledButton component={'a'} href={`http://instagram.com/${currentTeacher.instagram}`} target="_blank">
+      <StyledButton component={'a'} href={currentTeacher.instagram} target="_blank">
         <img src={instagramLogo} width="25px" alt="" />
         <Logo>Instagram</Logo>
       </StyledButton>
