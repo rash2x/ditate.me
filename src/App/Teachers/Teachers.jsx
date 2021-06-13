@@ -6,6 +6,7 @@ import ReactLoading from 'react-loading';
 
 import { AirtableContext } from '../airtable/context';
 import Teacher from './Teacher';
+import { mapTeacher } from '../airtable/mappers';
 
 const Base = styled.div``;
 
@@ -40,11 +41,8 @@ const LoadingBar = styled.div`
 `;
 
 const Teachers = () => {
-  const getTeacher = (teacherId) => {
-    return state.teachers?.find(t => t.id === teacherId);
-  };
-
   const [state] = useContext(AirtableContext);
+  const isLoading = !(state.practices && state.teachers);
 
   if (!state.practices && !state.teachers) {
     return <LoadingBar>
@@ -52,7 +50,7 @@ const Teachers = () => {
     </LoadingBar>;
   }
 
-  return (
+  return !isLoading && (
     <Base>
       {state.practices && state.practices.map((practice) => (
         practice && (<Group key={practice.id}>
@@ -60,13 +58,13 @@ const Teachers = () => {
                         style={{ color: practice.fields.Color }}>{practice.fields.Name}</GroupTitle>
             <GroupList>
               {practice.fields['Teachers'] && practice.fields['Teachers'].map(teacherId => {
-                const teacher = getTeacher(teacherId)?.fields;
+                const teacher = mapTeacher(teacherId, state);
 
                 return teacher && (
                   <Teacher key={teacherId}
                            id={teacherId}
-                           name={teacher.Instagram}
-                           thumbnail={teacher['Avatar'][0].thumbnails.large.url} />
+                           name={teacher.name}
+                           thumbnail={teacher.imageUrl} />
                 );
               })}
             </GroupList>
