@@ -18,7 +18,7 @@ const Base = styled(Container)`
 `;
 
 export const airtableBase = new Airtable({
-  apiKey: 'keyEXP4qnVysxeAWt'
+  apiKey: process.env.REACT_APP_AIRTABLE_PRIVATE_KEY
 }).base('appAB6mLnImrAFBWa');
 
 const App = () => {
