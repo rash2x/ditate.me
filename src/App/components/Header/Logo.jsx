@@ -12,7 +12,7 @@ const Beta = styled.div`
           props.theme.palette.common.black :
           props.theme.palette.primary.main};
   border-radius: 2px;
-  
+
   display: inline-block;
   padding: 0 6px;
   position: relative;
@@ -24,10 +24,17 @@ const Beta = styled.div`
   color: ${props => props.inverse ? props.theme.palette.common.white : props.theme.palette.primary.contrastText};
 `;
 
+const Case = styled.div`
+  margin-left: -45px;
+  ${props => props.inverse && 'margin-left: 0'}
+`;
+
 const Logo = (props) => {
   return (
     <Base {...props}>
-      ditate.Me <Beta inverse={props.inverse}>Beta</Beta>
+      <Case inverse={props.inverse}>
+        ditate.Me <Beta inverse={props.inverse}>Beta</Beta>
+      </Case>
     </Base>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import styled from 'styled-components';
-import { Chip, fade, Typography } from '@material-ui/core';
+import { Chip, fade, TextField, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 import { AirtableContext } from '../airtable/context';
@@ -38,10 +38,10 @@ const StyledButton = styled(Button)`
 const PracticeChip = styled(Chip)`
   border-radius: ${props => props.theme.shape.borderRadius}px;
   height: 24px;
-  
+
   font-size: 1.4rem;
   font-weight: ${props => props.theme.typography.fontWeightBold};
-  
+
   span {
     padding-left: 8px;
     padding-right: 8px;
@@ -57,6 +57,7 @@ const PracticeList = styled.div`
 const TeacherInfo = () => {
   const [state] = useContext(AirtableContext);
   const currentTeacher = state.currentTeacher;
+
 
   return currentTeacher ? (
     <Base>

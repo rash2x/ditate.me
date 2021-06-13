@@ -15,6 +15,7 @@ const Name = styled(Typography)`
   font-size: 1.3rem;
   color: white;
   margin-top: 5px;
+  text-align: center;
 `;
 
 const Image = styled.img`

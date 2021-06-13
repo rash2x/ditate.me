@@ -11,6 +11,7 @@ import Header from './components/Header/Header';
 
 import { AirtableContext } from './airtable/context';
 import { setPractices, setTeachers } from './airtable/reducer';
+import Registration from './components/Registration/Registration';
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
@@ -53,6 +54,9 @@ const App = () => {
       <Switch>
         <Route exact path="/">
           <Teachers />
+        </Route>
+        <Route exact path="/login">
+          <Registration />
         </Route>
         <Route path="/:teacherId?">
           <TeacherInfo />

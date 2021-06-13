@@ -7,6 +7,8 @@ import ReactLoading from 'react-loading';
 import { AirtableContext } from '../airtable/context';
 import Teacher from './Teacher';
 
+import defaultAva from "../../assets/avadefault.jpg"
+
 const Base = styled.div``;
 
 const Group = styled.div`
@@ -44,7 +46,7 @@ const Teachers = () => {
     return state.teachers?.find(t => t.id === teacherId);
   };
 
-  const [state] = useContext(AirtableContext);
+  const [state, dispatch] = useContext(AirtableContext);
 
   if (!state.practices && !state.teachers) {
     return <LoadingBar>
@@ -60,13 +62,13 @@ const Teachers = () => {
                         style={{ color: practice.fields.Color }}>{practice.fields.Name}</GroupTitle>
             <GroupList>
               {practice.fields['Teachers'] && practice.fields['Teachers'].map(teacherId => {
-                const teacher = getTeacher(teacherId)?.fields;
-
+                const teacher = getTeacher(teacherId)?.fields
                 return teacher && (
                   <Teacher key={teacherId}
                            id={teacherId}
-                           name={teacher.Instagram}
-                           thumbnail={teacher['Avatar'][0].thumbnails.large.url} />
+                           name={teacher.Name}
+                           thumbnail={teacher['Avatar'] ? teacher['Avatar'][0].thumbnails.large.url : defaultAva}
+                  />
                 );
               })}
             </GroupList>
