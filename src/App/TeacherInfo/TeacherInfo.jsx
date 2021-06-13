@@ -15,7 +15,7 @@ const Base = styled.div`
 `;
 
 const Image = styled.img`
-  width: 38%;
+  width: 240px;
   border-radius: 50%;
   margin: 0 auto;
 `;
