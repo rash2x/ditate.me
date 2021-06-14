@@ -34,9 +34,7 @@ const Orange = styled.span`color: #fb8c00`;
 const LightGreen = styled.span`color: #43a047`;
 const LightBlue = styled.span`color: #039be5`;
 
-const Content = styled.div`
-
-`;
+const Content = styled.div``;
 
 const Footer = styled.footer`
   display: flex;

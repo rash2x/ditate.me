@@ -12,7 +12,7 @@ export const theme = createMuiTheme({
     type: 'dark',
     background: {
       default: '#191A1C',
-      paper: '2f3237',
+      paper: '#2f3237',
     },
   },
   typography: {

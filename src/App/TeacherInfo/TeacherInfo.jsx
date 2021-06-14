@@ -1,38 +1,21 @@
 import React, { useContext } from 'react';
 
 import styled from 'styled-components';
-import { Chip, fade, TextField, Typography } from '@material-ui/core';
+import { Avatar, Chip, Container, fade } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 import { AirtableContext } from '../airtable/context';
 
 import instagramLogo from '../../assets/icons8-instagram.svg';
 
-const Base = styled.div`
-  display: grid;
-  justify-content: center;
-  padding-top: 30px;
+const Base = styled(Container)`
+  padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
 `;
 
-const Image = styled.img`
-  width: 38%;
-  border-radius: 50%;
-  margin: 0 auto;
-`;
-
-const Logo = styled(Typography)`
-  color: white;
-  font-size: 1.6rem;
-  margin-left: 10px;
-`;
-
-const StyledButton = styled(Button)`
-  margin-top: 20px;
-  background: #2f3237;
-  border-radius: 3px;
-  border: 1px black;
-  padding: 7px;
-  box-shadow: none;
+const Image = styled(Avatar)`
+  width: ${props => props.theme.spacing(15)}px;
+  height: ${props => props.theme.spacing(15)}px;
+  margin: 20px auto 0 auto;
 `;
 
 const PracticeChip = styled(Chip)`
@@ -54,24 +37,46 @@ const PracticeList = styled.div`
   justify-content: center;
 `;
 
+const Group = styled.div`
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ButtonLink = styled(Button)`
+  background: ${props => props.theme.palette.background.paper};
+  border-radius: 4px;
+  margin-top: ${props => props.theme.spacing(3)}px;
+  width: 100%;
+`;
+
+const Links = styled.div`
+  max-width: 335px;
+  margin: 0 auto;
+  width: 100%;
+`;
+
 const TeacherInfo = () => {
   const [state] = useContext(AirtableContext);
   const currentTeacher = state.currentTeacher;
 
-
   return currentTeacher ? (
     <Base>
-      <Image src={currentTeacher.imageUrl} alt={''} />
-      <PracticeList>
-        <PracticeChip style={{
-          color: currentTeacher.practicesColor,
-          backgroundColor: fade(currentTeacher.practicesColor, 0.12)
-        }} label={currentTeacher.practicesName} />
-      </PracticeList>
-      <StyledButton component={'a'} href={`http://instagram.com/${currentTeacher.instagram}`} target="_blank">
-        <img src={instagramLogo} width="25px" alt="" />
-        <Logo>Instagram</Logo>
-      </StyledButton>
+      <Group>
+        <Image src={currentTeacher.imageUrl} alt='' />
+        <PracticeList>
+          <PracticeChip style={{
+            color: currentTeacher.practicesColor,
+            backgroundColor: fade(currentTeacher.practicesColor, 0.12)
+          }} label={currentTeacher.practicesName} />
+        </PracticeList>
+        <Links>
+          <ButtonLink component='a' href={`http://instagram.com/${currentTeacher.instagram}`} target="_blank">
+            <img style={{ marginRight: '12px' }} width="30px" src={instagramLogo} alt="" />
+            Instagram
+          </ButtonLink>
+        </Links>
+      </Group>
     </Base>
   ) : null;
 };

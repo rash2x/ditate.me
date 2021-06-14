@@ -1,3 +1,5 @@
+import defaultLogo from "../../assets/avadefault.jpg"
+
 export const mapTeacher = (teacherId, state) => {
 
   const teacher = state.teachers.find(t => t.id === teacherId);
@@ -6,7 +8,7 @@ export const mapTeacher = (teacherId, state) => {
   });
 
   const instagram = teacher.fields.Instagram;
-  const imageUrl = teacher.fields['Avatar'][0].thumbnails.large.url;
+  const imageUrl = teacher.fields['Avatar'] ? teacher.fields['Avatar'][0].thumbnails.large.url : defaultLogo;
   const name = teacher.fields['Name'];
 
   const practicesName = practices[0].fields['Name'];

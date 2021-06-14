@@ -15,28 +15,34 @@ const Title = styled(Typography).attrs({
 const Description = styled(Typography)`
   background: url(${vector}) no-repeat;
   font-size: 14px;
-  padding: 8px 70px 0 0;
-  background-position: right 10% bottom 30%;
+  padding: 8px 70px 10px 0;
+  background-position: right 10% bottom 60%;
+`;
+
+const Base = styled(Paper)`
+  margin-top: ${props => props.theme.spacing(5)}px;
+  padding-top: ${props => props.theme.spacing(2)}px;
+  padding-bottom: ${props => props.theme.spacing(2)}px;
+  background: ${props => props.theme.palette.background.paper};
 `;
 
 const RegistrationPromo = () => {
   return (
-    <Paper style={{ backgroundColor: '#191A1C', marginTop: '40px' }}>
-      <Container style={{ padding: '16px' }}>
+    <Base>
+      <Container>
         <Title>Проводите практики ?</Title>
         <Description>
           Мы можем распространить твои знания среди тысячи учеником, ищущих тебя
           <strong> прямо здесь и сейчас</strong>
         </Description>
-      </Container>
+        <Button color="primary" size="small"
+                component={Link} to="/registration" style={{ textTransform: 'none' }}>
+          <AddCircleIcon style={{ marginRight: '14px' }} />
+          Добавьте лишь свой профиль
+        </Button>
 
-      <Button color={'primary'}
-              style={{ width: '100%', textTransform: 'none', padding: '0 20px 20px 0', fontSize: '14px' }}
-              component={Link} to="/registration">
-        <AddCircleIcon style={{ marginRight: '14px' }} />
-        Добавьте лишь свой профиль
-      </Button>
-    </Paper>
+      </Container>
+    </Base>
   );
 };
 
