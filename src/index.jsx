@@ -7,31 +7,21 @@ import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { theme } from './theme';
 
-import Store from './App/airtable/context';
 import App from './App/App';
+import { AirtableProvider } from './App/airtable/provider';
 
 ReactDOM.render(
   <React.StrictMode>
-
     <BrowserRouter>
-
-      <Store>
-
+      <AirtableProvider>
         <ThemeProvider theme={theme}>
-
           <StyledThemeProvider theme={theme}>
-
             <CssBaseline />
             <App />
-
           </StyledThemeProvider>
-
         </ThemeProvider>
-
-      </Store>
-
+      </AirtableProvider>
     </BrowserRouter>
-
   </React.StrictMode>,
 
   document.getElementById('root'),
