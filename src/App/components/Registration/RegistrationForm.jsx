@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
 import { AirtableContext } from '../../airtable/context';
+import { FormControl, InputLabel, Select, TextField } from '@material-ui/core';
 
 const StyledButton = styled(Button)`
   margin: 60px auto;
@@ -22,46 +23,59 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const Inputs = styled.input`
-  background: ${props => props.theme.palette.primary.main};
-  border-radius: 4px;
-  color: black;
-  padding: 15px;
-  border: 1px solid black;
-  margin-top: 30px;
-  font-size: 16px;
-  outline: none;
-
-  :-webkit-autofill,
-  :-webkit-autofill:hover,
-  :-webkit-autofill:focus,
-  :-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px ${props => props.theme.palette.primary.main} inset !important;
+const Controller = styled(FormControl)`
+  .MuiOutlinedInput-notchedOutline{
+    border-color: black;
   }
-
-  ::placeholder {
+  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+    border-color: black;
+    border-width: 1px;
+  }
+  .MuiSelect-icon{
     color: black;
   }
+  .MuiInputBase-root{
+    color: black;
+  }
+  .MuiFormLabel-root{
+    color: black;
+    background: #FFF59D;
+    padding: 0 5px 0 5px;
+    left: -5px;
+  }
+  margin-top: 33px;
 `;
 
-const Form = styled.form`
-  display: grid;
-`;
+const Input = styled(TextField)`
+  .MuiOutlinedInput-notchedOutline {
+    border-color: black;
+  }
 
-const Error = styled.label`
-  color: red;
-  font-size: 15px;
-`;
+  .MuiInputBase-root {
+    color: black
+  }
 
-const SelectPractice = styled.select`
-  font-size: 16px;
-  margin-top: 30px;
-  padding: 15px 10px 15px 10px;
-  border-radius: 4px;
-  background: ${props => props.theme.palette.primary.main};
-  border: 1px solid black;
-  outline: none;
-`;
+  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: black;
+    border-width: 1px;
+  }
+
+  .Mui-focused {
+    border-color: black;
+    color: black;
+  }
+
+  .MuiFormLabel-root {
+    color: black;
+  }
+  
+  .MuiOutlinedInput-input:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0 100px #FFF59D inset;
+    -webkit-text-fill-color: black;
+  }
+  
+  margin-top: 33px;
+`
 
 const Label = styled.label`
   margin-top: 4px;
@@ -77,35 +91,43 @@ const RegistrationForm = ({ onSubmit }) => {
   const { register, formState: { errors }, handleSubmit } = useForm();
 
   return (
-    <Form style={{ display: 'grid' }} onSubmit={handleSubmit(onSubmit)}>
+    <form style={{ display: 'flex', flexDirection: "column" }} onSubmit={handleSubmit(onSubmit)}>
 
-      <Inputs placeholder="Как вас зовут ?" {...register('name', { required: true })} />
-      <Error>{errors.name?.type === 'required' && 'Name is required'}</Error>
+      <Input id="outlined-basic"
+             label="Как вас зовут ?"
+             variant="outlined"
+             {...register("name", { required: true })}
+      />
+      <Input id="outlined-basic"
+             label="С какого вы города ?"
+             variant="outlined"
+             {...register("citi", { required: true })}
+      />
 
-      <Inputs placeholder="С какого вы города ?" {...register('citi', { required: true })} />
-      <Error>{errors.citi?.type === 'required' && 'Name is required'}</Error>
+      <Controller variant="outlined">
+        <InputLabel htmlFor="outlined-age-native-simple">Какие практики вы преподаете ?</InputLabel>
+        <Select {...register("practices")} native>
+          {
+            state.practices.map(practices => (
+              <option style={{color: "black"}} value={practices.fields.Name}>
+                {practices.fields.Name}
+              </option>
+            ))
+          }
+        </Select>
+      </Controller>
 
-      <SelectPractice placeholder="fefe" {...register('practices')}>
-        <option value disabled selected>Какие практики вы преподаете ?</option>
-        {
-          state.practices.map(practices => {
-            return <option value={practices.fields.Name}>
-              {practices.fields.Name}
-            </option>;
-          })
-        }
-      </SelectPractice>
-      <Label htmlFor={SelectPractice}>Выберите из списка или добавьте свои</Label>
-
-      <Inputs placeholder="Аккаунт Telegram или Instagram" {...register('contact', { required: true })} />
-      <Label htmlFor={Inputs}>Например @anikoyoga</Label>
-      <Error>{errors.contact?.type === 'required' && 'Name is required'}</Error>
+      <Label>Выберите из списка или добавьте свои</Label>
 
 
-      <StyledButton type="submit" size="large" variant="contained">
+      <Input id="outlined-basic"
+             label="Aккаунт Telegram или Instagram" variant="outlined"
+             {...register("contact", { required: true })} />
+
+      <Button style={{width: "212px", margin: "57px auto"}} color="secondary" type="submit" size="medium" variant="contained">
         👉 Добавить профиль
-      </StyledButton>
-    </Form>
+      </Button>
+    </form>
   );
 };
 

@@ -2,9 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { AppBar } from '@material-ui/core';
 
-import HomeToolbar from './HomeToolbar';
-import TeacherToolbar from './TeacherToolbar';
-import LoginToolBar from './LoginToolBar';
+import { HomeToolbar, LoginToolBar, TeacherToolbar } from './index';
 
 const Header = () => {
   return (
@@ -14,7 +12,7 @@ const Header = () => {
           <Route exact path="/">
             <HomeToolbar />
           </Route>
-          <Route exact path="/login">
+          <Route exact path="/registration">
             <LoginToolBar />
           </Route>
           <Route path="/:teacherId?">

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import { Typography } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 
 import Vector from '../../../assets/VectorForRegistration.svg';
 import RegistrationForm from './RegistrationForm';
@@ -17,26 +17,9 @@ const Base = styled.div`
   left: 0;
 `;
 
-const TextCase = styled.div`
-  display: grid;
-  grid-template-columns: 250px 60px;
-`;
-
 const Title = styled(Typography)`
-  padding-bottom: 10px;
   font-size: 20px;
   font-weight: 600;
-`;
-
-const Text = styled.div`
-  font-weight: 600;
-  font-size: 13px;
-`;
-
-const ImageBar = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  margin-top: -30px;
 `;
 
 const BackgroundLayout = styled.div`
@@ -48,7 +31,15 @@ const BackgroundLayout = styled.div`
 `;
 
 const Copyright = styled.div`
-  margin-top: 25%;
+  position: absolute;
+  top: 90vh
+`;
+
+const Description = styled(Typography)`
+  background: url(${Vector}) no-repeat;
+  font-size: 14px;
+  padding: 18px 90px 0 0;
+  background-position: right 10% bottom 30%;
 `;
 
 const Registration = () => {
@@ -60,18 +51,16 @@ const Registration = () => {
   return (
     <>
       <Base>
-        <Title>Добавление профиля ✔</Title>
-        <TextCase>
-          <Text>
+        <Container style={{ padding: '21px' }}>
+          <Title>Добавление профиля ✔</Title>
+          <Description>
             Это быстрое размещение профиля.
             Мы свяжемся с тобой и уточним остальную информацию
-          </Text>
-          <ImageBar>
-            <img src={Vector} width="60px" alt="" />
-          </ImageBar>
-        </TextCase>
-        <RegistrationForm onSubmit={onSubmit} />
-        <Copyright>2021 &copy; <strong>#Минибудды</strong> обучают 👌</Copyright>
+          </Description>
+
+          <RegistrationForm onSubmit={onSubmit} />
+          <Copyright>2021 &copy; <strong>#Минибудды</strong> обучают 👌</Copyright>
+        </Container>
       </Base>
       <BackgroundLayout />
     </>

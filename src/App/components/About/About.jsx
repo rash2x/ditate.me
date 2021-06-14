@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Button, Typography } from '@material-ui/core';
 
 import Logo from '../Header/Logo';
-import RegistrationCart from './RegistrationCart';
+import RegistrationPromo from './RegistrationPromo';
 
 const Base = styled.div`
   background: ${props => props.theme.palette.primary.main};
@@ -47,10 +47,6 @@ const Footer = styled.footer`
 
 const Copyright = styled.div``;
 
-const RegistrationBlock = styled.div`
-
-`;
-
 const Links = styled.div`
   display: flex;
   flex-direction: column;
@@ -75,11 +71,12 @@ const About = () => {
         <Text>
           <Indigo>Динамические медитации</Indigo>, <Cyan>экстатик дэнс</Cyan>,
           шодхан, гвоздестояние, <Pink>тантра</Pink>, <Orange>гонг медитация</Orange>, даосские практики,
-          <LightGreen>хиллинг массаж</LightGreen>, <LightBlue>банные церемонии</LightBlue> и остальные практики</Text>
+          <LightGreen>хиллинг массаж</LightGreen>, <LightBlue>банные церемонии</LightBlue> и остальные практики
+        </Text>
+        <RegistrationPromo />
+
       </Content>
-      <RegistrationBlock>
-        <RegistrationCart />
-      </RegistrationBlock>
+
       <Footer>
         <Links>
           <Button size="medium" color="secondary" variant="contained" component={'a'} href={'https://t.me/rash2x'}

@@ -19,7 +19,7 @@ const Base = styled(Container)`
 `;
 
 export const airtableBase = new Airtable({
-  apiKey: 'keyEXP4qnVysxeAWt'
+  apiKey: process.env.REACT_APP_AIRTABLE_PRIVATE_KEY
 }).base('appAB6mLnImrAFBWa');
 
 const App = () => {
@@ -48,6 +48,13 @@ const App = () => {
       });
   }, [dispatch]);
 
+  useEffect( () => {
+    fetch(`https://www.instagram.com/layryc/?__a=1`)
+      .then(res => {
+        return console.log(res)
+      })
+  }, [])
+
   return (
     <Base>
       <Header />
@@ -55,7 +62,7 @@ const App = () => {
         <Route exact path="/">
           <Teachers />
         </Route>
-        <Route exact path="/login">
+        <Route exact path="/registration">
           <Registration />
         </Route>
         <Route path="/:teacherId?">
