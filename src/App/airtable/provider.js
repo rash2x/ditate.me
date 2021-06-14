@@ -5,7 +5,6 @@ import { mapPractices, mapTeachers } from './mappers';
 import { AirtableContext, initialState } from './context';
 
 export const AirtableProvider = ({ children }) => {
-
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {

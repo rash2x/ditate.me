@@ -22,20 +22,11 @@ export const mapPractices = (response) => {
     return {
       id: item.id,
       name: item.fields.Name,
-      color: item.fields.Color,
+      color: item.fields.Color ? item.fields.Color : '#fff',
       teacherIds: item.fields.Teachers,
       hasTeachers
     }
   })
 }
-
-export const mapTeacher = (teacherId, state) => {
-  if(!state.teachers) {
-    return;
-  }
-
-  return state.teachers.find(t => t.id === teacherId);
-};
-
 
 
