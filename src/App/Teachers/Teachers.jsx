@@ -6,7 +6,7 @@ import ReactLoading from 'react-loading';
 
 import { AirtableContext } from '../airtable/context';
 import Teacher from './Teacher';
-import { mapTeacher } from '../airtable/mappers';
+import { getTeacherById } from '../airtable/services';
 
 const Base = styled.div``;
 
@@ -53,23 +53,21 @@ const Teachers = () => {
   return !isLoading && (
     <Base>
       {state.practices && state.practices.map((practice) => (
-        practice && (<Group key={practice.id}>
-            <GroupTitle color="inherit"
-                        style={{ color: practice.fields.Color }}>{practice.fields.Name}</GroupTitle>
-            <GroupList>
-              {practice.fields['Teachers'] && practice.fields['Teachers'].map(teacherId => {
-                const teacher = mapTeacher(teacherId, state);
+        <Group key={practice.id}>
+          <GroupTitle color="inherit" style={{ color: practice.color }}>{practice.name}</GroupTitle>
+          <GroupList>
+            {practice.hasTeachers && practice.teacherIds.map(teacherId => {
+              const teacher = getTeacherById(teacherId, state.teachers);
 
-                return teacher && (
-                  <Teacher key={teacherId}
-                           id={teacherId}
-                           name={teacher.name}
-                           thumbnail={teacher.imageUrl} />
-                );
-              })}
-            </GroupList>
-          </Group>
-        )
+              return teacher && (
+                <Teacher key={teacherId}
+                         id={teacherId}
+                         name={teacher.name}
+                         thumbnail={teacher.image} />
+              );
+            })}
+          </GroupList>
+        </Group>
       ))}
     </Base>
   );

@@ -7,8 +7,6 @@ import TeacherToolbar from './TeacherToolbar';
 
 
 const Header = () => {
-
-
   return (
     <>
       <AppBar color="default">

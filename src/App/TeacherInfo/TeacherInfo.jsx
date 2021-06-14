@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import { AirtableContext } from '../airtable/context';
 
 import instagramLogo from '../../assets/icons8-instagram.svg';
+import { getPracticeById } from '../airtable/services';
 
 const Base = styled.div`
   display: grid;
@@ -60,12 +61,16 @@ const TeacherInfo = () => {
 
   return currentTeacher ? (
     <Base>
-      <Image src={currentTeacher.imageUrl} alt={''} />
+      <Image src={currentTeacher.image} alt={''} />
       <PracticeList>
-        <PracticeChip style={{
-          color: currentTeacher.practicesColor,
-          backgroundColor: fade(currentTeacher.practicesColor, 0.12)
-        }} label={currentTeacher.practicesName} />
+        {currentTeacher.practiceIds.map(practiceId => {
+          const practice = getPracticeById(practiceId, state.practices);
+
+          return <PracticeChip key={practiceId} style={{
+            color: practice.color,
+            backgroundColor: fade(practice.color, 0.12)
+          }} label={practice.name} />
+        })}
       </PracticeList>
       <StyledButton component={'a'} href={currentTeacher.instagram} target="_blank">
         <img src={instagramLogo} width="25px" alt="" />
