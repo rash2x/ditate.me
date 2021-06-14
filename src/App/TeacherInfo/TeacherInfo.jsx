@@ -72,7 +72,7 @@ const TeacherInfo = () => {
           }} label={practice.name} />
         })}
       </PracticeList>
-      <StyledButton component={'a'} href={currentTeacher.instagram} target="_blank">
+      <StyledButton component={'a'} href={currentTeacher.instagramUrl} target="_blank">
         <img src={instagramLogo} width="25px" alt="" />
         <Logo>Instagram</Logo>
       </StyledButton>
