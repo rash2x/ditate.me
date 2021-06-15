@@ -1,5 +1,7 @@
+import { airtableBase } from '../App';
+
 export const getTeacherById = (teacherId, teachers) => {
-  if(!teachers) {
+  if (!teachers) {
     return;
   }
 
@@ -7,9 +9,13 @@ export const getTeacherById = (teacherId, teachers) => {
 };
 
 export const getPracticeById = (practiceId, practices) => {
-  if(!practices) {
+  if (!practices) {
     return;
   }
 
   return practices.find(t => t.id === practiceId);
 };
+
+export const addProfile = async (fields) => {
+  await airtableBase('New Profiles').create(fields)
+}
