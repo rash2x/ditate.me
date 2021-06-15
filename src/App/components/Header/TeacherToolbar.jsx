@@ -8,7 +8,7 @@ import { ArrowBack } from '@material-ui/icons';
 
 import { AirtableContext } from '../../airtable/context';
 import { setCurrentTeacher } from '../../airtable/reducer';
-import { mapTeacher } from '../../airtable/mappers';
+import { getTeacherById } from '../../airtable/services';
 
 const Base = styled.div`
   display: flex;
@@ -34,10 +34,8 @@ const TeacherLogo = () => {
   const currentTeacher = state.currentTeacher;
 
   useEffect(() => {
-    dispatch(setCurrentTeacher(mapTeacher(teacherId, state)));
-    /* TODO: we have to map all data inside of loading */
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, [dispatch]);
+    dispatch(setCurrentTeacher(getTeacherById(teacherId, state.teachers)));
+  }, [dispatch, state.teachers, teacherId]);
 
   return (
     <Toolbar>
