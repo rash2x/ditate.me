@@ -7,9 +7,15 @@ import Button from '@material-ui/core/Button';
 import { TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 
+
+const StyledForm = styled.form`
+  text-align: center;
+`
+
 const Input = styled(TextField).attrs({
   variant: 'outlined',
-  margin: 'normal'
+  margin: 'normal',
+  fullWidth: true
 })`
 
   .MuiOutlinedInput-notchedOutline,
@@ -35,11 +41,8 @@ const Input = styled(TextField).attrs({
   }
 `;
 
-const Links = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: ${props => props.theme.spacing(4)}px;
+const StyledButton = styled(Button)`
+  margin-top: 40px;
 `;
 
 const RegistrationForm = ({ onSubmit, array }) => {
@@ -49,7 +52,7 @@ const RegistrationForm = ({ onSubmit, array }) => {
   const requiredMessage = ' важное поле';
 
   return (
-    <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={handleSubmit(onSubmit)}>
+    <StyledForm onSubmit={handleSubmit(onSubmit)}>
 
       <Input label="Как вас зовут ?"
              {...register('name', { required: true })}
@@ -58,6 +61,7 @@ const RegistrationForm = ({ onSubmit, array }) => {
       />
 
       <Input label="С какого вы города ?"
+
              {...register('citi', { required: true })}
              error={errors.citi}
              helperText={errors.citi && 'Город' + requiredMessage}
@@ -87,13 +91,13 @@ const RegistrationForm = ({ onSubmit, array }) => {
              helperText={errors.contact ? 'Аккаунт' + requiredMessage : <label>Например @anikoyoga</label>}
       />
 
-      <Links>
-        <Button type="submit" size="medium" color="secondary" variant="contained">
-          👉 Добавить профиль
-        </Button>
-      </Links>
 
-    </form>
+      <StyledButton type="submit" size="medium" color="secondary" variant="contained">
+        👉 Добавить профиль
+      </StyledButton>
+
+
+    </StyledForm>
   );
 };
 
