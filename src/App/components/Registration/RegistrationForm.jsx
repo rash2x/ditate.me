@@ -1,117 +1,94 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
-import { AirtableContext } from '../../airtable/context';
-import { FormControl, InputLabel, Select, TextField } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
+import { Autocomplete } from '@material-ui/lab';
 
-const Controller = styled(FormControl)`
-  .MuiOutlinedInput-notchedOutline {
-    border-color: black;
-  }
+const Input = styled(TextField).attrs({
+  variant: 'outlined',
+  margin: 'normal'
+})`
 
-  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-    border-color: black;
-    border-width: 1px;
-  }
-
-  .MuiSelect-icon {
-    color: black;
-  }
-
-  .MuiInputBase-root {
-    color: black;
-  }
-
-  .MuiFormLabel-root {
-    color: black;
-    background: #FFF59D;
-    padding: 0 5px 0 5px;
-    left: -5px;
-  }
-
-  margin-bottom: 33px;
-`;
-
-const Input = styled(TextField)`
-  .MuiOutlinedInput-notchedOutline {
-    border-color: black;
+  .MuiOutlinedInput-notchedOutline,
+  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
+  .Mui-focused,
+  .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: ${props => props.theme.palette.background.paper}
   }
 
   .MuiInputBase-root {
     color: black
   }
 
-  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-    border-color: black;
-    border-width: 1px;
-  }
-
-  .Mui-focused {
-    border-color: black;
-    color: black;
-  }
-
-  .MuiFormLabel-root {
-    color: black;
-  }
-
   .MuiOutlinedInput-input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 100px #FFF59D inset;
     -webkit-text-fill-color: black;
+    caret-color: black;
   }
 
-  margin-bottom: 33px;
+  .MuiFormHelperText-root:not(.Mui-error),
+  .MuiFormLabel-root:not(.Mui-error) {
+    color: inherit;
+  }
 `;
 
 const Links = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-
+  align-items: center;
   margin-bottom: ${props => props.theme.spacing(4)}px;
 `;
 
-const RegistrationForm = ({ onSubmit }) => {
+const RegistrationForm = ({ onSubmit, array }) => {
 
-  const [state,] = useContext(AirtableContext);
+  const { register, formState: { errors }, handleSubmit, setValue } = useForm();
 
-  const { register, formState: { errors }, handleSubmit } = useForm();
+  const requiredMessage = ' важное поле';
 
   return (
     <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={handleSubmit(onSubmit)}>
 
-      <Input id="outlined-basic"
-             label="Как вас зовут ?"
-             variant="outlined"
+      <Input label="Как вас зовут ?"
              {...register('name', { required: true })}
+             error={errors.name}
+             helperText={errors.citi && 'Имя' + requiredMessage}
       />
-      <Input id="outlined-basic"
-             label="С какого вы города ?"
-             variant="outlined"
+
+      <Input label="С какого вы города ?"
              {...register('citi', { required: true })}
+             error={errors.citi}
+             helperText={errors.citi && 'Город' + requiredMessage}
       />
 
-      <Controller variant="outlined">
-        <InputLabel htmlFor="outlined-age-native-simple">Какие практики вы преподаете ?</InputLabel>
-        <Select {...register('practices')} native>
-          {
-            state.practices.map(practices => (
-              <option style={{ color: 'black' }} value={practices.fields.Name}>
-                {practices.fields.Name}
-              </option>
-            ))
-          }
-        </Select>
-      </Controller>
+      <Autocomplete
+        multiple
+        options={array}
+        onChange={(_, values) => {
+          setValue('practices', [...values]);
+        }}
+        renderInput={(params) => (
+          <Input
+            {...params}
+            label="Какие практики вы преподаете ?"
+            {...register('practices', { required: true })}
+            error={errors.practices}
+            helperText={errors.contact ? 'Практики' + requiredMessage :
+              <label>Выберите из списка или добавьте свои</label>}
+          />
+        )}
+      />
 
-      <Input id="outlined-basic"
-             label="Aккаунт Telegram или Instagram" variant="outlined"
-             {...register('contact', { required: true })} />
+      <Input label="Aккаунт Telegram или Instagram"
+             {...register('contact', { required: true })}
+             error={errors.contact}
+             helperText={errors.contact ? 'Аккаунт' + requiredMessage : <label>Например @anikoyoga</label>}
+      />
+
       <Links>
-        <Button size="medium" color="secondary" variant="contained">
+        <Button type="submit" size="medium" color="secondary" variant="contained">
           👉 Добавить профиль
         </Button>
       </Links>

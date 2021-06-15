@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import styled from 'styled-components';
 import { Container, Typography } from '@material-ui/core';
 
 import Vector from '../../../assets/VectorForRegistration.svg';
 import RegistrationForm from './RegistrationForm';
+import { AirtableContext } from '../../airtable/context';
 
 const Base = styled.div`
   display: flex;
@@ -29,9 +30,8 @@ const Copyright = styled.div`
 const Description = styled(Typography)`
   background: url(${Vector}) no-repeat;
   font-size: 14px;
-  background-position: right 10% bottom 30%;
-  margin-bottom: 33px;
-  margin-top: 12px;
+  background-position: right 10% bottom 60%;
+  padding: 12px 100px 33px 0;
 `;
 
 const Group = styled.div`
@@ -39,6 +39,20 @@ const Group = styled.div`
 `;
 
 const Registration = () => {
+
+  const [state,] = useContext(AirtableContext);
+
+  const array = [];
+
+  const getAllPractices = () => {
+    state.practices.map(data => {
+      return array.push(data.fields.Name);
+    });
+  };
+
+  useEffect(() => {
+    getAllPractices();
+  }, [array]);
 
   const onSubmit = (array) => {
     console.log(array);
@@ -54,7 +68,7 @@ const Registration = () => {
             Мы свяжемся с тобой и уточним остальную информацию
           </Description>
 
-          <RegistrationForm onSubmit={onSubmit} />
+          <RegistrationForm onSubmit={onSubmit} array={array} />
           <Copyright>2021 &copy; <strong>#Минибудды</strong> обучают 👌</Copyright>
         </Group>
       </Container>
