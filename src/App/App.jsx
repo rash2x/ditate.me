@@ -6,11 +6,7 @@ import Airtable from 'airtable';
 import Teachers from './Teachers/Teachers';
 import TeacherInfo from './TeacherInfo/TeacherInfo';
 import Header from './components/Header/Header';
-
-const Base = styled(Container)`
-  padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
-  max-height: -webkit-fill-available;
-`;
+import Registration from './components/Registration/Registration';
 
 export const airtableBase = new Airtable({
   apiKey: process.env.REACT_APP_AIRTABLE_PRIVATE_KEY

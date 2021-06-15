@@ -45,7 +45,7 @@ const StyledButton = styled(Button)`
   margin-top: 40px;
 `;
 
-const RegistrationForm = ({ onSubmit, array }) => {
+const RegistrationForm = ({ onSubmit, array = [] }) => {
 
   const { register, formState: { errors }, handleSubmit, setValue } = useForm();
 

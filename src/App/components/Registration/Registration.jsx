@@ -42,7 +42,7 @@ const Registration = () => {
 
   const [state,] = useContext(AirtableContext);
 
-  const practiceNames = state.practices.map(data => data.fields.Name)
+  const practiceNames = state.practices?.map(item => item.name)
 
   const onSubmit = (array) => {
     console.log(array);
