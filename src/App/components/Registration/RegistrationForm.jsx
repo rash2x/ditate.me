@@ -54,13 +54,13 @@ const RegistrationForm = ({ onSubmit, array = [] }) => {
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
 
-      <Input label="Как вас зовут ?"
+      <Input label="Как вас зовут?"
              {...register('name', { required: true })}
              error={errors.name}
              helperText={errors.citi && 'Имя' + requiredMessage}
       />
 
-      <Input label="С какого вы города ?"
+      <Input label="С какого вы города?"
 
              {...register('citi', { required: true })}
              error={errors.citi}
@@ -76,7 +76,7 @@ const RegistrationForm = ({ onSubmit, array = [] }) => {
         renderInput={(params) => (
           <Input
             {...params}
-            label="Какие практики вы преподаете ?"
+            label="Какие практики вы преподаете?"
             {...register('practices', { required: true })}
             error={errors.practices}
             helperText={errors.contact ? 'Практики' + requiredMessage :

@@ -30,7 +30,7 @@ const RegistrationPromo = () => {
   return (
     <Base>
       <Container>
-        <Title>Проводите практики ?</Title>
+        <Title>Проводите практики?</Title>
         <Description>
           Мы можем распространить твои знания среди тысячи учеником, ищущих тебя
           <strong> прямо здесь и сейчас</strong>
