@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import styled from 'styled-components';
 import { Container, Typography } from '@material-ui/core';
@@ -42,17 +42,7 @@ const Registration = () => {
 
   const [state,] = useContext(AirtableContext);
 
-  const array = [];
-
-  const getAllPractices = () => {
-    state.practices.map(data => {
-      return array.push(data.fields.Name);
-    });
-  };
-
-  useEffect(() => {
-    getAllPractices();
-  }, [array]);
+  const practiceNames = state.practices.map(data => data.fields.Name)
 
   const onSubmit = (array) => {
     console.log(array);
@@ -68,7 +58,7 @@ const Registration = () => {
             Мы свяжемся с тобой и уточним остальную информацию
           </Description>
 
-          <RegistrationForm onSubmit={onSubmit} array={array} />
+          <RegistrationForm onSubmit={onSubmit} array={practiceNames} />
           <Copyright>2021 &copy; <strong>#Минибудды</strong> обучают 👌</Copyright>
         </Group>
       </Container>

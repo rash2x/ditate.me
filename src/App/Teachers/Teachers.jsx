@@ -48,7 +48,7 @@ const Teachers = () => {
     return state.teachers?.find(t => t.id === teacherId);
   };
 
-  const [state, dispatch] = useContext(AirtableContext);
+  const [state,] = useContext(AirtableContext);
 
   if (!state.practices && !state.teachers) {
     return <LoadingBar>
