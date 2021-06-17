@@ -16,6 +16,18 @@ export const getPracticeById = (practiceId, practices) => {
   return practices.find(t => t.id === practiceId);
 };
 
+export const getAllPracticesTeacherId = (practices, state) => {
+  const id = practices.practices.map(item => {
+    return  state.practices.find(t => t.name === item).id
+  })
+
+  return {
+    Name: practices.name,
+    Practices: id,
+    Instagram: practices.contact
+  }
+}
+
 export const addProfile = async (fields) => {
   await airtableBase('New Profiles').create(fields)
 }

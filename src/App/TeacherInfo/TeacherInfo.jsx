@@ -14,18 +14,20 @@ const Base = styled(Container)`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-width: 100%;
 `;
 
 const Image = styled.img`
-  width: 240px;
+  width: 120px;
   border-radius: 50%;
-  margin: 0 auto;
+  margin: 20px auto 0 auto;
 `;
 
 const PracticeChip = styled(Chip)`
   border-radius: ${props => props.theme.shape.borderRadius}px;
   height: 24px;
-
+  margin-left: 8px;
+  margin-top: 8px;
   font-size: 1.4rem;
   font-weight: ${props => props.theme.typography.fontWeightBold};
 
@@ -36,7 +38,7 @@ const PracticeChip = styled(Chip)`
 `;
 
 const PracticeList = styled.div`
-  margin-top: ${props => props.theme.spacing(3)}px;
+  margin-top: ${props => props.theme.spacing(2)}px;
   display: flex;
   justify-content: center;
 `;

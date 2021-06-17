@@ -6,7 +6,7 @@ import { Container, Typography } from '@material-ui/core';
 import Vector from '../../../assets/VectorForRegistration.svg';
 import RegistrationForm from './RegistrationForm';
 import { AirtableContext } from '../../airtable/context';
-import { addProfile } from '../../airtable/services';
+import { addProfile, getAllPracticesTeacherId } from '../../airtable/services';
 
 const Base = styled.div`
   display: flex;
@@ -46,17 +46,7 @@ const Registration = () => {
   const practiceNames = state.practices?.map(item => item.name)
 
   const onSubmit = (array) => {
-    const practicesId = array.practices.map(item => {
-      return state.practices.find(t => t.name === item)
-    })
-    const id = practicesId.map(t => {
-      return t.id
-    })
-    addProfile({
-      Name: array.name,
-      Practices: id,
-      Instagram: array.contact
-    })
+    addProfile(getAllPracticesTeacherId(array, state))
   };
 
   return (
