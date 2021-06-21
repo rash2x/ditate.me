@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import { Container, Typography } from '@material-ui/core';
 import ReactLoading from 'react-loading';
 
-import { AirtableContext } from '../airtable/context';
+import { AirtableContext } from '../../airtable/context';
 import Teacher from './Teacher';
-import { getTeacherById } from '../airtable/services';
+import { getTeacherById } from '../../airtable/services';
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;

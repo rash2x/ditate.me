@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Button, Typography } from '@material-ui/core';
 
 import Logo from '../Header/Logo';
-import RegistrationPromo from './RegistrationPromo';
+import RegisterPromo from './RegisterPromo';
 
 const Base = styled.div`
   background: ${props => props.theme.palette.primary.main};
@@ -71,7 +71,7 @@ const About = () => {
           шодхан, гвоздестояние, <Pink>тантра</Pink>, <Orange>гонг медитация</Orange>, даосские практики,
           <LightGreen>хиллинг массаж</LightGreen>, <LightBlue>банные церемонии</LightBlue> и остальные практики
         </Text>
-        <RegistrationPromo />
+        <RegisterPromo />
 
       </Content>
 
