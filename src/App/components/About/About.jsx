@@ -24,7 +24,7 @@ const Title = styled(Typography).attrs({
 const Text = styled(Typography).attrs({
   variant: 'h2'
 })`
-  margin-top: ${props => props.theme.spacing(4)}px;
+  margin-top: ${props => props.theme.spacing(2)}px;
 `;
 
 const Indigo = styled.span`color: #651FFF`;
@@ -64,7 +64,7 @@ const About = () => {
       <Content>
         <Title>
           <Logo inverse={true} /> <br />
-          Мы сообщество, медитирующих людей 👁
+          Мы сообщество людей, практикующие разные медитации и практики 👁
         </Title>
         <Text>
           <Indigo>Динамические медитации</Indigo>, <Cyan>экстатик дэнс</Cyan>,

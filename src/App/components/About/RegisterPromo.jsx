@@ -31,8 +31,7 @@ const RegisterPromo = () => {
       <Container>
         <Title>Проводите практики?</Title>
         <Description>
-          Мы можем распространить твои знания среди тысячи учеником, ищущих тебя
-          <strong> прямо здесь и сейчас</strong>
+          Добавьте свой профиль, чтобы тысячи учеников смогли найти вас <strong>прямо здесь и сейчас</strong>
         </Description>
         <Button color="primary" size="small"
                 component={Link} to="/registration" style={{ textTransform: 'none' }}>
