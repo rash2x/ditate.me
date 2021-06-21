@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import { TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import { AirtableContext } from '../../airtable/context';
-import { createProfileRecord } from '../../airtable/services';
 
 
 const StyledForm = styled.form`
@@ -47,14 +46,17 @@ const StyledButton = styled(Button)`
   margin-top: 40px;
 `;
 
-const Form = () => {
+const Form = ({ onSubmit }) => {
   const { register, formState: { errors }, handleSubmit, setValue } = useForm();
   const [state,] = useContext(AirtableContext);
   const requiredMessage = ' важное поле';
 
-  return (
-    <StyledForm onSubmit={handleSubmit(createProfileRecord)}>
+  const handleCreateProfile = (form) => {
+    onSubmit(form);
+  }
 
+  return (
+    <StyledForm onSubmit={handleSubmit(handleCreateProfile)}>
       <Input label="Как вас зовут?"
              {...register('name', { required: true })}
              error={errors.name}
