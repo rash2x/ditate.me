@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
@@ -6,6 +6,8 @@ import Button from '@material-ui/core/Button';
 
 import { TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
+import { AirtableContext } from '../../airtable/context';
+import { createProfileRecord } from '../../airtable/services';
 
 
 const StyledForm = styled.form`
@@ -45,13 +47,13 @@ const StyledButton = styled(Button)`
   margin-top: 40px;
 `;
 
-const RegistrationForm = ({ onSubmit, array = [] }) => {
+const Form = () => {
   const { register, formState: { errors }, handleSubmit, setValue } = useForm();
-
+  const [state,] = useContext(AirtableContext);
   const requiredMessage = ' важное поле';
 
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)}>
+    <StyledForm onSubmit={handleSubmit(createProfileRecord)}>
 
       <Input label="Как вас зовут?"
              {...register('name', { required: true })}
@@ -67,7 +69,8 @@ const RegistrationForm = ({ onSubmit, array = [] }) => {
 
       <Autocomplete
         multiple
-        options={array}
+        options={state.practices ? state.practices : []}
+        getOptionLabel={(option) => option.name}
         onChange={(_, values) => {
           setValue('practices', [...values]);
         }}
@@ -100,4 +103,4 @@ const RegistrationForm = ({ onSubmit, array = [] }) => {
 };
 
 
-export default RegistrationForm;
+export default Form;

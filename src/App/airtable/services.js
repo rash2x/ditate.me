@@ -16,19 +16,15 @@ export const getPracticeById = (practiceId, practices) => {
   return practices.find(t => t.id === practiceId);
 };
 
-export const getAllPracticesTeacherId = (practices, state) => {
-  const id = practices.practices.map(item => {
-    return  state.practices.find(t => t.name === item).id
-  })
+export const createProfileRecord = async (form) => {
+  const practices = form.practices.map(item => item.id);
 
-  return {
-    Name: practices.name,
-    Practices: id,
-    Instagram: practices.contact,
-    City: practices.city
-  }
-}
+  const requestData = {
+    Name: form.name,
+    Practices: practices,
+    Instagram: form.contact,
+    City: form.city
+  };
 
-export const addProfile = async (fields) => {
-  await airtableBase('New Profiles').create(fields)
+  await airtableBase('New Profiles').create(requestData)
 }
