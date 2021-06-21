@@ -1,12 +1,13 @@
 import React, { useCallback } from 'react';
 
 import styled from 'styled-components';
-import { Container, Typography } from '@material-ui/core';
+import { Button, Container, Typography } from '@material-ui/core';
 
 import Vector from '../../../assets/VectorForRegistration.svg';
 import Form from './Form';
 import { createProfileRecord } from '../../airtable/services';
 import { useRouter } from '../../hooks/useRouter';
+import { useSnackbar } from 'notistack';
 
 const Base = styled.div`
   display: flex;
@@ -36,12 +37,14 @@ const Description = styled(Typography).attrs({
 
 const Registration = () => {
   const router = useRouter();
+  const {enqueueSnackbar} = useSnackbar();
 
   const handleSubmit = useCallback((form) => {
     createProfileRecord(form).then(response => {
       router.push('/');
+      enqueueSnackbar('Профиль добавлен ✔️ Скоро свяжемся с вами');
     });
-  }, [router]);
+  }, [enqueueSnackbar, router]);
 
   return (
     <Base>
