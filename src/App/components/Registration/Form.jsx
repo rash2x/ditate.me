@@ -59,13 +59,13 @@ const Form = ({ onSubmit }) => {
     <StyledForm onSubmit={handleSubmit(handleCreateProfile)}>
       <Input label="Как вас зовут?"
              {...register('name', { required: true })}
-             error={errors.name}
+             error={!!errors.name}
              helperText={errors.name && 'Имя' + requiredMessage}
       />
 
       <Input label="С какого вы города?"
              {...register('city', { required: true })}
-             error={errors.city}
+             error={!!errors.city}
              helperText={errors.city && 'Город' + requiredMessage}
       />
 
@@ -81,7 +81,7 @@ const Form = ({ onSubmit }) => {
             {...params}
             label="Какие практики вы преподаете?"
             {...register('practices', { required: true })}
-            error={errors.practices}
+            error={!!errors.practices}
             helperText={errors.contact ? 'Практики' + requiredMessage :
               <label>Выберите из списка или добавьте свои</label>}
           />
@@ -90,7 +90,7 @@ const Form = ({ onSubmit }) => {
 
       <Input label="Aккаунт Telegram или Instagram"
              {...register('contact', { required: true })}
-             error={errors.contact}
+             error={!!errors.contact}
              helperText={errors.contact ? 'Аккаунт' + requiredMessage : <label>Например @anikoyoga</label>}
       />
 
