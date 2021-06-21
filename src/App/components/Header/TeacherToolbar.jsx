@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from 'react';
-import styled from 'styled-components';
+import { useRouter } from '../../hooks/useRouter';
 import { Link } from 'react-router-dom';
+
+import styled from 'styled-components';
 import { IconButton, Toolbar, Typography } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 
-import { useRouter } from '../../hooks/useRouter';
 import { AirtableContext } from '../../airtable/context';
 import { setCurrentTeacher } from '../../airtable/reducer';
 import { getTeacherById } from '../../airtable/services';
@@ -22,7 +23,7 @@ const Name = styled(Typography)`
   font-weight: 600;
   color: white;
   position: relative;
-  margin-left: -25px;
+  margin-left: -45px;
 `;
 
 const TeacherLogo = () => {

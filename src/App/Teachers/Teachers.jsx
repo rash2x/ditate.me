@@ -1,14 +1,16 @@
 import React, { useContext } from 'react';
 
 import styled from 'styled-components';
-import { Typography } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 import ReactLoading from 'react-loading';
 
 import { AirtableContext } from '../airtable/context';
 import Teacher from './Teacher';
 import { getTeacherById } from '../airtable/services';
 
-const Base = styled.div``;
+const Base = styled(Container)`
+  padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
+`;
 
 const Group = styled.div`
   margin-top: 16px;
