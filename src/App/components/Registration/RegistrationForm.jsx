@@ -10,7 +10,7 @@ import { Autocomplete } from '@material-ui/lab';
 
 const StyledForm = styled.form`
   text-align: center;
-`
+`;
 
 const Input = styled(TextField).attrs({
   variant: 'outlined',
@@ -46,7 +46,6 @@ const StyledButton = styled(Button)`
 `;
 
 const RegistrationForm = ({ onSubmit, array = [] }) => {
-
   const { register, formState: { errors }, handleSubmit, setValue } = useForm();
 
   const requiredMessage = ' важное поле';
@@ -57,14 +56,13 @@ const RegistrationForm = ({ onSubmit, array = [] }) => {
       <Input label="Как вас зовут?"
              {...register('name', { required: true })}
              error={errors.name}
-             helperText={errors.citi && 'Имя' + requiredMessage}
+             helperText={errors.name && 'Имя' + requiredMessage}
       />
 
       <Input label="С какого вы города?"
-
-             {...register('citi', { required: true })}
-             error={errors.citi}
-             helperText={errors.citi && 'Город' + requiredMessage}
+             {...register('city', { required: true })}
+             error={errors.city}
+             helperText={errors.city && 'Город' + requiredMessage}
       />
 
       <Autocomplete

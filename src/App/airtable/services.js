@@ -24,7 +24,8 @@ export const getAllPracticesTeacherId = (practices, state) => {
   return {
     Name: practices.name,
     Practices: id,
-    Instagram: practices.contact
+    Instagram: practices.contact,
+    City: practices.city
   }
 }
 
