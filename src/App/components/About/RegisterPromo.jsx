@@ -13,10 +13,9 @@ const Title = styled(Typography).attrs({
 })``;
 
 const Description = styled(Typography)`
-  background: url(${vector}) no-repeat;
   font-size: 14px;
   padding: 8px 70px 10px 0;
-  background-position: right 10% bottom 60%;
+  background: url(${vector}) no-repeat right 10% bottom 60%;
 `;
 
 const Base = styled(Paper)`
@@ -26,7 +25,7 @@ const Base = styled(Paper)`
   background: ${props => props.theme.palette.background.paper};
 `;
 
-const RegistrationPromo = () => {
+const RegisterPromo = () => {
   return (
     <Base>
       <Container>
@@ -46,4 +45,4 @@ const RegistrationPromo = () => {
   );
 };
 
-export default RegistrationPromo;
+export default RegisterPromo;

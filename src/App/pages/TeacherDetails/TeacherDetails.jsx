@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import { Chip, Container, fade, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
-import { AirtableContext } from '../airtable/context';
+import { AirtableContext } from '../../airtable/context';
 
-import instagramLogo from '../../assets/icons8-instagram.svg';
-import { getPracticeById } from '../airtable/services';
+import instagramLogo from '../../../assets/icons8-instagram.svg';
+import { getPracticeById } from '../../airtable/services';
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
@@ -55,7 +55,7 @@ const StyledButton = styled(Button)`
   background: ${props => props.theme.palette.background.paper};
 `;
 
-const TeacherInfo = () => {
+const TeacherDetails = () => {
   const [state] = useContext(AirtableContext);
   const currentTeacher = state.currentTeacher;
 
@@ -69,7 +69,7 @@ const TeacherInfo = () => {
           return <PracticeChip key={practiceId} style={{
             color: practice.color,
             backgroundColor: fade(practice.color, 0.12)
-          }} label={practice.name} />
+          }} label={practice.name} />;
         })}
       </PracticeList>
       <StyledButton component={'a'} href={currentTeacher.instagramUrl} target="_blank">
@@ -80,4 +80,4 @@ const TeacherInfo = () => {
   ) : null;
 };
 
-export default TeacherInfo;
+export default TeacherDetails;
