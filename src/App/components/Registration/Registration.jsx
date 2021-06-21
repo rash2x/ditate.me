@@ -10,58 +10,50 @@ import { addProfile, getAllPracticesTeacherId } from '../../airtable/services';
 
 const Base = styled.div`
   display: flex;
-  
-  padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
+
+  padding-top: ${props => props.theme.mixins.toolbar.minHeight + 16}px;
   background-color: ${props => props.theme.palette.primary.main};
   height: 100vh;
   color: black;
 `;
 
+const Header = styled.header`
+  background: url(${Vector}) no-repeat right bottom;
+  padding-right: 80px;
+  margin-bottom: 16px;
+`;
+
 const Title = styled(Typography).attrs({
-  variant: 'h1'
+  variant: 'h1',
+  gutterBottom: true
 })`
-  font-weight: 600;
+  white-space: nowrap;
 `;
 
-const Copyright = styled.div`
-  position: absolute;
-  top: 96.5vh;
-`;
-
-const Description = styled(Typography)`
-  background: url(${Vector}) no-repeat;
-  font-size: 14px;
-  background-position: right 10% bottom 60%;
-  padding: 12px 100px 33px 0;
-`;
-
-const Group = styled.div`
-  margin-top: 16px;
-`;
+const Description = styled(Typography).attrs({
+  variant: 'body2'
+})``;
 
 const Registration = () => {
-
   const [state,] = useContext(AirtableContext);
 
-  const practiceNames = state.practices?.map(item => item.name)
+  const practiceNames = state.practices?.map(item => item.name);
 
   const onSubmit = (array) => {
-    addProfile(getAllPracticesTeacherId(array, state))
+    addProfile(getAllPracticesTeacherId(array, state));
   };
 
   return (
     <Base>
       <Container>
-        <Group>
+        <Header>
           <Title>Добавление профиля ✔</Title>
           <Description>
-            Это быстрое размещение профиля.
-            Мы свяжемся с тобой и уточним остальную информацию
+            Это быстрое размещение профиля. <br/>
+            Мы свяжемся с вами и уточним остальную информацию.
           </Description>
-
-          <RegistrationForm onSubmit={onSubmit} array={practiceNames} />
-          <Copyright>2021 &copy; <strong>#Минибудды</strong> обучают 👌</Copyright>
-        </Group>
+        </Header>
+        <RegistrationForm onSubmit={onSubmit} array={practiceNames} />
       </Container>
     </Base>
   );
