@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 
 import styled from 'styled-components';
-import { Button, Container, Typography } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 
 import Vector from '../../../assets/VectorForRegistration.svg';
 import Form from './Form';

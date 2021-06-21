@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useCallback, useContext } from 'react';
 
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
@@ -51,9 +51,9 @@ const Form = ({ onSubmit }) => {
   const [state,] = useContext(AirtableContext);
   const requiredMessage = ' важное поле';
 
-  const handleCreateProfile = (form) => {
+  const handleCreateProfile = useCallback((form) => {
     onSubmit(form);
-  }
+  }, [onSubmit])
 
   return (
     <StyledForm onSubmit={handleSubmit(handleCreateProfile)}>
