@@ -14,20 +14,20 @@ import { SnackbarProvider } from 'notistack';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <SnackbarProvider maxSnack={3}
-                        anchorOrigin={{
-                          vertical: 'bottom',
-                          horizontal: 'left',
-                        }} TransitionComponent={Collapse}>
-        <AirtableProvider>
-          <ThemeProvider theme={theme}>
+      <AirtableProvider>
+        <ThemeProvider theme={theme}>
+          <SnackbarProvider maxSnack={3}
+                            anchorOrigin={{
+                              vertical: 'bottom',
+                              horizontal: 'left',
+                            }} TransitionComponent={Collapse}>
             <StyledThemeProvider theme={theme}>
               <CssBaseline />
               <App />
             </StyledThemeProvider>
-          </ThemeProvider>
-        </AirtableProvider>
-      </SnackbarProvider>
+          </SnackbarProvider>
+        </ThemeProvider>
+      </AirtableProvider>
     </BrowserRouter>
   </React.StrictMode>,
 

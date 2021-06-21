@@ -42,7 +42,10 @@ const Registration = () => {
   const handleSubmit = useCallback((form) => {
     createProfileRecord(form).then(response => {
       router.push('/');
-      enqueueSnackbar('Профиль добавлен ✔️ Скоро свяжемся с вами');
+      enqueueSnackbar('Профиль добавлен, скоро свяжемся с вами', {
+        variant: 'success',
+        autoHideDuration: 5000
+      });
     });
   }, [enqueueSnackbar, router]);
 
