@@ -7,9 +7,10 @@ import Teachers from './pages/Teachers/Teachers';
 import TeacherDetails from './pages/TeacherDetails/TeacherDetails';
 import Header from './components/Header/Header';
 import Registration from './pages/Registration/Registration';
+import Footer from './components/Footer/Footer';
 
 export const airtableBase = new Airtable({
-  apiKey: process.env.REACT_APP_AIRTABLE_PRIVATE_KEY
+  apiKey: process.env.REACT_APP_AIRTABLE_PRIVATE_KEY,
 }).base('appAB6mLnImrAFBWa');
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
           <TeacherDetails />
         </Route>
       </Switch>
+      <Footer />
     </>
   );
 };

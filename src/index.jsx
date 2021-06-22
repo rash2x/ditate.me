@@ -16,11 +16,14 @@ ReactDOM.render(
     <BrowserRouter>
       <AirtableProvider>
         <ThemeProvider theme={theme}>
-          <SnackbarProvider maxSnack={3}
-                            anchorOrigin={{
-                              vertical: 'bottom',
-                              horizontal: 'left',
-                            }} TransitionComponent={Collapse}>
+          <SnackbarProvider
+            maxSnack={3}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            TransitionComponent={Collapse}
+          >
             <StyledThemeProvider theme={theme}>
               <CssBaseline />
               <App />
