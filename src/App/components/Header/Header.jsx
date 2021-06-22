@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { AppBar } from '@material-ui/core';
 
 import { HomeToolbar, LoginToolBar, TeacherToolbar } from './index';
+import PracticesToolbar from './PracticesToolbar';
 
 const Header = () => {
   return (
@@ -17,6 +18,9 @@ const Header = () => {
           </Route>
           <Route path="/:teacherId?">
             <TeacherToolbar />
+          </Route>
+          <Route exact path="/practices">
+            <PracticesToolbar />
           </Route>
         </Switch>
       </AppBar>
