@@ -15,11 +15,11 @@ const Header = () => {
           <Route exact path="/registration">
             <LoginToolBar />
           </Route>
-          <Route path="/:teacherId?">
-            <TeacherToolbar />
-          </Route>
           <Route exact path="/practices">
             <PracticesToolbar />
+          </Route>
+          <Route path="/:teacherId?">
+            <TeacherToolbar />
           </Route>
         </Switch>
       </AppBar>

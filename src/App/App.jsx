@@ -25,11 +25,11 @@ const App = () => {
         <Route exact path="/registration">
           <Registration />
         </Route>
-        <Route path="/:teacherId?">
-          <TeacherDetails />
-        </Route>
         <Route exact path="/practices">
           <Practices />
+        </Route>
+        <Route path="/:teacherId?">
+          <TeacherDetails />
         </Route>
       </Switch>
       <Footer />
