@@ -17,13 +17,24 @@ const NavigationBar = () => {
 
   return (
     <StyledFooter
+      showLabels
       value={value}
       onChange={(event, newValue) => {
         setValue(newValue);
       }}
     >
-      <BottomNavigationAction component={Link} to="/" icon={<RecentActorsIcon />} />
-      <BottomNavigationAction component={Link} to="/practices" icon={<SelfImprovementIcon />} />
+      <BottomNavigationAction
+        label="Минибудды"
+        component={Link}
+        to="/"
+        icon={<RecentActorsIcon />}
+      />
+      <BottomNavigationAction
+        label="Практики"
+        component={Link}
+        to="/practices"
+        icon={<SelfImprovementIcon />}
+      />
     </StyledFooter>
   );
 };
