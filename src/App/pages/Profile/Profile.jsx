@@ -6,17 +6,20 @@ import Button from '@material-ui/core/Button';
 
 import { AirtableContext } from '../../airtable/context';
 import InstagramIcon from '../../../assets/instagram-icon.svg';
+import HoldingHands from '../../../assets/hands/holding-hands.svg';
 
 import { getPracticeById, getTeacherById } from '../../airtable/services';
 import { ArrowBack } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import { useRouter } from '../../hooks/useRouter';
+import Contact from '../../components/Contact';
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   max-width: 100%;
 `;
 
@@ -80,12 +83,15 @@ const Instagram = styled(Button).attrs({
 })`
   font-size: 1.4rem;
   font-weight: ${props => props.theme.typography.fontWeightMedium};
-  text-transform: none;
   
   img {
     margin-right: 4px;
   }
 `;
+
+const StyledContact = styled(Contact)`
+  margin-top: 32px;
+`
 
 const Profile = () => {
   const [state, dispatch] = useContext(AirtableContext);
@@ -117,13 +123,17 @@ const Profile = () => {
         {currentTeacher.practiceIds.map(practiceId => {
           const practice = getPracticeById(practiceId, state.practices);
 
-          return <PracticeChip key={practiceId} style={{
+          return practice && <PracticeChip key={practiceId} style={{
             color: practice.color,
             backgroundColor: fade(practice.color, 0.12)
           }} label={practice.name} />;
         })}
       </PracticeList>
 
+      <StyledContact hands={HoldingHands} contact={{
+        type: 'telegram',
+        value: currentTeacher.telegram
+      }} />
     </Base>
   ) : null;
 };

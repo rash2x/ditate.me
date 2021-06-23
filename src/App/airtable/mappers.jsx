@@ -11,6 +11,7 @@ export const mapTeachers = (response) => {
       image: item.fields['Avatar'] ? item.fields['Avatar'][0].thumbnails.large.url : defaultThumbnailSvg,
       instagramUrl: item.fields.Instagram,
       instagram: getInstagramName(item.fields.Instagram),
+      telegram: item.fields.Telegram,
       practiceIds: item.fields.Practices,
     };
   })
