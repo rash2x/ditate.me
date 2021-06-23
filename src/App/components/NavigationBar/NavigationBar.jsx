@@ -12,7 +12,7 @@ const StyledFooter = styled(BottomNavigation)`
   bottom: 0;
 `;
 
-const Footer = () => {
+const NavigationBar = () => {
   const [value, setValue] = React.useState(0);
 
   return (
@@ -28,4 +28,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default NavigationBar;

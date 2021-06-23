@@ -7,7 +7,7 @@ import Teachers from './pages/Teachers/Teachers';
 import TeacherDetails from './pages/TeacherDetails/TeacherDetails';
 import Header from './components/Header/Header';
 import Registration from './pages/Registration/Registration';
-import Footer from './components/Footer/Footer';
+import NavigationBar from './components/NavigationBar/NavigationBar';
 import Practices from './pages/Practices/Practices';
 
 export const airtableBase = new Airtable({
@@ -32,7 +32,7 @@ const App = () => {
           <TeacherDetails />
         </Route>
       </Switch>
-      <Footer />
+      <NavigationBar />
     </>
   );
 };
