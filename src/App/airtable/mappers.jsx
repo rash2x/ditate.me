@@ -7,9 +7,11 @@ export const mapTeachers = (response) => {
     return {
       id: item.id,
       name: item.fields.Name,
+      description: item.fields.Description,
       image: item.fields['Avatar'] ? item.fields['Avatar'][0].thumbnails.large.url : defaultThumbnailSvg,
       instagramUrl: item.fields.Instagram,
       instagram: getInstagramName(item.fields.Instagram),
+      telegram: item.fields.Telegram,
       practiceIds: item.fields.Practices,
     };
   })

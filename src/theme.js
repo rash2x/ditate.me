@@ -42,7 +42,7 @@ export const theme = createMuiTheme({
   overrides: {
     MuiButton: {
       root: {
-        textTransform: 'capitalize',
+        textTransform: 'none',
         fontSize: 16,
         fontWeight: 700,
       },
