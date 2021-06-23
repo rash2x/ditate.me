@@ -8,6 +8,7 @@ import TeacherDetails from './pages/TeacherDetails/TeacherDetails';
 import Header from './components/Header/Header';
 import Registration from './pages/Registration/Registration';
 import Footer from './components/Footer/Footer';
+import Practices from './pages/Practices/Practices';
 
 export const airtableBase = new Airtable({
   apiKey: process.env.REACT_APP_AIRTABLE_PRIVATE_KEY,
@@ -26,6 +27,9 @@ const App = () => {
         </Route>
         <Route path="/:teacherId?">
           <TeacherDetails />
+        </Route>
+        <Route exact path="/practices">
+          <Practices />
         </Route>
       </Switch>
       <Footer />
