@@ -7,7 +7,7 @@ import { HomeToolbar, LoginToolBar, TeacherToolbar, PracticesToolbar } from './i
 const Header = () => {
   return (
     <>
-      <AppBar color="default">
+      <AppBar color="inherit">
         <Switch>
           <Route exact path="/">
             <HomeToolbar />
