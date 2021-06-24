@@ -1,7 +1,18 @@
+import { Container } from '@material-ui/core';
 import React from 'react';
+import styled from 'styled-components';
+import PracticeCard from './PracticeCard';
+
+const Base = styled(Container)`
+  padding-top: ${props => props.theme.mixins.toolbar.minHeight + 16}px;
+`;
 
 const Practices = () => {
-  return <div></div>;
+  return (
+    <Base>
+      <PracticeCard />
+    </Base>
+  );
 };
 
 export default Practices;
