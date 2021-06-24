@@ -1,5 +1,6 @@
 import { Container } from '@material-ui/core';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PracticeCard from '../../components/Practices/PracticeCard';
 
@@ -10,7 +11,9 @@ const Base = styled(Container)`
 const Practices = () => {
   return (
     <Base>
-      <PracticeCard />
+      <Link style={{ textDecoration: 'none' }} to="practiceID">
+        <PracticeCard />
+      </Link>
     </Base>
   );
 };
