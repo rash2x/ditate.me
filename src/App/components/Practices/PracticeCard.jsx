@@ -5,7 +5,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import PracticeName from '../../components/PracticeName/PracticeName';
+import PracticeName from './PracticeName';
 
 import Teacher from '../../../assets/temp/teacher.jpg';
 import TeacherIcon from '../../../assets/temp/teacher-icon.jpg';
@@ -15,6 +15,7 @@ import { Icon } from '@material-ui/core';
 
 const StyledCard = styled(Card)`
   margin-bottom: ${props => props.theme.spacing(1)}px;
+  max-width: 335px;
 `;
 
 const CardImage = styled(CardMedia)`
