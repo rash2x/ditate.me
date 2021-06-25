@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Airtable from 'airtable';
 
 import Teachers from './pages/Teachers/Teachers';
-import TeacherDetails from './pages/TeacherDetails/TeacherDetails';
+import Profile from './pages/Profile/Profile';
 import Header from './components/Header/Header';
 import Registration from './pages/Registration/Registration';
 import NavigationBar from './components/NavigationBar/NavigationBar';
@@ -33,7 +33,7 @@ const App = () => {
           <PracticeDetails />
         </Route>
         <Route path="/:teacherId?">
-          <TeacherDetails />
+          <Profile />
         </Route>
       </Switch>
       <NavigationBar />
