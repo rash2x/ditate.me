@@ -33,7 +33,7 @@ const Avatar = styled.img`
   border-radius: 50%;
 `;
 
-const StyledCardContent = styled(CardContent)`
+const Content = styled(CardContent)`
   padding: ${props => props.theme.spacing(1)}px ${props => props.theme.spacing(2)}px;
 `;
 
@@ -72,7 +72,7 @@ const PracticeCard = () => {
           <PracticeName />
           <Avatar src={TeacherIcon} />
         </Wrapper>
-        <StyledCardContent>
+        <Content>
           {/* subtitle2 makes font waight = 500 */}
           <Typography variant="subtitle2" component="h2">
             Даосские практики с Константином Сухановым
@@ -86,7 +86,7 @@ const PracticeCard = () => {
               1000 ₽
             </Price>
           </Info>
-        </StyledCardContent>
+        </Content>
       </CardActionArea>
     </Base>
   );
