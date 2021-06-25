@@ -6,6 +6,7 @@ import { ArrowBack } from '@material-ui/icons';
 import { IconButton, Typography } from '@material-ui/core';
 
 import Teacher from '../../../assets/temp/teacher.jpg';
+import { useRouter } from '../../hooks/useRouter';
 
 const BackgroundDiv = styled.div`
   min-height: 375px;
@@ -34,9 +35,15 @@ const Subtitle = styled(Typography)`
 const Wrapper = styled.div``;
 
 const PracticeDetails = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.history.goBack();
+  };
+
   return (
     <BackgroundDiv>
-      <ArrowWrapper to="/">
+      <ArrowWrapper onClick={handleClick}>
         <ArrowBack />
       </ArrowWrapper>
       <Wrapper>
