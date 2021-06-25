@@ -47,11 +47,12 @@ const PracticeList = styled.div`
   margin-top: ${props => props.theme.spacing(2)}px;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 
 const BackButton = styled(Fab).attrs({
   color: 'primary',
-  size: 'medium'
+  size: 'medium',
 })`
   position: absolute;
   top: 20px;
@@ -65,13 +66,13 @@ const Info = styled.header`
 `;
 
 const Name = styled(Typography).attrs({
-  variant: 'h1'
+  variant: 'h1',
 })`
   font-size: 2rem;
   margin-top: 20px;
 `;
 const Description = styled(Typography).attrs({
-  variant: 'body2'
+  variant: 'body2',
 })`
   margin-top: 16px;
   padding-left: 16px;
@@ -79,11 +80,11 @@ const Description = styled(Typography).attrs({
 `;
 
 const Instagram = styled(Button).attrs({
-  size: 'small'
+  size: 'small',
 })`
   font-size: 1.4rem;
   font-weight: ${props => props.theme.typography.fontWeightMedium};
-  
+
   img {
     margin-right: 4px;
   }
@@ -91,17 +92,17 @@ const Instagram = styled(Button).attrs({
 
 const StyledContact = styled(Contact)`
   margin-top: 32px;
-`
+`;
 
 const Profile = () => {
   const [state, dispatch] = useContext(AirtableContext);
-  const [currentTeacher, setCurrentTeacher] = useState(null)
+  const [currentTeacher, setCurrentTeacher] = useState(null);
   const router = useRouter();
 
   const teacherId = router.query.teacherId;
 
   useEffect(() => {
-    setCurrentTeacher(getTeacherById(teacherId, state.teachers))
+    setCurrentTeacher(getTeacherById(teacherId, state.teachers));
   }, [dispatch, state.teachers, teacherId]);
 
   return currentTeacher ? (
@@ -112,7 +113,12 @@ const Profile = () => {
       <Info>
         <Image src={currentTeacher.image} alt={''} />
         <Name>{currentTeacher.name}</Name>
-        <Instagram component={'a'} href={currentTeacher.instagramUrl} target="_blank" rel="noopener noreferrer">
+        <Instagram
+          component={'a'}
+          href={currentTeacher.instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={InstagramIcon} width="24px" alt="In" />
           {currentTeacher.instagram}
         </Instagram>
@@ -123,17 +129,28 @@ const Profile = () => {
         {currentTeacher.practiceIds.map(practiceId => {
           const practice = getPracticeById(practiceId, state.practices);
 
-          return practice && <PracticeChip key={practiceId} style={{
-            color: practice.color,
-            backgroundColor: fade(practice.color, 0.12)
-          }} label={practice.name} />;
+          return (
+            practice && (
+              <PracticeChip
+                key={practiceId}
+                style={{
+                  color: practice.color,
+                  backgroundColor: fade(practice.color, 0.12),
+                }}
+                label={practice.name}
+              />
+            )
+          );
         })}
       </PracticeList>
 
-      <StyledContact hands={HoldingHands} contact={{
-        type: 'telegram',
-        value: currentTeacher.telegram
-      }} />
+      <StyledContact
+        hands={HoldingHands}
+        contact={{
+          type: 'telegram',
+          value: currentTeacher.telegram,
+        }}
+      />
     </Base>
   ) : null;
 };
