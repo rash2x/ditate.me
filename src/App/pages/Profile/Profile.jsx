@@ -10,7 +10,6 @@ import HoldingHands from '../../../assets/hands/holding-hands.svg';
 
 import { getPracticeById, getTeacherById } from '../../airtable/services';
 import { ArrowBack } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
 import { useRouter } from '../../hooks/useRouter';
 import Contact from '../../components/Contact';
 
@@ -105,9 +104,13 @@ const Profile = () => {
     setCurrentTeacher(getTeacherById(teacherId, state.teachers));
   }, [dispatch, state.teachers, teacherId]);
 
+  const handleClick = () => {
+    router.history.goBack();
+  };
+
   return currentTeacher ? (
     <Base>
-      <BackButton component={Link} to={'/'}>
+      <BackButton onClick={handleClick}>
         <ArrowBack />
       </BackButton>
       <Info>
