@@ -6,7 +6,7 @@ import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import RecentActorsIcon from '@material-ui/icons/RecentActors';
 import SelfImprovementIcon from '@material-ui/icons/SelfImprovement';
 
-const StyledFooter = styled(BottomNavigation)`
+const Base = styled(BottomNavigation)`
   position: fixed;
   width: 100%;
   bottom: 0;
@@ -15,14 +15,11 @@ const StyledFooter = styled(BottomNavigation)`
 const NavigationBar = () => {
   const [value, setValue] = React.useState(0);
 
+  const handleChange = (e, newValue) => {
+    setValue(newValue);
+  };
   return (
-    <StyledFooter
-      showLabels
-      value={value}
-      onChange={(event, newValue) => {
-        setValue(newValue);
-      }}
-    >
+    <Base showLabels value={value} onChange={handleChange}>
       <BottomNavigationAction
         label="Минибудды"
         component={Link}
@@ -35,7 +32,7 @@ const NavigationBar = () => {
         to="/practices"
         icon={<SelfImprovementIcon />}
       />
-    </StyledFooter>
+    </Base>
   );
 };
 
