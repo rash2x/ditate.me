@@ -2,8 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { AppBar } from '@material-ui/core';
 
-import { HomeToolbar, LoginToolBar } from './index';
-import PracticesToolbar from './PracticesToolbar';
+import { HomeToolbar, LoginToolBar, PracticesToolbar } from './index';
 
 const Header = () => {
   return (
