@@ -1,24 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import CardContent from '@material-ui/core/CardContent';
-import CardActionArea from '@material-ui/core/CardActionArea';
+
 import PracticeName from './PracticeName';
 
 import Teacher from '../../../assets/temp/teacher.jpg';
 import TeacherIcon from '../../../assets/temp/teacher-icon.jpg';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 
-import { Icon } from '@material-ui/core';
+import { Card, CardMedia, Typography, CardContent, CardActionArea } from '@material-ui/core';
 
-const StyledCard = styled(Card)`
+const Base = styled(Card)`
   margin-bottom: ${props => props.theme.spacing(1)}px;
-  max-width: 335px;
+  max-width: 480px;
 `;
 
-const CardImage = styled(CardMedia)`
+const Thumbnail = styled(CardMedia)`
   display: flex;
   flex-direction: column-reverse;
   min-height: 375px;
@@ -31,30 +27,30 @@ const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
-const Image = styled.img`
+const Avatar = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
 `;
 
 const StyledCardContent = styled(CardContent)`
-  padding: 8px 16px;
+  padding: ${props => props.theme.spacing(1)}px ${props => props.theme.spacing(2)}px;
 `;
 
-const Base = styled.div`
+const Info = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: ${props => props.theme.spacing(1)}px;
 `;
 
-const DateBase = styled.div`
+const Date = styled(Typography)`
   display: flex;
   align-items: flex-end;
   color: ${props => props.theme.palette.primary.main};
-`;
 
-const Date = styled(Typography)`
-  margin-left: ${props => props.theme.spacing(1)}px;
+  .MuiSvgIcon-root {
+    margin-right: ${props => props.theme.spacing(1)}px;
+  }
 `;
 
 // Is it right to write padding like that?
@@ -68,36 +64,31 @@ const Price = styled(Typography)`
 
 const PracticeCard = () => {
   return (
-    <StyledCard>
+    <Base>
       <CardActionArea>
-        <CardImage image={Teacher} title="Contemplative Reptile">
+        <Wrapper>
+          <Thumbnail image={Teacher} title="Contemplative Reptile" />
           {/* variant needs to be changed */}
-          <Wrapper>
-            <PracticeName />
-            <Image src={TeacherIcon} />
-          </Wrapper>
-        </CardImage>
+          <PracticeName />
+          <Avatar src={TeacherIcon} />
+        </Wrapper>
         <StyledCardContent>
           {/* subtitle2 makes font waight = 500 */}
           <Typography variant="subtitle2" component="h2">
             Даосские практики с Константином Сухановым
           </Typography>
-          <Base>
-            <DateBase>
-              <Icon>
-                <EventAvailableIcon />
-              </Icon>
-              <Date variant="subtitle2" component="span">
-                Сегодня в 18:00
-              </Date>
-            </DateBase>
+          <Info>
+            <Date variant="subtitle2" component="span">
+              <EventAvailableIcon />
+              Сегодня в 18:00
+            </Date>
             <Price variant="subtitle2" component="span">
               1000 ₽
             </Price>
-          </Base>
+          </Info>
         </StyledCardContent>
       </CardActionArea>
-    </StyledCard>
+    </Base>
   );
 };
 
