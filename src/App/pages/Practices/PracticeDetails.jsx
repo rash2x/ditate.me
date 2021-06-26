@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PracticeName from '../../components/Practices/PracticeName';
+import PracticeName from '../../components/PracticeName';
 
 import { ArrowBack } from '@material-ui/icons';
 import { IconButton, Typography } from '@material-ui/core';
