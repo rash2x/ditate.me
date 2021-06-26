@@ -13,6 +13,7 @@ import { ArrowBack } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import { useRouter } from '../../hooks/useRouter';
 import Contact from '../../components/Contact';
+import { Helmet } from 'react-helmet';
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
@@ -134,6 +135,11 @@ const Profile = () => {
         type: 'telegram',
         value: currentTeacher.telegram
       }} />
+
+      <Helmet>
+        <meta name="description" content={currentTeacher.description} />
+        <title>{currentTeacher.name} (@{currentTeacher.instagram}) | ditate.me</title>
+      </Helmet>
     </Base>
   ) : null;
 };
