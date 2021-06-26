@@ -30,24 +30,26 @@ const FilterIcon = styled(Fab).attrs({
 
 const NavigationBar = () => {
   const router = useRouter();
-  let activeLink = router.pathname === '/practices' ? 1 : 0;
-  const [value, setValue] = React.useState(activeLink);
+  const [value, setValue] = React.useState(router.pathname);
 
-  const handleChange = () => {
-    if (router.pathname === '/practices') {
-      setValue(prev => prev - 1);
-    } else {
-      setValue(prev => prev + 1);
-    }
+  const handleChange = (e, newValue) => {
+    setValue(newValue);
   };
 
   return (
     <Base showLabels value={value} onChange={handleChange}>
-      <BottomNavigationAction label="Минибудды" component={Link} to="/" icon={<RecentActors />} />
+      <BottomNavigationAction
+        label="Минибудды"
+        component={Link}
+        to="/"
+        value={'/'}
+        icon={<RecentActors />}
+      />
       <BottomNavigationAction
         label="Практики"
         component={Link}
         to="/practices"
+        value={'/practices'}
         icon={<SelfImprovement />}
       />
       {router.pathname === '/practices' && (
