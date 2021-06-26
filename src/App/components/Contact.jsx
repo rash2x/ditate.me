@@ -35,8 +35,10 @@ const DitateMeCopyright = styled(Typography).attrs({
   }
 `;
 
-const Contact = ({ hands, contact, ...rest }) => {
+const Contact = ({ hands, contact, description, ...rest }) => {
   const [contactValue, setContactValue] = useState(null);
+
+  console.log(contact);
 
   const handleContact = useCallback(() => {
     setContactValue(contact.value);
@@ -50,7 +52,9 @@ const Contact = ({ hands, contact, ...rest }) => {
                            rel="noopener noreferrer"
                            target="_blank">👉 {contact.value}</a> : 'Связаться со мной'}
       </ContactButton>
-      <DitateMeCopyright>Сообщите, пожалуйста, что вы нашли практику на <span>ditate.me 🙏</span></DitateMeCopyright>
+      <DitateMeCopyright>
+        {description || <>Сообщите, пожалуйста, что вы нашли практику на <span>ditate.me 🙏</span></>}
+      </DitateMeCopyright>
     </Base>
   );
 };
