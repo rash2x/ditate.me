@@ -84,7 +84,7 @@ const Instagram = styled(Button).attrs({
 })`
   font-size: 1.4rem;
   font-weight: ${props => props.theme.typography.fontWeightMedium};
-  
+
   img {
     margin-right: 4px;
   }
@@ -92,17 +92,17 @@ const Instagram = styled(Button).attrs({
 
 const StyledContact = styled(Contact)`
   margin-top: 32px;
-`
+`;
 
 const Profile = () => {
   const [state, dispatch] = useContext(AirtableContext);
-  const [currentTeacher, setCurrentTeacher] = useState(null)
+  const [currentTeacher, setCurrentTeacher] = useState(null);
   const router = useRouter();
 
   const teacherId = router.query.teacherId;
 
   useEffect(() => {
-    setCurrentTeacher(getTeacherById(teacherId, state.teachers))
+    setCurrentTeacher(getTeacherById(teacherId, state.teachers));
   }, [dispatch, state.teachers, teacherId]);
 
   return currentTeacher ? (
@@ -131,10 +131,14 @@ const Profile = () => {
         })}
       </PracticeList>
 
-      <StyledContact hands={HoldingHands} contact={{
-        type: 'telegram',
-        value: currentTeacher.telegram
-      }} />
+      <StyledContact
+        hands={HoldingHands}
+        contact={{
+          type: currentTeacher.telegram ? 'telegram' : 'instagram',
+          value: currentTeacher.telegram || currentTeacher.instagram
+        }}
+        description={<>Сообщите, пожалуйста, что вы нашли меня на <span>ditate.me 🙏</span></>}
+      />
 
       <Helmet>
         <meta name="description" content={currentTeacher.description} />
