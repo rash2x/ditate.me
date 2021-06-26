@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 import PracticeName from './PracticeName';
 
-import Teacher from '../../../assets/temp/teacher.jpg';
-import TeacherIcon from '../../../assets/temp/teacher-icon.jpg';
+import Teacher from '../../assets/temp/teacher.jpg';
+import TeacherIcon from '../../assets/temp/teacher-icon.jpg';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 
 import { Card, CardMedia, Typography, CardContent, CardActionArea } from '@material-ui/core';
