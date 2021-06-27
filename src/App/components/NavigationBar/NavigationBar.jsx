@@ -21,7 +21,8 @@ const FilterIcon = styled(Fab).attrs({
   position: absolute;
   width: 56px;
   height: 56px;
-  right: 159px;
+  right: 50%;
+  transform: translate(50%);
   bottom: 28px;
   background: ${props => props.theme.palette.primary.main};
   box-shadow: 0px 9px 12px rgba(0, 0, 0, 0.14), 0px 3px 16px rgba(0, 0, 0, 0.12),
