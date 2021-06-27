@@ -7,6 +7,7 @@ import ReactLoading from 'react-loading';
 import { AirtableContext } from '../../airtable/context';
 import Teacher from './Teacher';
 import { getTeacherById } from '../../airtable/services';
+import Helmet from 'react-helmet';
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
@@ -53,25 +54,31 @@ const Teachers = () => {
   }
 
   return !isLoading && (
-    <Base>
-      {state.practices && state.practices.map((practice) => (
-        <Group key={practice.id}>
-          <GroupTitle color="inherit" style={{ color: practice.color }}>{practice.name}</GroupTitle>
-          <GroupList>
-            {practice.hasTeachers && practice.teacherIds.map(teacherId => {
-              const teacher = getTeacherById(teacherId, state.teachers);
+    <>
+      <Base>
+        {state.practices && state.practices.map((practice) => (
+          <Group key={practice.id}>
+            <GroupTitle color="inherit" style={{ color: practice.color }}>{practice.name}</GroupTitle>
+            <GroupList>
+              {practice.hasTeachers && practice.teacherIds.map(teacherId => {
+                const teacher = getTeacherById(teacherId, state.teachers);
 
-              return teacher && (
-                <Teacher key={teacherId}
-                         id={teacherId}
-                         name={teacher.name}
-                         thumbnail={teacher.image} />
-              );
-            })}
-          </GroupList>
-        </Group>
-      ))}
-    </Base>
+                return teacher && (
+                  <Teacher key={teacherId}
+                           id={teacherId}
+                           name={teacher.name}
+                           thumbnail={teacher.image} />
+                );
+              })}
+            </GroupList>
+          </Group>
+        ))}
+      </Base>
+      <Helmet>
+        <meta name="description" content="Поиск практик и медитаций" />
+        <title>Ditate.me</title>
+      </Helmet>
+    </>
   );
 };
 

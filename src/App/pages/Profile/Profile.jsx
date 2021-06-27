@@ -12,6 +12,7 @@ import { getPracticeById, getTeacherById } from '../../airtable/services';
 import { ArrowBack } from '@material-ui/icons';
 import { useRouter } from '../../hooks/useRouter';
 import Contact from '../../components/Contact';
+import { Helmet } from 'react-helmet';
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
@@ -150,10 +151,22 @@ const Profile = () => {
       <StyledContact
         hands={HoldingHands}
         contact={{
-          type: 'telegram',
-          value: currentTeacher.telegram,
+          type: currentTeacher.telegram ? 'telegram' : 'instagram',
+          value: currentTeacher.telegram || currentTeacher.instagram,
         }}
+        description={
+          <>
+            Сообщите, пожалуйста, что вы нашли меня на <span>ditate.me 🙏</span>
+          </>
+        }
       />
+
+      <Helmet>
+        <meta name="description" content={currentTeacher.description} />
+        <title>
+          {currentTeacher.name} (@{currentTeacher.instagram}) | ditate.me
+        </title>
+      </Helmet>
     </Base>
   ) : null;
 };

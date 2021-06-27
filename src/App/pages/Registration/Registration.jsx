@@ -8,6 +8,7 @@ import Form from './Form';
 import { createProfileRecord } from '../../airtable/services';
 import { useRouter } from '../../hooks/useRouter';
 import { useSnackbar } from 'notistack';
+import Helmet from 'react-helmet';
 
 const Base = styled.div`
   display: flex;
@@ -50,18 +51,24 @@ const Registration = () => {
   }, [enqueueSnackbar, router]);
 
   return (
-    <Base>
-      <Container>
-        <Header>
-          <Title>Добавление профиля ✔</Title>
-          <Description>
-            Это быстрое размещение профиля. <br/>
-            Мы свяжемся с вами и уточним остальную информацию.
-          </Description>
-        </Header>
-        <Form onSubmit={handleSubmit} />
-      </Container>
-    </Base>
+    <>
+      <Base>
+        <Container>
+          <Header>
+            <Title>Добавление профиля ✔</Title>
+            <Description>
+              Это быстрое размещение профиля. <br/>
+              Мы свяжемся с вами и уточним остальную информацию.
+            </Description>
+          </Header>
+          <Form onSubmit={handleSubmit} />
+        </Container>
+      </Base>
+      <Helmet>
+        <meta name="description" content="Поиск практик и медитаций" />
+        <title>Добавление профиля | ditate.me</title>
+      </Helmet>
+    </>
   );
 };
 

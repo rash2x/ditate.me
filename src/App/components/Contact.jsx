@@ -19,7 +19,7 @@ const Base = styled(Paper)`
 
 const ContactButton = styled(Button).attrs({
   color: 'primary',
-  variant: 'contained'
+  variant: 'contained',
 })`
   a {
     color: inherit;
@@ -28,15 +28,17 @@ const ContactButton = styled(Button).attrs({
 `;
 
 const DitateMeCopyright = styled(Typography).attrs({
-  variant: 'body1'
+  variant: 'body1',
 })`
   span {
     color: ${props => props.theme.palette.primary.main};
   }
 `;
 
-const Contact = ({ hands, contact, ...rest }) => {
+const Contact = ({ hands, contact, description, ...rest }) => {
   const [contactValue, setContactValue] = useState(null);
+
+  console.log(contact);
 
   const handleContact = useCallback(() => {
     setContactValue(contact.value);
@@ -46,11 +48,25 @@ const Contact = ({ hands, contact, ...rest }) => {
     <Base {...rest}>
       {hands && <img src={hands} alt="hands" />}
       <ContactButton onClick={handleContact}>
-        {contactValue ? <a href={getContactLink(contact.type, contact.value)}
-                           rel="noopener noreferrer"
-                           target="_blank">👉 {contact.value}</a> : 'Связаться со мной'}
+        {contactValue ? (
+          <a
+            href={getContactLink(contact.type, contact.value)}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            👉 {contact.value}
+          </a>
+        ) : (
+          'Связаться со мной'
+        )}
       </ContactButton>
-      <DitateMeCopyright>Сообщите, пожалуйста, что вы нашли практику на <span>ditate.me 🙏</span></DitateMeCopyright>
+      <DitateMeCopyright>
+        {description || (
+          <>
+            Сообщите, пожалуйста, что вы нашли практику на <span>ditate.me 🙏</span>
+          </>
+        )}
+      </DitateMeCopyright>
     </Base>
   );
 };
