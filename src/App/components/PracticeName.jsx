@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Typography } from '@material-ui/core';
 
-const StyledTypography = styled(Typography)`
+const Base = styled(Typography)`
   width: max-content;
   padding: 0 4px;
   color: #84ffff;
@@ -13,9 +13,9 @@ const StyledTypography = styled(Typography)`
 
 const PracticeName = () => {
   return (
-    <StyledTypography variant="h2" component="h2">
+    <Base variant="h2" component="h2">
       Даосские практики
-    </StyledTypography>
+    </Base>
   );
 };
 
