@@ -19,15 +19,32 @@ const Thumbnail = styled(CardMedia)`
   flex-direction: column-reverse;
   min-height: 375px;
   padding: ${props => props.theme.spacing(2)}px;
+  width: 100%;
 `;
 
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  .MuiTypography-h2 {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+  }
+`;
+
+const Name = styled(PracticeName)`
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
 `;
 
 const Avatar = styled.img`
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -53,7 +70,6 @@ const Date = styled(Typography)`
   }
 `;
 
-// Is it right to write padding like that?
 const Price = styled(Typography)`
   display: flex;
   align-items: center;
@@ -68,12 +84,10 @@ const PracticeCard = () => {
       <CardActionArea>
         <Wrapper>
           <Thumbnail image={Teacher} title="Contemplative Reptile" />
-          {/* variant needs to be changed */}
-          <PracticeName />
+          <Name />
           <Avatar src={TeacherIcon} />
         </Wrapper>
         <Content>
-          {/* subtitle2 makes font waight = 500 */}
           <Typography variant="subtitle2" component="h2">
             Даосские практики с Константином Сухановым
           </Typography>
