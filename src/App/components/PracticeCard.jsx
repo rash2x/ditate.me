@@ -8,10 +8,13 @@ import TeacherIcon from '../../assets/temp/teacher-icon.jpg';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 
 import { Card, CardMedia, Typography, CardContent, CardActionArea } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const Base = styled(Card)`
   margin-bottom: ${props => props.theme.spacing(1)}px;
   max-width: 480px;
+  display: block;
+  text-decoration: none;
 `;
 
 const Thumbnail = styled(CardMedia)`
@@ -33,12 +36,6 @@ const Wrapper = styled.div`
     bottom: 16px;
     left: 16px;
   }
-`;
-
-const Name = styled(PracticeName)`
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
 `;
 
 const Avatar = styled.img`
@@ -80,11 +77,11 @@ const Price = styled(Typography)`
 
 const PracticeCard = () => {
   return (
-    <Base>
+    <Base component={Link} to="practiceID">
       <CardActionArea>
         <Wrapper>
           <Thumbnail image={Teacher} title="Contemplative Reptile" />
-          <Name />
+          <PracticeName />
           <Avatar src={TeacherIcon} />
         </Wrapper>
         <Content>
