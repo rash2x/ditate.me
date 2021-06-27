@@ -7,7 +7,7 @@ export const theme = createMuiTheme({
       light: '#FFF9C4',
     },
     secondary: {
-      main: '#3E3D31'
+      main: '#3E3D31',
     },
     type: 'dark',
     background: {
@@ -23,13 +23,23 @@ export const theme = createMuiTheme({
     h1: {
       fontSize: 24,
       fontWeight: 700,
-      lineHeight: 1.54
+      lineHeight: 1.54,
     },
 
     h2: {
       fontSize: 20,
       fontWeight: 700,
-      lineHeight: 1.54
+      lineHeight: 1.54,
+    },
+
+    h3: {
+      fontSize: 16,
+      fontWeight: 700,
+      lineHeight: 1.54,
+    },
+
+    subtitle2: {
+      fontWeight: 700,
     },
 
     button: {
@@ -47,18 +57,31 @@ export const theme = createMuiTheme({
         fontWeight: 700,
       },
       containedSizeLarge: {
-        fontSize: 18
-      }
+        fontSize: 18,
+      },
     },
     MuiOutlinedInput: {
       notchedOutline: {
-        borderColor: '#FFF9C4'
-      }
+        borderColor: '#FFF9C4',
+      },
+    },
+    MuiAutocomplete: {
+      popupIndicator: {
+        color: '#2f3237',
+      },
+      clearIndicator: {
+        color: '#2f3237',
+      },
+    },
+    MuiInput: {
+      root: {
+        color: 'rgba(0, 0, 0, 0.54)',
+      },
     },
     MuiCssBaseline: {
       '@global': {
         html: {
-          fontSize: 10
+          fontSize: 10,
         },
       },
     },
