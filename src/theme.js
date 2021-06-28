@@ -78,6 +78,11 @@ export const theme = createMuiTheme({
         color: 'rgba(0, 0, 0, 0.54)',
       },
     },
+    MuiFormControl: {
+      marginNormal: {
+        marginTop: '8px',
+      },
+    },
     MuiCssBaseline: {
       '@global': {
         html: {
