@@ -62,16 +62,9 @@ const Wrapper = styled.div`
 
 const FilterForm = ({ anchor, open, onClose }) => {
   const [state] = useContext(AirtableContext);
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-    setValue,
-  } = useForm();
+  const { handleSubmit, setValue } = useForm();
 
-  const applyFilter = form => {
-    console.log(form);
-  };
+  const applyFilter = form => {};
 
   return (
     <Base key={anchor} anchor={anchor} open={open} onClose={onClose} onOpen={open}>
@@ -80,7 +73,7 @@ const FilterForm = ({ anchor, open, onClose }) => {
         Фильтры
       </Header>
       <form onSubmit={handleSubmit(applyFilter)}>
-        <Calendar />
+        <Calendar setValue={setValue} />
         <Autocomplete
           multiple
           options={state.practices ? state.practices : []}
@@ -88,13 +81,7 @@ const FilterForm = ({ anchor, open, onClose }) => {
           onChange={(_, values) => {
             setValue('practices', [...values]);
           }}
-          renderInput={params => (
-            <Input
-              {...params}
-              {...register('practices', { required: true })}
-              label="Все практики"
-            />
-          )}
+          renderInput={params => <Input {...params} label="Все практики" />}
         />
         <Autocomplete
           multiple
@@ -103,13 +90,7 @@ const FilterForm = ({ anchor, open, onClose }) => {
           onChange={(_, values) => {
             setValue('teachers', [...values]);
           }}
-          renderInput={params => (
-            <Input
-              {...params}
-              {...register('teachers', { required: true })}
-              label="Все минибудды"
-            />
-          )}
+          renderInput={params => <Input {...params} label="Все минибудды" />}
         />
         <Wrapper>
           <Button type="reset" size="medium" color="secondary" variant="outlined">
