@@ -79,13 +79,13 @@ const Price = styled(Typography).attrs({
   background: rgba(21, 22, 19, 1);
 `;
 
-const PracticeCard = () => {
+const PracticeCard = ({ id, name, price, startDate }) => {
   return (
-    <Base component={Link} to="practiceID">
+    <Base component={Link} to={`/${id}`}>
       <CardActionArea>
         <Wrapper>
           <Thumbnail image={Teacher} />
-          <PracticeBadge />
+          <PracticeBadge name={name} />
           <Avatar src={TeacherIcon} />
         </Wrapper>
         <Content>
@@ -93,9 +93,9 @@ const PracticeCard = () => {
           <Info>
             <Date component="span">
               <EventAvailableIcon />
-              Сегодня в 18:00
+              {startDate}
             </Date>
-            <Price>1000 ₽</Price>
+            <Price>{price} ₽</Price>
           </Info>
         </Content>
       </CardActionArea>

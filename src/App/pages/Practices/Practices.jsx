@@ -20,7 +20,7 @@ const Practices = () => {
 
   return (
     <Base>
-      <PracticeCard />
+      {state.events && state.events.map(event => <PracticeCard key={event.id} {...event} />)}
     </Base>
   );
 };

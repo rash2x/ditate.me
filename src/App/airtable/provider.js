@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import reducer, { setEvents, setPractices, setTeachers } from './reducer';
 import { airtableBase } from '../App';
-import { mapPractices, mapTeachers } from './mappers';
+import { mapEvents, mapPractices, mapTeachers } from './mappers';
 import { AirtableContext, initialState } from './context';
 
 export const AirtableProvider = ({ children }) => {
@@ -35,7 +35,7 @@ export const AirtableProvider = ({ children }) => {
         view: 'Grid view',
       })
       .eachPage((records, fetchNextPage) => {
-        dispatch(setEvents(records));
+        dispatch(setEvents(mapEvents(records)));
         fetchNextPage();
       });
   }, [dispatch]);

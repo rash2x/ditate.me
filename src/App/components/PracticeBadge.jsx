@@ -11,8 +11,8 @@ const Base = styled(Typography).attrs({ variant: 'h2' })`
   font-size: ${props => props.theme.typography.fontSize}px;
 `;
 
-const PracticeBadge = () => {
-  return <Base component="h2">Даосские практики</Base>;
+const PracticeBadge = ({ name }) => {
+  return <Base component="h2">{name}</Base>;
 };
 
 export default PracticeBadge;
