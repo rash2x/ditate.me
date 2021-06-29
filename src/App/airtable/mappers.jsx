@@ -40,7 +40,7 @@ export const mapEvents = response => {
       price: item.fields.Price,
       teacherId: item.fields.Teacher,
       location: item.fields.Location,
-      practices: item.fields.Practices,
+      practice: item.fields.Practice,
       startDate: item.fields.StartDate,
     };
   });

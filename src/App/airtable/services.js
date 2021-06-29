@@ -16,15 +16,23 @@ export const getPracticeById = (practiceId, practices) => {
   return practices.find(t => t.id === practiceId);
 };
 
-export const createProfileRecord = async (form) => {
+export const getEventById = (eventId, events) => {
+  if (!events) {
+    return;
+  }
+
+  return events.find(t => t.id === eventId);
+};
+
+export const createProfileRecord = async form => {
   const practices = form.practices.map(item => item.id);
 
   const requestData = {
     Name: form.name,
     Practices: practices,
     Instagram: form.contact,
-    City: form.city
+    City: form.city,
   };
 
-  await airtableBase('New Profiles').create(requestData)
-}
+  await airtableBase('New Profiles').create(requestData);
+};

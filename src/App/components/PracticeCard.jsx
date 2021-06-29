@@ -81,7 +81,7 @@ const Price = styled(Typography).attrs({
 
 const PracticeCard = ({ id, name, price, startDate }) => {
   return (
-    <Base component={Link} to={`/${id}`}>
+    <Base component={Link} to={`/event/${id}`}>
       <CardActionArea>
         <Wrapper>
           <Thumbnail image={Teacher} />

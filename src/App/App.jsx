@@ -29,7 +29,7 @@ const App = () => {
         <Route exact path="/practices">
           <Practices />
         </Route>
-        <Route exact path="/practiceID">
+        <Route path="/event/:eventId?">
           <PracticeDetails />
         </Route>
         <Route path="/:teacherId?">

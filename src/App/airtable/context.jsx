@@ -5,7 +5,8 @@ export const initialState = {
   practices: null,
   meditations: null,
   currentTeacher: null,
-  practicesEvent: null
+  practicesEvent: null,
+  events: null,
 };
 
 export const AirtableContext = createContext(initialState);
