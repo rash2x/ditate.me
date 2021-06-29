@@ -106,9 +106,12 @@ const Profile = () => {
   }, [dispatch, state.teachers, teacherId]);
 
   const handleClick = () => {
-    router.history.goBack();
+    if (router.history.length === 1) {
+      router.push('/');
+    } else {
+      router.history.goBack();
+    }
   };
-
   return currentTeacher ? (
     <Base>
       <BackButton onClick={handleClick}>
