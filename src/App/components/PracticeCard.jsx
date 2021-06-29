@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import PracticeName from './PracticeName';
+import PracticeBadge from './PracticeBadge';
 
 import Teacher from '../../assets/temp/teacher.jpg';
 import TeacherIcon from '../../assets/temp/teacher-icon.jpg';
@@ -38,6 +38,8 @@ const Wrapper = styled.div`
   }
 `;
 
+const Title = styled(Typography).attrs({ variant: 'subtitle2' })``;
+
 const Avatar = styled.img`
   position: absolute;
   bottom: 16px;
@@ -67,7 +69,9 @@ const Date = styled(Typography)`
   }
 `;
 
-const Price = styled(Typography)`
+const Price = styled(Typography).attrs({
+  variant: 'subtitle2',
+})`
   display: flex;
   align-items: center;
   padding: 2px 4px;
@@ -80,22 +84,18 @@ const PracticeCard = () => {
     <Base component={Link} to="practiceID">
       <CardActionArea>
         <Wrapper>
-          <Thumbnail image={Teacher} title="Contemplative Reptile" />
-          <PracticeName />
+          <Thumbnail image={Teacher} />
+          <PracticeBadge />
           <Avatar src={TeacherIcon} />
         </Wrapper>
         <Content>
-          <Typography variant="subtitle2" component="h2">
-            Даосские практики с Константином Сухановым
-          </Typography>
+          <Title component="h2">Даосские практики с Константином Сухановым</Title>
           <Info>
-            <Date variant="subtitle2" component="span">
+            <Date component="span">
               <EventAvailableIcon />
               Сегодня в 18:00
             </Date>
-            <Price variant="subtitle2" component="span">
-              1000 ₽
-            </Price>
+            <Price>1000 ₽</Price>
           </Info>
         </Content>
       </CardActionArea>

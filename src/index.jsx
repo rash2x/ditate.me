@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import DateFnsUtils from '@date-io/date-fns';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 
 import { Collapse, CssBaseline, ThemeProvider } from '@material-ui/core';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
@@ -10,6 +11,7 @@ import { theme } from './theme';
 import App from './App/App';
 import { AirtableProvider } from './App/airtable/provider';
 import { SnackbarProvider } from 'notistack';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -26,7 +28,9 @@ ReactDOM.render(
           >
             <StyledThemeProvider theme={theme}>
               <CssBaseline />
-              <App />
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <App />
+              </MuiPickersUtilsProvider>
             </StyledThemeProvider>
           </SnackbarProvider>
         </ThemeProvider>

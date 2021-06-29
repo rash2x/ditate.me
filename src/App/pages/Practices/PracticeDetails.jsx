@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PracticeName from '../../components/PracticeName';
+import PracticeBadge from '../../components/PracticeBadge';
 
 import { Container, Fab, Typography } from '@material-ui/core';
 import { ArrowBack, Place, EventAvailable } from '@material-ui/icons';
@@ -8,8 +8,11 @@ import { ArrowBack, Place, EventAvailable } from '@material-ui/icons';
 import Contact from '../../components/Contact';
 import { useRouter } from '../../hooks/useRouter';
 import Teacher from '../../../assets/temp/teacher.jpg';
+import Hands from '../../../assets/hands/Hands.svg';
 
-const BackgroundDiv = styled.div`
+const Base = styled.div``;
+
+const Thumbnail = styled.div`
   min-height: 375px;
   display: flex;
   flex-direction: column;
@@ -24,7 +27,9 @@ const BackButton = styled(Fab).attrs({
   size: 'medium',
 })``;
 
-const Subtitle = styled(Typography)`
+const TitleWrapper = styled.div``;
+
+const Title = styled(Typography).attrs({ variant: 'body1' })`
   margin-top: ${props => props.theme.spacing(1)}px;
 `;
 
@@ -34,7 +39,7 @@ const Info = styled.div`
   margin-top: ${props => props.theme.spacing(1)}px;
 `;
 
-const Date = styled(Typography)`
+const Date = styled(Typography).attrs({ variant: 'subtitle2' })`
   display: flex;
   align-items: flex-end;
   color: ${props => props.theme.palette.primary.main};
@@ -44,7 +49,7 @@ const Date = styled(Typography)`
   }
 `;
 
-const Price = styled(Typography)`
+const Price = styled(Typography).attrs({ variant: 'subtitle2' })`
   display: flex;
   align-items: center;
   padding: 2px 4px;
@@ -68,34 +73,30 @@ const PracticeDetails = () => {
   };
 
   return (
-    <div>
-      <BackgroundDiv>
+    <Base>
+      <Thumbnail>
         <BackButton onClick={handleClick}>
           <ArrowBack />
         </BackButton>
-        <div>
-          <PracticeName />
-          <Subtitle variant="subtitle2" component="h2">
-            Даосские практики с Константином Сухановым
-          </Subtitle>
-        </div>
-      </BackgroundDiv>
+        <TitleWrapper>
+          <PracticeBadge />
+          <Title component="h1">Даосские практики с Константином Сухановым</Title>
+        </TitleWrapper>
+      </Thumbnail>
       <Container>
         <Info>
-          <Date variant="subtitle2" component="span">
+          <Date component="span">
             <EventAvailable />
             Сегодня в 18:00
           </Date>
-          <Price variant="subtitle2" component="span">
-            1000 ₽
-          </Price>
+          <Price component="span">1000 ₽</Price>
         </Info>
         <Location>
           <Place /> Конюшенная пл. 2В, 3 этаж, помещение 27
         </Location>
-        <Contact />
+        <Contact hands={Hands}></Contact>
       </Container>
-    </div>
+    </Base>
   );
 };
 

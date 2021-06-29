@@ -54,7 +54,7 @@ const Input = styled(TextField).attrs({
   }
 `;
 
-const Wrapper = styled.div`
+const Actions = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: ${props => props.theme.spacing(3)}px;
@@ -92,14 +92,14 @@ const FilterForm = ({ anchor, open, onClose }) => {
           }}
           renderInput={params => <Input {...params} label="Все минибудды" />}
         />
-        <Wrapper>
+        <Actions>
           <Button type="reset" size="medium" color="secondary" variant="outlined">
             Сбросить
           </Button>
           <Button type="submit" size="medium" color="secondary" variant="contained">
             Окей
           </Button>
-        </Wrapper>
+        </Actions>
       </form>
     </Base>
   );

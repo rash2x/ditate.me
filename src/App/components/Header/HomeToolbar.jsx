@@ -13,7 +13,7 @@ const AboutDrawer = styled(Drawer)`
   }
 `;
 
-const StyledToolbar = styled(Toolbar)`
+const Base = styled(Toolbar)`
   justify-content: center;
 `;
 
@@ -24,7 +24,7 @@ const StyledLogo = styled(Logo)`
 
 const HomeToolbar = () => {
   const [drawers, setDrawer] = useState({
-    about: false
+    about: false,
   });
 
   const toggleDrawer = (anchor, open) => () => {
@@ -33,13 +33,13 @@ const HomeToolbar = () => {
 
   return (
     <>
-      <StyledToolbar>
+      <Base>
         <IconButton onClick={toggleDrawer('about', true)}>
           <MenuIcon />
         </IconButton>
 
         <StyledLogo />
-      </StyledToolbar>
+      </Base>
 
       <AboutDrawer anchor="left" open={drawers['about']} onClose={toggleDrawer('about', false)}>
         <About />

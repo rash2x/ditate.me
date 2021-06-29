@@ -7,12 +7,14 @@ import { Map, ViewAgenda } from '@material-ui/icons';
 const Title = styled(Typography).attrs({
   variant: 'h2',
 })`
-  font-size: 18px;
+  font-size: 1.8rem;
 `;
 
-const StyledToolbar = styled(Toolbar)`
+const Base = styled(Toolbar)`
   justify-content: space-between;
 `;
+
+const ViewButtons = styled.div``;
 
 const Button = styled(IconButton)`
   min-width: 50px;
@@ -20,17 +22,17 @@ const Button = styled(IconButton)`
 
 const PracticesToolbar = () => {
   return (
-    <StyledToolbar>
+    <Base>
       <Title>Расписание практик</Title>
-      <div>
+      <ViewButtons>
         <Button>
           <ViewAgenda />
         </Button>
         <Button>
           <Map />
         </Button>
-      </div>
-    </StyledToolbar>
+      </ViewButtons>
+    </Base>
   );
 };
 

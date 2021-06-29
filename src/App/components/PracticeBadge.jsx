@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Typography } from '@material-ui/core';
 
-const Base = styled(Typography)`
+const Base = styled(Typography).attrs({ variant: 'h2' })`
   width: max-content;
   padding: 0 4px;
   color: #84ffff;
@@ -11,12 +11,8 @@ const Base = styled(Typography)`
   font-size: ${props => props.theme.typography.fontSize}px;
 `;
 
-const PracticeName = () => {
-  return (
-    <Base variant="h2" component="h2">
-      Даосские практики
-    </Base>
-  );
+const PracticeBadge = () => {
+  return <Base component="h2">Даосские практики</Base>;
 };
 
-export default PracticeName;
+export default PracticeBadge;

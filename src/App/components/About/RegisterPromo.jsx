@@ -9,11 +9,11 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import vector from '../../../assets/Vector.svg';
 
 const Title = styled(Typography).attrs({
-  variant: 'h2'
+  variant: 'h2',
 })``;
 
 const Description = styled(Typography)`
-  font-size: 14px;
+  font-size: 1.4rem;
   padding: 8px 70px 10px 0;
   background: url(${vector}) no-repeat right 10% bottom 60%;
 `;
@@ -31,14 +31,19 @@ const RegisterPromo = () => {
       <Container>
         <Title>Проводите практики?</Title>
         <Description>
-          Добавьте свой профиль, чтобы тысячи учеников смогли найти вас <strong>прямо здесь и сейчас</strong>
+          Добавьте свой профиль, чтобы тысячи учеников смогли найти вас{' '}
+          <strong>прямо здесь и сейчас</strong>
         </Description>
-        <Button color="primary" size="small"
-                component={Link} to="/registration" style={{ textTransform: 'none' }}>
+        <Button
+          color="primary"
+          size="small"
+          component={Link}
+          to="/registration"
+          style={{ textTransform: 'none' }}
+        >
           <AddCircleIcon style={{ marginRight: '14px' }} />
           Добавьте лишь свой профиль
         </Button>
-
       </Container>
     </Base>
   );

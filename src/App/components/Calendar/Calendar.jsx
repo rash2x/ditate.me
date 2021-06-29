@@ -1,8 +1,7 @@
 import 'date-fns';
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import { KeyboardDatePicker } from '@material-ui/pickers';
 import styled from 'styled-components';
 import { TextField } from '@material-ui/core';
 
@@ -20,6 +19,14 @@ const Input = styled(TextField).attrs({
   margin: 'normal',
   fullWidth: true,
 })`
+  .MuiOutlinedInput-adornedEnd {
+    padding: 0;
+  }
+
+  .MuiIconButton-root {
+    padding-right: ${props => props.theme.spacing(1)}px;
+  }
+
   .MuiOutlinedInput-notchedOutline,
   .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
   .Mui-focused,
@@ -52,26 +59,24 @@ const Calendar = ({ setValue }) => {
   };
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container justify="space-around">
-        <Base
-          TextFieldComponent={props => <Input {...props} />}
-          autoOk={true}
-          disableFuture={true}
-          emptyLabel="Выберите дату"
-          invalidDateMessage="Не верная дата"
-          maxDateMessage="Нельзя выбрать дату после текущего дня"
-          minDateMessage="Нельзя выбрать дату до минимального значения"
-          format="dd/MM/yyyy"
-          id="date-picker-dialog"
-          value={selectedDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change date',
-          }}
-        />
-      </Grid>
-    </MuiPickersUtilsProvider>
+    <Grid container justify="space-around">
+      <Base
+        TextFieldComponent={props => <Input {...props} />}
+        autoOk={true}
+        disableFuture={true}
+        emptyLabel="Выберите дату"
+        invalidDateMessage="Не верная дата"
+        maxDateMessage="Нельзя выбрать дату после текущего дня"
+        minDateMessage="Нельзя выбрать дату до минимального значения"
+        format="dd/MM/yyyy"
+        id="date-picker-dialog"
+        value={selectedDate}
+        onChange={handleDateChange}
+        KeyboardButtonProps={{
+          'aria-label': 'change date',
+        }}
+      />
+    </Grid>
   );
 };
 

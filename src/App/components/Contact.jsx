@@ -38,8 +38,6 @@ const DitateMeCopyright = styled(Typography).attrs({
 const Contact = ({ hands, contact, description, ...rest }) => {
   const [contactValue, setContactValue] = useState(null);
 
-  console.log(contact);
-
   const handleContact = useCallback(() => {
     setContactValue(contact.value);
   }, [contact]);

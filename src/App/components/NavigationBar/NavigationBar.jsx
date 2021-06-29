@@ -8,7 +8,7 @@ import { useRouter } from '../../hooks/useRouter';
 
 import FilterForm from '../FilterForm/FilterForm';
 
-const Base = styled(BottomNavigation)`
+const Base = styled(BottomNavigation).attrs({ showLabels: true })`
   position: fixed;
   width: 100%;
   bottom: 0;
@@ -19,15 +19,9 @@ const FilterIcon = styled(Fab).attrs({
   size: 'medium',
 })`
   position: absolute;
-  width: 56px;
-  height: 56px;
   right: 50%;
-  transform: translate(50%);
   bottom: 28px;
-  background: ${props => props.theme.palette.primary.main};
-  box-shadow: 0px 9px 12px rgba(0, 0, 0, 0.14), 0px 3px 16px rgba(0, 0, 0, 0.12),
-    0px 5px 6px rgba(0, 0, 0, 0.2);
-  border-radius: 28px;
+  transform: translate(50%);
 `;
 
 const NavigationBar = () => {
@@ -44,7 +38,7 @@ const NavigationBar = () => {
   };
 
   return (
-    <Base showLabels value={value} onChange={handleChange}>
+    <Base value={value} onChange={handleChange}>
       <BottomNavigationAction
         label="Минибудды"
         component={Link}
@@ -60,13 +54,11 @@ const NavigationBar = () => {
         icon={<SelfImprovement />}
       />
       {router.pathname === '/practices' && (
-        <div>
-          <FilterIcon onClick={toggleDrawer(true)}>
-            <FilterList />
-          </FilterIcon>
-          <FilterForm anchor="bottom" open={drawers} onClose={toggleDrawer(false)} />
-        </div>
+        <FilterIcon onClick={toggleDrawer(true)}>
+          <FilterList />
+        </FilterIcon>
       )}
+      <FilterForm anchor="bottom" open={drawers} onClose={toggleDrawer(false)} />
     </Base>
   );
 };
