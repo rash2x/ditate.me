@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
-import reducer, { setPractices, setTeachers } from './reducer';
+import reducer, { setEvents, setPractices, setTeachers } from './reducer';
 import { airtableBase } from '../App';
 import { mapPractices, mapTeachers } from './mappers';
 import { AirtableContext, initialState } from './context';
@@ -10,7 +10,7 @@ export const AirtableProvider = ({ children }) => {
   useEffect(() => {
     airtableBase('Practices')
       .select({
-        view: 'Grid view'
+        view: 'Grid view',
       })
       .eachPage((records, fetchNextPage) => {
         dispatch(setPractices(mapPractices(records)));
@@ -21,7 +21,7 @@ export const AirtableProvider = ({ children }) => {
   useEffect(() => {
     airtableBase('Teachers')
       .select({
-        view: 'Grid view'
+        view: 'Grid view',
       })
       .eachPage((records, fetchNextPage) => {
         dispatch(setTeachers(mapTeachers(records)));
@@ -29,9 +29,16 @@ export const AirtableProvider = ({ children }) => {
       });
   }, [dispatch]);
 
-  return (
-    <AirtableContext.Provider value={[state, dispatch]}>
-      {children}
-    </AirtableContext.Provider>
-  )
-}
+  useEffect(() => {
+    airtableBase('Events')
+      .select({
+        view: 'Grid view',
+      })
+      .eachPage((records, fetchNextPage) => {
+        dispatch(setEvents(records));
+        fetchNextPage();
+      });
+  }, [dispatch]);
+
+  return <AirtableContext.Provider value={[state, dispatch]}>{children}</AirtableContext.Provider>;
+};

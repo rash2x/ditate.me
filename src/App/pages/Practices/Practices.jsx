@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Container } from '@material-ui/core';
 import PracticeCard from '../../components/PracticeCard.jsx';
+import { AirtableContext } from '../../airtable/context.jsx';
 
 const Base = styled(Container)`
   display: flex;
@@ -15,6 +16,8 @@ const Base = styled(Container)`
 `;
 
 const Practices = () => {
+  const [state] = useContext(AirtableContext);
+
   return (
     <Base>
       <PracticeCard />
