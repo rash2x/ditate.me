@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import PracticeBadge from '../../components/PracticeBadge';
+import { useRouter } from '../../hooks/useRouter';
+import { getEventById } from '../../airtable/services';
+import { AirtableContext } from '../../airtable/context';
 
 import { Container, Fab, Typography } from '@material-ui/core';
 import { ArrowBack, Place, EventAvailable } from '@material-ui/icons';
 
 import Contact from '../../components/Contact';
-import { useRouter } from '../../hooks/useRouter';
-import Teacher from '../../../assets/temp/teacher.jpg';
+import PracticeBadge from '../../components/PracticeBadge';
+
 import Hands from '../../../assets/hands/Hands.svg';
+import Teacher from '../../../assets/temp/teacher.jpg';
 
 const Base = styled.div``;
 
@@ -53,7 +56,7 @@ const Price = styled(Typography).attrs({ variant: 'subtitle2' })`
   display: flex;
   align-items: center;
   padding: 2px 4px;
-  border-radius: 4px;
+  border-radius: ${props => props.theme.shape.borderRadiusSmall}px;
   background: rgba(21, 22, 19, 1);
 `;
 
@@ -67,12 +70,20 @@ const Location = styled(Typography)`
 
 const PracticeDetails = () => {
   const router = useRouter();
+  const [state, dispatch] = useContext(AirtableContext);
+  const [currentEvent, setCurrentEvent] = useState(null);
+
+  const eventId = router.query.eventId;
+
+  useEffect(() => {
+    setCurrentEvent(getEventById(eventId, state.events));
+  }, [dispatch, state.events, eventId]);
 
   const handleClick = () => {
     router.history.goBack();
   };
 
-  return (
+  return currentEvent ? (
     <Base>
       <Thumbnail>
         <BackButton onClick={handleClick}>
@@ -97,7 +108,7 @@ const PracticeDetails = () => {
         <Contact hands={Hands}></Contact>
       </Container>
     </Base>
-  );
+  ) : null;
 };
 
 export default PracticeDetails;

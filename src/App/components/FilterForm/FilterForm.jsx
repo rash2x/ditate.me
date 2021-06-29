@@ -34,7 +34,7 @@ const Input = styled(TextField).attrs({
   .MuiOutlinedInput-notchedOutline,
   .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
   .Mui-focused,
-  .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  ..MuiOutlinedInput-notchedOutline {
     border-color: ${props => props.theme.palette.background.paper};
   }
 
@@ -67,7 +67,7 @@ const FilterForm = ({ anchor, open, onClose }) => {
   const applyFilter = form => {};
 
   return (
-    <Base key={anchor} anchor={anchor} open={open} onClose={onClose} onOpen={open}>
+    <Base key={anchor} anchor={anchor} open={open} onClose={onClose}>
       <Header>
         <FilterList />
         Фильтры

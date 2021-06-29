@@ -48,6 +48,7 @@ export const theme = createMuiTheme({
   },
   shape: {
     borderRadius: 8,
+    borderRadiusSmall: 4,
   },
   overrides: {
     MuiButton: {
@@ -62,7 +63,41 @@ export const theme = createMuiTheme({
     },
     MuiOutlinedInput: {
       notchedOutline: {
-        borderColor: '#FFF9C4',
+        borderColor: '#2f3237',
+        '&:hover': {
+          borderColor: '#2f3237',
+        },
+      },
+      root: {
+        '&:hover .MuiOutlinedInput-notchedOutline ': {
+          borderColor: '#2f3237',
+        },
+      },
+      input: {
+        ':-webkit-autofill': {
+          caretColor: '#000',
+          webkitBoxShadow: '0 0 0 100px #FFF59D inset',
+          webkitTextFillColor: '#000',
+        },
+      },
+    },
+    MuiFormHelperText: {
+      root: {
+        '&:not(.Mui-error)': {
+          color: 'inherit',
+        },
+      },
+    },
+    MuiFormLabel: {
+      root: {
+        ':not(.Mui-error)': {
+          color: 'inherit',
+        },
+      },
+    },
+    MuiInputBase: {
+      root: {
+        color: '#000',
       },
     },
     MuiAutocomplete: {
@@ -79,6 +114,11 @@ export const theme = createMuiTheme({
       },
     },
     MuiFormControl: {
+      root: {
+        '&:hover': {
+          borderColor: '#2f3237',
+        },
+      },
       marginNormal: {
         marginTop: '8px',
       },

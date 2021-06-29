@@ -19,27 +19,27 @@ const Input = styled(TextField).attrs({
   fullWidth: true
 })`
 
-  .MuiOutlinedInput-notchedOutline,
-  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
-  .Mui-focused,
-  .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-    border-color: ${props => props.theme.palette.background.paper}
-  }
+  // .MuiOutlinedInput-notchedOutline,
+  // .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
+  // .Mui-focused,
+  // .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  //   border-color: ${props => props.theme.palette.background.paper}
+  // }
 
-  .MuiInputBase-root {
-    color: black
-  }
+  // .MuiInputBase-root {
+  //   color: black
+  // }
 
-  .MuiOutlinedInput-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 100px #FFF59D inset;
-    -webkit-text-fill-color: black;
-    caret-color: black;
-  }
+  // .MuiOutlinedInput-input:-webkit-autofill {
+  //   -webkit-box-shadow: 0 0 0 100px #FFF59D inset;
+  //   -webkit-text-fill-color: black;
+  //   caret-color: black;
+  // }
 
-  .MuiFormHelperText-root:not(.Mui-error),
-  .MuiFormLabel-root:not(.Mui-error) {
-    color: inherit;
-  }
+  // .MuiFormHelperText-root:not(.Mui-error),
+  // .MuiFormLabel-root:not(.Mui-error) {
+  //   color: inherit;
+  // }
 `;
 
 const StyledButton = styled(Button)`
