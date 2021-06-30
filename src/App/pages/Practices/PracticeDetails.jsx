@@ -1,28 +1,27 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from '../../hooks/useRouter';
-import { getEventById, getTeacherById } from '../../airtable/services';
 import { AirtableContext } from '../../airtable/context';
+import { getEventById, getTeacherById } from '../../airtable/services';
 
-import { Container, Fab, Typography } from '@material-ui/core';
 import { ArrowBack, Place, EventAvailable } from '@material-ui/icons';
+import { CardMedia, Container, Fab, Typography } from '@material-ui/core';
 
 import Contact from '../../components/Contact';
 import PracticeBadge from '../../components/PracticeBadge';
 
 import Hands from '../../../assets/hands/Hands.svg';
-import Teacher from '../../../assets/temp/teacher.jpg';
 
 const Base = styled.div``;
 
-const Thumbnail = styled.div`
+const Thumbnail = styled(CardMedia)`
   min-height: 375px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: ${props => props.theme.spacing(2)}px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 65.62%),
-    url(${Teacher}) no-repeat center center/cover;
+    url(${props => props.cardimg}) no-repeat center center/cover;
 `;
 
 const BackButton = styled(Fab).attrs({
@@ -76,6 +75,7 @@ const PracticeDetails = () => {
   const [currentTeacherId, setCurrentTeacherId] = useState(null);
 
   const eventId = router.query.eventId;
+
   useEffect(() => {
     if (currentEvent !== undefined && currentEvent !== null) {
       currentEvent.teacherId.map(teacher => setCurrentTeacherId(teacher));
@@ -100,13 +100,13 @@ const PracticeDetails = () => {
 
   return currentEvent && currentTeacher ? (
     <Base>
-      <Thumbnail>
+      <Thumbnail cardimg={currentTeacher.image}>
         <BackButton onClick={handleClick}>
           <ArrowBack />
         </BackButton>
         <TitleWrapper>
           <PracticeBadge name={currentEvent.name} />
-          <Title component="h1">Даосские практики с Константином Сухановым</Title>
+          <Title component="h1">{currentTeacher.description}</Title>
         </TitleWrapper>
       </Thumbnail>
       <Container>
