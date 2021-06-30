@@ -48,7 +48,7 @@ const Date = styled(Typography).attrs({ variant: 'subtitle2' })`
   color: ${props => props.theme.palette.primary.main};
 
   .MuiSvgIcon-root {
-    margin-right: ${props => props.theme.spacing(1)}px;
+    margin-right: ${props => props.theme.spacing(2)}px;
   }
 `;
 
@@ -64,7 +64,7 @@ const Location = styled(Typography)`
   display: flex;
   margin: ${props => props.theme.spacing(3)}px 0;
   .MuiSvgIcon-root {
-    margin-right: ${props => props.theme.spacing(3)}px;
+    margin-right: ${props => props.theme.spacing(2)}px;
   }
 `;
 
