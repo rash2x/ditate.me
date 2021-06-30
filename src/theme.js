@@ -74,11 +74,16 @@ export const theme = createMuiTheme({
         },
       },
       input: {
-        ':-webkit-autofill': {
+        '&:-webkit-autofill': {
           caretColor: '#000',
-          webkitBoxShadow: '0 0 0 100px #FFF59D inset',
-          webkitTextFillColor: '#000',
+          '-webkitBoxShadow': '0 0 0 100px #FFF59D inset',
+          '-webkitTextFillColor': '#000',
         },
+      },
+    },
+    Mui: {
+      focused: {
+        borderColor: '#2f3237',
       },
     },
     MuiFormHelperText: {
@@ -90,7 +95,7 @@ export const theme = createMuiTheme({
     },
     MuiFormLabel: {
       root: {
-        ':not(.Mui-error)': {
+        '&:not(.Mui-error)': {
           color: 'inherit',
         },
       },
