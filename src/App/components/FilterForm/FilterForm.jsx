@@ -38,6 +38,9 @@ const Actions = styled.div`
   margin-top: ${props => props.theme.spacing(3)}px;
 `;
 
+const Reset = styled(Button).attrs({ size: 'medium', color: 'secondary', variant: 'outlined' })``;
+const Submit = styled(Button).attrs({ size: 'medium', color: 'secondary', variant: 'contained' })``;
+
 const FilterForm = ({ anchor, open, onClose }) => {
   const [state] = useContext(AirtableContext);
   const { handleSubmit, setValue } = useForm();
@@ -71,12 +74,8 @@ const FilterForm = ({ anchor, open, onClose }) => {
           renderInput={params => <Input {...params} label="Все минибудды" />}
         />
         <Actions>
-          <Button type="reset" size="medium" color="secondary" variant="outlined">
-            Сбросить
-          </Button>
-          <Button type="submit" size="medium" color="secondary" variant="contained">
-            Окей
-          </Button>
+          <Reset type="reset">Сбросить</Reset>
+          <Submit type="submit">Окей</Submit>
         </Actions>
       </form>
     </Base>
