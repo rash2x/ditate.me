@@ -72,6 +72,9 @@ export const theme = createMuiTheme({
         '&:hover .MuiOutlinedInput-notchedOutline ': {
           borderColor: '#2f3237',
         },
+        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+          borderColor: '#2f3237',
+        },
       },
       input: {
         '&:-webkit-autofill': {
@@ -81,11 +84,7 @@ export const theme = createMuiTheme({
         },
       },
     },
-    Mui: {
-      focused: {
-        borderColor: '#2f3237',
-      },
-    },
+
     MuiFormHelperText: {
       root: {
         '&:not(.Mui-error)': {
