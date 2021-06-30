@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from '../../hooks/useRouter';
-import { getEventById } from '../../airtable/services';
+import { getEventById, getTeacherById } from '../../airtable/services';
 import { AirtableContext } from '../../airtable/context';
 
 import { Container, Fab, Typography } from '@material-ui/core';
@@ -72,25 +72,40 @@ const PracticeDetails = () => {
   const router = useRouter();
   const [state, dispatch] = useContext(AirtableContext);
   const [currentEvent, setCurrentEvent] = useState(null);
+  const [currentTeacher, setCurrentTeacher] = useState(null);
+  const [currentTeacherId, setCurrentTeacherId] = useState(null);
 
   const eventId = router.query.eventId;
+  useEffect(() => {
+    if (currentEvent !== undefined && currentEvent !== null) {
+      currentEvent.teacherId.map(teacher => setCurrentTeacherId(teacher));
+    }
+  }, [currentEvent]);
 
   useEffect(() => {
     setCurrentEvent(getEventById(eventId, state.events));
   }, [dispatch, state.events, eventId]);
 
+  useEffect(() => {
+    setCurrentTeacher(getTeacherById(currentTeacherId, state.teachers));
+  }, [dispatch, state.teachers, currentTeacherId]);
+
   const handleClick = () => {
-    router.history.goBack();
+    if (router.history.length === 1) {
+      router.push('/');
+    } else {
+      router.history.goBack();
+    }
   };
 
-  return currentEvent ? (
+  return currentEvent && currentTeacher ? (
     <Base>
       <Thumbnail>
         <BackButton onClick={handleClick}>
           <ArrowBack />
         </BackButton>
         <TitleWrapper>
-          <PracticeBadge />
+          <PracticeBadge name={currentEvent.name} />
           <Title component="h1">Даосские практики с Константином Сухановым</Title>
         </TitleWrapper>
       </Thumbnail>
@@ -100,12 +115,18 @@ const PracticeDetails = () => {
             <EventAvailable />
             Сегодня в 18:00
           </Date>
-          <Price component="span">1000 ₽</Price>
+          <Price component="span">{currentEvent.price} ₽</Price>
         </Info>
         <Location>
-          <Place /> Конюшенная пл. 2В, 3 этаж, помещение 27
+          <Place /> {currentEvent.location}
         </Location>
-        <Contact hands={Hands}></Contact>
+        <Contact
+          hands={Hands}
+          contact={{
+            type: currentTeacher.telegram ? 'telegram' : 'instagram',
+            value: currentTeacher.telegram || currentTeacher.instagram,
+          }}
+        ></Contact>
       </Container>
     </Base>
   ) : null;
