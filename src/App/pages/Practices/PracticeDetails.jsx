@@ -35,6 +35,10 @@ const Title = styled(Typography).attrs({ variant: 'body1' })`
   margin-top: ${props => props.theme.spacing(1)}px;
 `;
 
+const StyledContainer = styled(Container)`
+  padding-top: ${props => props.theme.spacing(2)}px;
+`;
+
 const Info = styled.div`
   display: flex;
   justify-content: space-between;
@@ -109,7 +113,7 @@ const PracticeDetails = () => {
           <Title component="h1">{currentTeacher.description}</Title>
         </TitleWrapper>
       </Thumbnail>
-      <Container>
+      <StyledContainer>
         <Info>
           <Date component="span">
             <EventAvailable />
@@ -127,7 +131,7 @@ const PracticeDetails = () => {
             value: currentTeacher.telegram || currentTeacher.instagram,
           }}
         ></Contact>
-      </Container>
+      </StyledContainer>
     </Base>
   ) : null;
 };
