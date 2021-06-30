@@ -41,7 +41,7 @@ export const mapEvents = response => {
       teacherId: item.fields.Teacher,
       location: item.fields.Location,
       practice: item.fields.Practice,
-      startDate: item.fields.StartDate,
+      startDate: item.fields['Start Date'],
     };
   });
 };

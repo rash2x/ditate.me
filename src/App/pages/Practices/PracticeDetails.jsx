@@ -113,7 +113,7 @@ const PracticeDetails = () => {
         <Info>
           <Date component="span">
             <EventAvailable />
-            Сегодня в 18:00
+            {currentEvent.startDate}
           </Date>
           <Price component="span">{currentEvent.price} ₽</Price>
         </Info>
