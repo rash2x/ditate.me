@@ -132,11 +132,6 @@ export const theme = createMuiTheme({
         marginTop: '8px',
       },
     },
-    MuiContainer: {
-      root: {
-        paddingBottom: '72px',
-      },
-    },
     MuiCssBaseline: {
       '@global': {
         html: {

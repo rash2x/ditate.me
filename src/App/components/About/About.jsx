@@ -7,8 +7,6 @@ import Logo from '../Logo';
 import RegisterPromo from './RegisterPromo';
 
 const Base = styled.div`
-  background: ${props => props.theme.palette.primary.main};
-  color: ${props => props.theme.palette.common.black};
   padding: ${props => props.theme.spacing(3, 2.5)};
   display: flex;
   flex-direction: column;

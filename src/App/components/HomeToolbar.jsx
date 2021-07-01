@@ -8,6 +8,8 @@ import Logo from './Logo';
 
 const AboutDrawer = styled(Drawer)`
   .MuiDrawer-paper {
+    background: ${props => props.theme.palette.primary.main};
+    color: ${props => props.theme.palette.common.black};
     width: 340px;
     max-width: 92%;
   }
