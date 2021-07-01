@@ -9,6 +9,7 @@ import Teacher from './Teacher';
 import { getTeacherById } from '../../airtable/services';
 import Helmet from 'react-helmet';
 import HomeToolbar from "../../components/HomeToolbar";
+import NavigationBar from "../../components/NavigationBar/NavigationBar";
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
@@ -76,6 +77,7 @@ const Teachers = () => {
           </Group>
         ))}
       </Base>
+      <NavigationBar />
       <Helmet>
         <meta name="description" content="Поиск практик и медитаций" />
         <title>Ditate.me</title>

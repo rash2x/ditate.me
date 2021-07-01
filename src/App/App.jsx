@@ -32,10 +32,10 @@ const App = () => {
           <Profile />
         </Route>
       </Switch>
+
       <Route path="/practices/:eventId?">
         <PracticeDialog open={true} />
       </Route>
-      <NavigationBar />
     </>
   );
 };

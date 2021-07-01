@@ -53,7 +53,7 @@ const NavigationBar = () => {
         value={'/practices'}
         icon={<SelfImprovement />}
       />
-      {router.pathname === '/practices' && (
+      {router.pathname.includes('/practices') && (
         <FilterIcon onClick={toggleDrawer(true)}>
           <FilterList />
         </FilterIcon>
