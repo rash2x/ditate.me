@@ -44,12 +44,13 @@ export const mapEvents = response => {
         ? item.fields['Teacher Avatar'][0].thumbnails.large.url
         : defaultThumbnailSvg,
       teacherTelegram: item.fields['Teacher Telegram'] && item.fields['Teacher Telegram'][0],
-      teacherInstagram: item.fields['Teacher Instagram'] && getInstagramName(item.fields['Teacher Instagram'][0]),
+      teacherInstagram:
+        item.fields['Teacher Instagram'] && getInstagramName(item.fields['Teacher Instagram'][0]),
       location: item.fields.Location,
       practiceId: item.fields.Practice[0],
       practiceName: item.fields['Practice Name'] && item.fields['Practice Name'][0],
       practiceColor: item.fields['Practice Color'] && item.fields['Practice Color'][0],
-      startDate: item.fields.StartDate,
+      startDate: new Date(item.fields.StartDate).toDateString(),
     };
   });
 };

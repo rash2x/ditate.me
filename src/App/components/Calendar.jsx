@@ -54,8 +54,8 @@ const Calendar = ({ setValue }) => {
   const [selectedDate, setSelectedDate] = React.useState(null);
 
   const handleDateChange = date => {
-    setSelectedDate(date);
-    setValue('date', date);
+    setSelectedDate(new Date(date).toDateString());
+    setValue('date', new Date(date).toDateString());
   };
 
   return (

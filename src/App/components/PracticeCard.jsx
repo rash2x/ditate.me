@@ -5,7 +5,7 @@ import PracticeBadge from './PracticeBadge';
 
 import { Card, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { getPriceValue } from "../helpers/getPriceValue";
+import { getPriceValue } from '../helpers/getPriceValue';
 
 const Base = styled(Card)`
   margin-bottom: ${props => props.theme.spacing(2)}px;
@@ -28,7 +28,7 @@ const Avatar = styled.img`
 
 const Price = styled(Typography).attrs({
   variant: 'subtitle2',
-  component: 'div'
+  component: 'div',
 })`
   display: inline-flex;
   align-items: center;
@@ -54,19 +54,18 @@ const BottomInfo = styled.footer`
 `;
 
 const Location = styled(Typography).attrs({
-  variant: 'body2'
+  variant: 'body2',
 })`
   margin-top: 4px;
 `;
 
-const Date = styled(Typography).attrs({
-  variant: 'subtitle2'
+const PracticeDate = styled(Typography).attrs({
+  variant: 'subtitle2',
 })`
   color: ${props => props.theme.palette.primary.main};
 `;
 
 const PracticeCard = ({ id, name, practiceName, price, startDate, location, teacherImage }) => {
-
   return (
     <Base component={Link} to={`/practices/${id}`}>
       <TopInfo>
@@ -78,7 +77,7 @@ const PracticeCard = ({ id, name, practiceName, price, startDate, location, teac
         {teacherImage && <Avatar src={teacherImage} />}
       </MainInfo>
       <BottomInfo>
-        <Date component="span">{startDate}</Date>
+        <PracticeDate component="span">{startDate}</PracticeDate>
         <Location>{location}</Location>
       </BottomInfo>
     </Base>
