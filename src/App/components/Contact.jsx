@@ -4,7 +4,7 @@ import { Button, Paper, Typography } from '@material-ui/core';
 import { getContactLink } from '../helpers';
 
 const Base = styled(Paper)`
-  max-width: 400px;
+  max-width: 480px;
   padding: 20px 32px;
   display: flex;
   flex-direction: column;
