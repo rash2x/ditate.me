@@ -5,7 +5,7 @@ import { AirtableContext } from '../airtable/context';
 import { getEventById } from '../airtable/services';
 
 import { Place, EventAvailable, Close, Paid } from '@material-ui/icons';
-import { Dialog, IconButton, Paper, Typography } from '@material-ui/core';
+import { Dialog, IconButton, Typography } from '@material-ui/core';
 
 import Contact from './Contact';
 import PracticeBadge from './PracticeBadge';

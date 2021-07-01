@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import Calendar from '../Calendar/Calendar';
+import Calendar from './Calendar';
 import { Autocomplete } from '@material-ui/lab';
 import { FilterList } from '@material-ui/icons';
 import { TextField, Drawer, Typography, Button } from '@material-ui/core';
-import { AirtableContext } from '../../airtable/context';
+import { AirtableContext } from '../airtable/context';
 import { useForm } from 'react-hook-form';
 
 const Base = styled(Drawer)`

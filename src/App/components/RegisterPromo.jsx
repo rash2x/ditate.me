@@ -6,7 +6,7 @@ import { Container, Paper, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
-import vector from '../../../assets/Vector.svg';
+import vector from '../../assets/Vector.svg';
 
 const Title = styled(Typography).attrs({
   variant: 'h2',

@@ -9,7 +9,7 @@ import Teacher from './Teacher';
 import { getTeacherById } from '../../airtable/services';
 import Helmet from 'react-helmet';
 import HomeToolbar from "../../components/HomeToolbar";
-import NavigationBar from "../../components/NavigationBar/NavigationBar";
+import NavigationBar from "../../components/NavigationBar";
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;

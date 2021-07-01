@@ -3,7 +3,7 @@ import { AppBar, Drawer, IconButton, Toolbar } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import styled from 'styled-components';
 
-import About from './About/About';
+import About from './About';
 import Logo from './Logo';
 
 const AboutDrawer = styled(Drawer)`

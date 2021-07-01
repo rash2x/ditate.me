@@ -5,9 +5,7 @@ import Airtable from 'airtable';
 
 import Teachers from './pages/Teachers/Teachers';
 import Profile from './pages/Profile/Profile';
-import Header from './components/Header/Header';
 import Registration from './pages/Registration/Registration';
-import NavigationBar from './components/NavigationBar/NavigationBar';
 import Practices from './pages/Practices/Practices';
 import PracticeDialog from './components/PracticeDialog';
 

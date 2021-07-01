@@ -4,7 +4,7 @@ import { Container } from '@material-ui/core';
 import PracticeCard from '../../components/PracticeCard.jsx';
 import { AirtableContext } from '../../airtable/context.jsx';
 import HomeToolbar from "../../components/HomeToolbar";
-import NavigationBar from "../../components/NavigationBar/NavigationBar";
+import NavigationBar from "../../components/NavigationBar";
 
 const Base = styled(Container)`
   display: flex;
@@ -26,7 +26,10 @@ const Practices = () => {
     <>
       <HomeToolbar />
       <Base>
-        {state.events && state.events.map(event => <PracticeCard key={event.id} {...event} />)}
+        {state.events
+          ? state.events.map(event => <PracticeCard key={event.id} {...event} />)
+          : <></>
+        }
       </Base>
       <NavigationBar />
     </>

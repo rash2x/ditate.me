@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 import { RecentActors, SelfImprovement, FilterList } from '@material-ui/icons';
 import { BottomNavigation, BottomNavigationAction, Fab } from '@material-ui/core';
 
-import { useRouter } from '../../hooks/useRouter';
+import { useRouter } from '../hooks/useRouter';
 
-import FilterForm from '../FilterForm/FilterForm';
+import FilterForm from './FilterForm';
 
-const Base = styled(BottomNavigation).attrs({ showLabels: true })`
+const Base = styled.div`
   position: fixed;
   width: 100%;
   bottom: 0;
 `;
 
-const FilterIcon = styled(Fab).attrs({
+const FilterFab = styled(Fab).attrs({
   color: 'primary',
   size: 'medium',
 })`
@@ -38,25 +38,27 @@ const NavigationBar = () => {
   };
 
   return (
-    <Base value={value} onChange={handleChange}>
-      <BottomNavigationAction
-        label="Минибудды"
-        component={Link}
-        to="/"
-        value={'/'}
-        icon={<RecentActors />}
-      />
-      <BottomNavigationAction
-        label="Практики"
-        component={Link}
-        to="/practices"
-        value={'/practices'}
-        icon={<SelfImprovement />}
-      />
+    <Base>
+      <BottomNavigation showLabels={true} value={value} onChange={handleChange}>
+        <BottomNavigationAction
+          label="Минибудды"
+          component={Link}
+          to="/"
+          value={'/'}
+          icon={<RecentActors />}
+        />
+        <BottomNavigationAction
+          label="Практики"
+          component={Link}
+          to="/practices"
+          value={'/practices'}
+          icon={<SelfImprovement />}
+        />
+      </BottomNavigation>
       {router.pathname.includes('/practices') && (
-        <FilterIcon onClick={toggleDrawer(true)}>
+        <FilterFab onClick={toggleDrawer(true)}>
           <FilterList />
-        </FilterIcon>
+        </FilterFab>
       )}
       <FilterForm anchor="bottom" open={drawers} onClose={toggleDrawer(false)} />
     </Base>
