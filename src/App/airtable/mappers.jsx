@@ -38,7 +38,7 @@ export const mapEvents = response => {
       id: item.id,
       name: item.fields.Name,
       price: item.fields.Price,
-      teacherId: item.fields.Teacher,
+      teacherId: item.fields.Teacher[0],
       location: item.fields.Location,
       practice: item.fields.Practice,
       startDate: item.fields['Start Date'],

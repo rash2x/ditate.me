@@ -1,104 +1,91 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import PracticeBadge from './PracticeBadge';
 
-import Teacher from '../../assets/temp/teacher.jpg';
 import TeacherIcon from '../../assets/temp/teacher-icon.jpg';
-import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 
-import { Card, CardMedia, Typography, CardContent, CardActionArea } from '@material-ui/core';
+import { Card, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { getPriceValue } from "../helpers/getPriceValue";
+import { getTeacherById } from "../airtable/services";
+import { AirtableContext } from "../airtable/context";
 
 const Base = styled(Card)`
-  margin-bottom: ${props => props.theme.spacing(1)}px;
+  margin-bottom: ${props => props.theme.spacing(2)}px;
   max-width: 480px;
   display: block;
   text-decoration: none;
-`;
-
-const Thumbnail = styled(CardMedia)`
-  display: flex;
-  flex-direction: column-reverse;
-  min-height: 375px;
-  padding: ${props => props.theme.spacing(2)}px;
-  width: 100%;
-`;
-
-const Wrapper = styled.div`
+  padding: ${props => props.theme.spacing(2, 2)};
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  .MuiTypography-h2 {
-    position: absolute;
-    bottom: 16px;
-    left: 16px;
-  }
 `;
 
 const Title = styled(Typography).attrs({ variant: 'subtitle2' })``;
 
 const Avatar = styled.img`
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  width: 40px;
-  height: 40px;
   border-radius: 50%;
-`;
-
-const Content = styled(CardContent)`
-  padding: ${props => props.theme.spacing(1)}px ${props => props.theme.spacing(2)}px;
-`;
-
-const Info = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: ${props => props.theme.spacing(1)}px;
-`;
-
-const Date = styled(Typography)`
-  display: flex;
-  align-items: flex-end;
-  color: ${props => props.theme.palette.primary.main};
-
-  .MuiSvgIcon-root {
-    margin-right: ${props => props.theme.spacing(1)}px;
-  }
+  width: 32px;
+  height: 32px;
 `;
 
 const Price = styled(Typography).attrs({
   variant: 'subtitle2',
+  component: 'div'
 })`
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  padding: 2px 4px;
-  border-radius: 4px;
+  padding: 3px 6px 1px;
+  border-radius: ${props => props.theme.shape.borderRadiusSmall}px;
   background: rgba(21, 22, 19, 1);
 `;
 
-const PracticeCard = ({ id, name, price, startDate }) => {
+const TopInfo = styled.header`
+  display: flex;
+  justify-content: space-between;
+  margin: -4px -6px 0;
+`;
+
+const MainInfo = styled.main`
+  display: flex;
+  margin-top: 12px;
+  justify-content: space-between;
+`;
+
+const BottomInfo = styled.footer`
+  margin-top: 12px;
+`;
+
+const Location = styled(Typography).attrs({
+  variant: 'body2'
+})`
+  margin-top: 4px;
+`;
+
+const Date = styled(Typography).attrs({
+  variant: 'subtitle2'
+})`
+  color: ${props => props.theme.palette.primary.main};
+`;
+
+const PracticeCard = ({ id, name, price, startDate, location, teacherId }) => {
+  const [state] = useContext(AirtableContext);
+
+  const teacher = getTeacherById(teacherId, state.teachers);
+
   return (
     <Base component={Link} to={`/event/${id}`}>
-      <CardActionArea>
-        <Wrapper>
-          <Thumbnail image={Teacher} />
-          <PracticeBadge name={name} />
-          <Avatar src={TeacherIcon} />
-        </Wrapper>
-        <Content>
-          <Title component="h2">Даосские практики с Константином Сухановым</Title>
-          <Info>
-            <Date component="span">
-              <EventAvailableIcon />
-              {startDate}
-            </Date>
-            <Price>{price} ₽</Price>
-          </Info>
-        </Content>
-      </CardActionArea>
+      <TopInfo>
+        <PracticeBadge name={name} />
+        <Price>{getPriceValue(price)} </Price>
+      </TopInfo>
+      <MainInfo>
+        <Title component="h2">{name}</Title>
+        {teacher && <Avatar src={teacher.image} />}
+      </MainInfo>
+      <BottomInfo>
+        <Date component="span">{startDate}</Date>
+        <Location>{location}</Location>
+      </BottomInfo>
     </Base>
   );
 };

@@ -38,8 +38,13 @@ export const theme = createMuiTheme({
       lineHeight: 1.54,
     },
 
+    subtitle1: {
+      fontWeight: 700,
+    },
+
     subtitle2: {
       fontWeight: 700,
+      lineHeight: 1.45
     },
 
     button: {

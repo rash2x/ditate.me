@@ -9,8 +9,10 @@ const Base = styled(Container)`
   flex-wrap: wrap;
   justify-content: space-between;
   padding-top: ${props => props.theme.mixins.toolbar.minHeight + 16}px;
+  padding-bottom: ${props => props.theme.mixins.toolbar.minHeight}px;
 
   @media (max-width: 480px) {
+    flex-direction: column;
     justify-content: center;
   }
 `;
