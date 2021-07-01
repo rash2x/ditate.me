@@ -39,8 +39,14 @@ export const mapEvents = response => {
       name: item.fields.Name,
       price: item.fields.Price,
       teacherId: item.fields.Teacher[0],
+      teacherName: item.fields['Teacher Name'][0],
+      teacherImage: item.fields['Teacher Avatar']
+        ? item.fields['Teacher Avatar'][0].thumbnails.large.url
+        : defaultThumbnailSvg,
       location: item.fields.Location,
-      practice: item.fields.Practice,
+      practiceId: item.fields.Practice[0],
+      practiceName: item.fields['Practice Name'] && item.fields['Practice Name'][0],
+      practiceColor: item.fields['Practice Color'] && item.fields['Practice Color'][0],
       startDate: item.fields.StartDate,
     };
   });

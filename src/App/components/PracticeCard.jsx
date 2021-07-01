@@ -1,15 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import PracticeBadge from './PracticeBadge';
 
-import TeacherIcon from '../../assets/temp/teacher-icon.jpg';
-
 import { Card, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { getPriceValue } from "../helpers/getPriceValue";
-import { getTeacherById } from "../airtable/services";
-import { AirtableContext } from "../airtable/context";
 
 const Base = styled(Card)`
   margin-bottom: ${props => props.theme.spacing(2)}px;
@@ -20,7 +16,9 @@ const Base = styled(Card)`
   position: relative;
 `;
 
-const Title = styled(Typography).attrs({ variant: 'subtitle2' })``;
+const Title = styled(Typography).attrs({ variant: 'subtitle2' })`
+  padding-right: 16px;
+`;
 
 const Avatar = styled.img`
   border-radius: 50%;
@@ -67,20 +65,17 @@ const Date = styled(Typography).attrs({
   color: ${props => props.theme.palette.primary.main};
 `;
 
-const PracticeCard = ({ id, name, price, startDate, location, teacherId }) => {
-  const [state] = useContext(AirtableContext);
-
-  const teacher = getTeacherById(teacherId, state.teachers);
+const PracticeCard = ({ id, name, practiceName, price, startDate, location, teacherImage }) => {
 
   return (
     <Base component={Link} to={`/event/${id}`}>
       <TopInfo>
-        <PracticeBadge name={name} />
+        <PracticeBadge name={practiceName} />
         <Price>{getPriceValue(price)} </Price>
       </TopInfo>
       <MainInfo>
         <Title component="h2">{name}</Title>
-        {teacher && <Avatar src={teacher.image} />}
+        {teacherImage && <Avatar src={teacherImage} />}
       </MainInfo>
       <BottomInfo>
         <Date component="span">{startDate}</Date>
