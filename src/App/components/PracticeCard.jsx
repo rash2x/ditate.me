@@ -68,7 +68,7 @@ const Date = styled(Typography).attrs({
 const PracticeCard = ({ id, name, practiceName, price, startDate, location, teacherImage }) => {
 
   return (
-    <Base component={Link} to={`/event/${id}`}>
+    <Base component={Link} to={`/practices/${id}`}>
       <TopInfo>
         <PracticeBadge name={practiceName} />
         <Price>{getPriceValue(price)} </Price>

@@ -144,5 +144,10 @@ export const theme = createMuiTheme({
         },
       },
     },
+    MuiDialog: {
+      paper: {
+        margin: 8
+      }
+    }
   },
 });

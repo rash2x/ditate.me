@@ -1,23 +1,26 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useRouter } from '../../hooks/useRouter';
-import { AirtableContext } from '../../airtable/context';
-import { getEventById } from '../../airtable/services';
+import { useRouter } from '../hooks/useRouter';
+import { AirtableContext } from '../airtable/context';
+import { getEventById } from '../airtable/services';
 
 import { Place, EventAvailable, Close, Paid } from '@material-ui/icons';
-import { IconButton, Paper, Typography } from '@material-ui/core';
+import { Dialog, IconButton, Paper, Typography } from '@material-ui/core';
 
-import Contact from '../../components/Contact';
-import PracticeBadge from '../../components/PracticeBadge';
+import Contact from './Contact';
+import PracticeBadge from './PracticeBadge';
 
-import Hands from '../../../assets/hands/Hands.svg';
-import { getPriceValue } from "../../helpers/getPriceValue";
+import Hands from '../../assets/hands/Hands.svg';
+import { getPriceValue } from "../helpers/getPriceValue";
 
-const Base = styled(Paper)`
-  padding: ${props => props.theme.spacing(2.5, 2, 2)};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const Base = styled(Dialog)`
+  .MuiPaper-root {
+    padding: ${props => props.theme.spacing(2.5, 2, 2)};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
 `;
 
 
@@ -75,7 +78,7 @@ const StyledContact = styled(Contact)`
   margin: 32px -12px -12px;
 `;
 
-const PracticeDetails = () => {
+const PracticeDialog = ({ ...rest }) => {
   const router = useRouter();
   const [state] = useContext(AirtableContext);
   const [currentEvent, setCurrentEvent] = useState(null);
@@ -95,7 +98,7 @@ const PracticeDetails = () => {
   };
 
   return currentEvent ? (
-    <Base>
+    <Base {...rest}>
       <CloseButton onClick={handleClick}>
         <Close />
       </CloseButton>
@@ -133,4 +136,4 @@ const PracticeDetails = () => {
   ) : null;
 };
 
-export default PracticeDetails;
+export default PracticeDialog;
