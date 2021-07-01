@@ -18,7 +18,6 @@ export const airtableBase = new Airtable({
 const App = () => {
   return (
     <>
-      <Header />
       <Switch>
         <Route exact path="/">
           <Teachers />

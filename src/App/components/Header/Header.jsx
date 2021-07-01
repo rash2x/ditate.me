@@ -10,7 +10,7 @@ const Header = () => {
       <AppBar color="inherit">
         <Switch>
           <Route exact path="/">
-            <HomeToolbar />
+
           </Route>
           <Route exact path="/practices">
             <PracticesToolbar />

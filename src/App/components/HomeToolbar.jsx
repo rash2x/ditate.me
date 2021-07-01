@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Drawer, IconButton, Toolbar } from '@material-ui/core';
+import { AppBar, Drawer, IconButton, Toolbar } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import styled from 'styled-components';
 
-import About from '../About/About';
+import About from './About/About';
 import Logo from './Logo';
 
 const AboutDrawer = styled(Drawer)`
@@ -32,7 +32,7 @@ const HomeToolbar = () => {
   };
 
   return (
-    <>
+    <AppBar color="inherit">
       <Base>
         <IconButton onClick={toggleDrawer('about', true)}>
           <MenuIcon />
@@ -44,7 +44,7 @@ const HomeToolbar = () => {
       <AboutDrawer anchor="left" open={drawers['about']} onClose={toggleDrawer('about', false)}>
         <About />
       </AboutDrawer>
-    </>
+    </AppBar>
   );
 };
 
