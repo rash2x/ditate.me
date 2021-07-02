@@ -63,10 +63,8 @@ const Calendar = ({ setValue }) => {
       <Base
         TextFieldComponent={props => <Input {...props} />}
         autoOk={true}
-        disableFuture={true}
         emptyLabel="Выберите дату"
         invalidDateMessage="Не верная дата"
-        maxDateMessage="Нельзя выбрать дату после текущего дня"
         minDateMessage="Нельзя выбрать дату до минимального значения"
         format="dd/MM/yyyy"
         id="date-picker-dialog"
