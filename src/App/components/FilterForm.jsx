@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import Calendar from './Calendar';
 import { Autocomplete } from '@material-ui/lab';
@@ -41,11 +41,13 @@ const Actions = styled.div`
 const Reset = styled(Button).attrs({ size: 'medium', color: 'secondary', variant: 'outlined' })``;
 const Submit = styled(Button).attrs({ size: 'medium', color: 'secondary', variant: 'contained' })``;
 
-const FilterForm = ({ anchor, open, onClose }) => {
+const FilterForm = ({ anchor, open, onClose, setFilters }) => {
   const [state] = useContext(AirtableContext);
   const { handleSubmit, setValue } = useForm();
 
-  const applyFilter = form => {};
+  const applyFilter = form => {
+    setFilters(form);
+  };
 
   return (
     <Base key={anchor} anchor={anchor} open={open} onClose={onClose}>
@@ -57,7 +59,7 @@ const FilterForm = ({ anchor, open, onClose }) => {
         <Calendar setValue={setValue} />
         <Autocomplete
           multiple
-          options={state.practices ? state.practices : []}
+          options={state.events ? state.events : []}
           getOptionLabel={option => option.name}
           onChange={(_, values) => {
             setValue('practices', [...values]);

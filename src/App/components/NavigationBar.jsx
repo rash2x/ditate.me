@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { RecentActors, SelfImprovement, FilterList } from '@material-ui/icons';
-import { BottomNavigation, BottomNavigationAction, Fab } from '@material-ui/core';
+import { RecentActors, SelfImprovement } from '@material-ui/icons';
+import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 
 import { useRouter } from '../hooks/useRouter';
-
-import FilterForm from './FilterForm';
 
 const Base = styled.div`
   position: fixed;
@@ -14,27 +12,12 @@ const Base = styled.div`
   bottom: 0;
 `;
 
-const FilterFab = styled(Fab).attrs({
-  color: 'primary',
-  size: 'medium',
-})`
-  position: absolute;
-  right: 50%;
-  bottom: 28px;
-  transform: translate(50%);
-`;
-
-const NavigationBar = () => {
+const NavigationBar = ({ children }) => {
   const router = useRouter();
   const [value, setValue] = React.useState(router.pathname);
-  const [drawers, setDrawer] = React.useState(false);
 
   const handleChange = (e, newValue) => {
     setValue(newValue);
-  };
-
-  const toggleDrawer = open => () => {
-    setDrawer(open);
   };
 
   return (
@@ -55,12 +38,7 @@ const NavigationBar = () => {
           icon={<SelfImprovement />}
         />
       </BottomNavigation>
-      {router.pathname.includes('/practices') && (
-        <FilterFab onClick={toggleDrawer(true)}>
-          <FilterList />
-        </FilterFab>
-      )}
-      <FilterForm anchor="bottom" open={drawers} onClose={toggleDrawer(false)} />
+      {children}
     </Base>
   );
 };
