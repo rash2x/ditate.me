@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { Container, Fab } from '@material-ui/core';
 import PracticeCard from '../../components/PracticeCard.jsx';
@@ -37,10 +37,29 @@ const Practices = () => {
   const [state] = useContext(AirtableContext);
   const [drawers, setDrawer] = React.useState(false);
   const [filters, setFilters] = React.useState({ date: '', practices: [], teachers: [] });
+  const [filteredEvents, setFilteredEvents] = React.useState([]);
 
   const toggleDrawer = open => () => {
     setDrawer(open);
   };
+
+  // useEffect(() => {
+  //   // if (state.events !== null && filters.practices) {
+  //   //   let result = state.events.filter(e => {
+  //   //     return filters.practices.indexOf(e);
+  //   //   });
+
+  //   //   setFilteredEvents(result);
+  //   // } else return null;
+  //   if (state.events !== null && filters.teachers) {
+  //     let result = filters.teachers.map(teacher =>
+  //       state.events.filter(event => event.teacherName === teacher.teacherName),
+  //     );
+  //     setFilteredEvents(result);
+  //   } else return null;
+  // }, [filters, state.events]);
+
+  // console.log(filteredEvents);
 
   return (
     <>
