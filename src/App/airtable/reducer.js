@@ -6,29 +6,35 @@ export default function reducer(state = initialState, action) {
     case 'SET_TEACHERS':
       return {
         ...state,
-        teachers: payload
-      }
+        teachers: payload,
+      };
     case 'SET_PRACTICES':
       return {
         ...state,
-        practices: payload
-      }
+        practices: payload,
+      };
     case 'SET_MEDITATIONS':
       return {
         ...state,
-        meditations: payload
-      }
+        meditations: payload,
+      };
     case 'SET_CURRENT_TEACHER':
       return {
         ...state,
-        currentTeacher: payload
-      }
+        currentTeacher: payload,
+      };
+    case 'SET_EVENTS':
+      return {
+        ...state,
+        events: payload,
+      };
     default:
-      return state
+      return state;
   }
 }
 
-export const setTeachers = (teachers) => ({ type: 'SET_TEACHERS', payload: teachers })
-export const setPractices = (practices) => ({ type: 'SET_PRACTICES', payload: practices })
-export const setCurrentTeacher = (teacher) => ({ type: 'SET_CURRENT_TEACHER', payload: teacher })
-export const setMeditations = (teachers) => ({ type: 'SET_MEDITATIONS', payload: teachers })
+export const setTeachers = teachers => ({ type: 'SET_TEACHERS', payload: teachers });
+export const setPractices = practices => ({ type: 'SET_PRACTICES', payload: practices });
+export const setCurrentTeacher = teacher => ({ type: 'SET_CURRENT_TEACHER', payload: teacher });
+export const setMeditations = teachers => ({ type: 'SET_MEDITATIONS', payload: teachers });
+export const setEvents = events => ({ type: 'SET_EVENTS', payload: events });

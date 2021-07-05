@@ -10,7 +10,6 @@ import HoldingHands from '../../../assets/hands/holding-hands.svg';
 
 import { getPracticeById, getTeacherById } from '../../airtable/services';
 import { ArrowBack } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
 import { useRouter } from '../../hooks/useRouter';
 import Contact from '../../components/Contact';
 import { Helmet } from 'react-helmet';
@@ -48,11 +47,12 @@ const PracticeList = styled.div`
   margin-top: ${props => props.theme.spacing(2)}px;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 
 const BackButton = styled(Fab).attrs({
   color: 'primary',
-  size: 'medium'
+  size: 'medium',
 })`
   position: absolute;
   top: 20px;
@@ -66,13 +66,13 @@ const Info = styled.header`
 `;
 
 const Name = styled(Typography).attrs({
-  variant: 'h1'
+  variant: 'h1',
 })`
   font-size: 2rem;
   margin-top: 20px;
 `;
 const Description = styled(Typography).attrs({
-  variant: 'body2'
+  variant: 'body2',
 })`
   margin-top: 16px;
   padding-left: 16px;
@@ -80,7 +80,7 @@ const Description = styled(Typography).attrs({
 `;
 
 const Instagram = styled(Button).attrs({
-  size: 'small'
+  size: 'small',
 })`
   font-size: 1.4rem;
   font-weight: ${props => props.theme.typography.fontWeightMedium};
@@ -105,15 +105,27 @@ const Profile = () => {
     setCurrentTeacher(getTeacherById(teacherId, state.teachers));
   }, [dispatch, state.teachers, teacherId]);
 
+  const handleClick = () => {
+    if (router.history.length === 1) {
+      router.push('/');
+    } else {
+      router.history.goBack();
+    }
+  };
   return currentTeacher ? (
     <Base>
-      <BackButton component={Link} to={'/'}>
+      <BackButton onClick={handleClick}>
         <ArrowBack />
       </BackButton>
       <Info>
         <Image src={currentTeacher.image} alt={''} />
         <Name>{currentTeacher.name}</Name>
-        <Instagram component={'a'} href={currentTeacher.instagramUrl} target="_blank" rel="noopener noreferrer">
+        <Instagram
+          component={'a'}
+          href={currentTeacher.instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={InstagramIcon} width="24px" alt="In" />
           {currentTeacher.instagram}
         </Instagram>
@@ -124,10 +136,18 @@ const Profile = () => {
         {currentTeacher.practiceIds.map(practiceId => {
           const practice = getPracticeById(practiceId, state.practices);
 
-          return practice && <PracticeChip key={practiceId} style={{
-            color: practice.color,
-            backgroundColor: fade(practice.color, 0.12)
-          }} label={practice.name} />;
+          return (
+            practice && (
+              <PracticeChip
+                key={practiceId}
+                style={{
+                  color: practice.color,
+                  backgroundColor: fade(practice.color, 0.12),
+                }}
+                label={practice.name}
+              />
+            )
+          );
         })}
       </PracticeList>
 
@@ -135,14 +155,20 @@ const Profile = () => {
         hands={HoldingHands}
         contact={{
           type: currentTeacher.telegram ? 'telegram' : 'instagram',
-          value: currentTeacher.telegram || currentTeacher.instagram
+          value: currentTeacher.telegram || currentTeacher.instagram,
         }}
-        description={<>Сообщите, пожалуйста, что вы нашли меня на <span>ditate.me 🙏</span></>}
+        description={
+          <>
+            Сообщите, пожалуйста, что вы нашли меня на <span>ditate.me 🙏</span>
+          </>
+        }
       />
 
       <Helmet>
         <meta name="description" content={currentTeacher.description} />
-        <title>{currentTeacher.name} (@{currentTeacher.instagram}) | ditate.me</title>
+        <title>
+          {currentTeacher.name} (@{currentTeacher.instagram}) | ditate.me
+        </title>
       </Helmet>
     </Base>
   ) : null;

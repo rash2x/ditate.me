@@ -4,7 +4,7 @@ import { Button, Paper, Typography } from '@material-ui/core';
 import { getContactLink } from '../helpers';
 
 const Base = styled(Paper)`
-  max-width: 400px;
+  max-width: 480px;
   padding: 20px 32px;
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@ const Base = styled(Paper)`
 
 const ContactButton = styled(Button).attrs({
   color: 'primary',
-  variant: 'contained'
+  variant: 'contained',
 })`
   a {
     color: inherit;
@@ -28,7 +28,7 @@ const ContactButton = styled(Button).attrs({
 `;
 
 const DitateMeCopyright = styled(Typography).attrs({
-  variant: 'body1'
+  variant: 'body1',
 })`
   span {
     color: ${props => props.theme.palette.primary.main};
@@ -38,8 +38,6 @@ const DitateMeCopyright = styled(Typography).attrs({
 const Contact = ({ hands, contact, description, ...rest }) => {
   const [contactValue, setContactValue] = useState(null);
 
-  console.log(contact);
-
   const handleContact = useCallback(() => {
     setContactValue(contact.value);
   }, [contact]);
@@ -48,12 +46,24 @@ const Contact = ({ hands, contact, description, ...rest }) => {
     <Base {...rest}>
       {hands && <img src={hands} alt="hands" />}
       <ContactButton onClick={handleContact}>
-        {contactValue ? <a href={getContactLink(contact.type, contact.value)}
-                           rel="noopener noreferrer"
-                           target="_blank">👉 {contact.value}</a> : 'Связаться со мной'}
+        {contactValue ? (
+          <a
+            href={getContactLink(contact.type, contact.value)}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            👉 {contact.value}
+          </a>
+        ) : (
+          'Связаться со мной'
+        )}
       </ContactButton>
       <DitateMeCopyright>
-        {description || <>Сообщите, пожалуйста, что вы нашли практику на <span>ditate.me 🙏</span></>}
+        {description || (
+          <>
+            Сообщите, пожалуйста, что вы нашли практику на <span>ditate.me 🙏</span>
+          </>
+        )}
       </DitateMeCopyright>
     </Base>
   );

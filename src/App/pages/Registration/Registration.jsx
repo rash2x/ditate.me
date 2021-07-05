@@ -9,6 +9,7 @@ import { createProfileRecord } from '../../airtable/services';
 import { useRouter } from '../../hooks/useRouter';
 import { useSnackbar } from 'notistack';
 import Helmet from 'react-helmet';
+import LoginToolBar from "../../components/LoginToolBar";
 
 const Base = styled.div`
   display: flex;
@@ -52,6 +53,7 @@ const Registration = () => {
 
   return (
     <>
+      <LoginToolBar />
       <Base>
         <Container>
           <Header>
