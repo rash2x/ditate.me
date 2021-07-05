@@ -45,14 +45,14 @@ const Form = ({ onSubmit }) => {
         label="Как вас зовут?"
         {...register('name', { required: true })}
         error={!!errors.name}
-        helperText={errors.name && 'Имя' + requiredMessage}
+        helperText={errors.name && `Имя${requiredMessage}`}
       />
 
       <Input
         label="С какого вы города?"
         {...register('city', { required: true })}
         error={!!errors.city}
-        helperText={errors.city && 'Город' + requiredMessage}
+        helperText={errors.city && `Город${requiredMessage}`}
       />
 
       <Autocomplete
@@ -70,9 +70,9 @@ const Form = ({ onSubmit }) => {
             error={!!errors.practices}
             helperText={
               errors.contact ? (
-                'Практики' + requiredMessage
+                `Практики${requiredMessage}`
               ) : (
-                <label>Выберите из списка или добавьте свои</label>
+                <span>Выберите из списка или добавьте свои</span>
               )
             }
           />
@@ -83,9 +83,7 @@ const Form = ({ onSubmit }) => {
         label="Aккаунт Telegram или Instagram"
         {...register('contact', { required: true })}
         error={!!errors.contact}
-        helperText={
-          errors.contact ? 'Аккаунт' + requiredMessage : <label>Например @anikoyoga</label>
-        }
+        helperText={errors.contact ? `Аккаунт${requiredMessage}` : <span>Например @anikoyoga</span>}
       />
 
       <StyledButton type="submit" size="medium" color="secondary" variant="contained">

@@ -4,15 +4,15 @@ import styled from 'styled-components';
 import { Chip, Container, Fab, fade, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
+import { ArrowBack } from '@material-ui/icons';
+import { Helmet } from 'react-helmet';
 import { AirtableContext } from '../../airtable/context';
 import InstagramIcon from '../../../assets/instagram-icon.svg';
 import HoldingHands from '../../../assets/hands/holding-hands.svg';
 
 import { getPracticeById, getTeacherById } from '../../airtable/services';
-import { ArrowBack } from '@material-ui/icons';
-import { useRouter } from '../../hooks/useRouter';
+import useRouter from '../../hooks/useRouter';
 import Contact from '../../components/Contact';
-import { Helmet } from 'react-helmet';
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
@@ -99,7 +99,7 @@ const Profile = () => {
   const [currentTeacher, setCurrentTeacher] = useState(null);
   const router = useRouter();
 
-  const teacherId = router.query.teacherId;
+  const { teacherId } = router.query;
 
   useEffect(() => {
     setCurrentTeacher(getTeacherById(teacherId, state.teachers));
@@ -118,10 +118,10 @@ const Profile = () => {
         <ArrowBack />
       </BackButton>
       <Info>
-        <Image src={currentTeacher.image} alt={''} />
+        <Image src={currentTeacher.image} alt="" />
         <Name>{currentTeacher.name}</Name>
         <Instagram
-          component={'a'}
+          component="a"
           href={currentTeacher.instagramUrl}
           target="_blank"
           rel="noopener noreferrer"

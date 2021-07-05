@@ -1,3 +1,3 @@
-export const getPriceValue = (value) => {
-  return `${value} ${Number.isInteger(parseInt(value)) ? '₽' : ''}`
-};
+const getPriceValue = value => `${value} ${Number.isInteger(parseInt(value, 10)) ? '₽' : ''}`;
+
+export default getPriceValue;

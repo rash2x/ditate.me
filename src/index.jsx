@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DateFnsUtils from '@date-io/date-fns';
-import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
 import { Collapse, CssBaseline, ThemeProvider } from '@material-ui/core';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
-import { theme } from './theme';
-
-import App from './App/App';
-import { AirtableProvider } from './App/airtable/provider';
 import { SnackbarProvider } from 'notistack';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import AirtableProvider from './App/airtable/provider';
+import theme from './theme';
+
+import App from './App/App';
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>

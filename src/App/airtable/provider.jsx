@@ -4,7 +4,7 @@ import { airtableBase } from '../App';
 import { mapEvents, mapPractices, mapTeachers } from './mappers';
 import { AirtableContext, initialState } from './context';
 
-export const AirtableProvider = ({ children }) => {
+const AirtableProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
@@ -42,3 +42,5 @@ export const AirtableProvider = ({ children }) => {
 
   return <AirtableContext.Provider value={[state, dispatch]}>{children}</AirtableContext.Provider>;
 };
+
+export default AirtableProvider;

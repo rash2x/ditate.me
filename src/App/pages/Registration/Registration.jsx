@@ -3,13 +3,13 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { Container, Typography } from '@material-ui/core';
 
+import { useSnackbar } from 'notistack';
+import Helmet from 'react-helmet';
 import Vector from '../../../assets/VectorForRegistration.svg';
 import Form from './Form';
 import { createProfileRecord } from '../../airtable/services';
-import { useRouter } from '../../hooks/useRouter';
-import { useSnackbar } from 'notistack';
-import Helmet from 'react-helmet';
-import LoginToolBar from "../../components/LoginToolBar";
+import useRouter from '../../hooks/useRouter';
+import LoginToolBar from '../../components/LoginToolBar';
 
 const Base = styled.div`
   display: flex;
@@ -28,28 +28,31 @@ const Header = styled.header`
 
 const Title = styled(Typography).attrs({
   variant: 'h1',
-  gutterBottom: true
+  gutterBottom: true,
 })`
   white-space: nowrap;
 `;
 
 const Description = styled(Typography).attrs({
-  variant: 'body2'
+  variant: 'body2',
 })``;
 
 const Registration = () => {
   const router = useRouter();
-  const {enqueueSnackbar} = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
-  const handleSubmit = useCallback((form) => {
-    createProfileRecord(form).then(response => {
-      router.push('/');
-      enqueueSnackbar('Профиль добавлен, скоро свяжемся с вами', {
-        variant: 'success',
-        autoHideDuration: 5000
+  const handleSubmit = useCallback(
+    form => {
+      createProfileRecord(form).then(() => {
+        router.push('/');
+        enqueueSnackbar('Профиль добавлен, скоро свяжемся с вами', {
+          variant: 'success',
+          autoHideDuration: 5000,
+        });
       });
-    });
-  }, [enqueueSnackbar, router]);
+    },
+    [enqueueSnackbar, router],
+  );
 
   return (
     <>
@@ -59,7 +62,7 @@ const Registration = () => {
           <Header>
             <Title>Добавление профиля ✔</Title>
             <Description>
-              Это быстрое размещение профиля. <br/>
+              Это быстрое размещение профиля. <br />
               Мы свяжемся с вами и уточним остальную информацию.
             </Description>
           </Header>

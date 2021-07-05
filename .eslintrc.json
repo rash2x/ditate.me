@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "no-unused-vars": "warn",
+    "no-process-exit": "off",
+    "object-shorthand": "off",
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/destructuring-assignment": "off",
+    "import/no-cycle": "off",
+    "no-undef": "off",
+    "import/no-named-as-default": "off",
+    "import/no-named-as-default-member": "off"
+  }
+}

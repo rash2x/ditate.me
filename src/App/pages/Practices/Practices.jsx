@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Container } from '@material-ui/core';
-import PracticeCard from '../../components/PracticeCard.jsx';
-import { AirtableContext } from '../../airtable/context.jsx';
+import PracticeCard from '../../components/PracticeCard';
+import { AirtableContext } from '../../airtable/context';
 import HomeToolbar from '../../components/HomeToolbar';
 import NavigationBar from '../../components/NavigationBar';
 

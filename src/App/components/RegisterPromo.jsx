@@ -25,28 +25,26 @@ const Base = styled(Paper)`
   background: ${props => props.theme.palette.background.paper};
 `;
 
-const RegisterPromo = () => {
-  return (
-    <Base>
-      <Container>
-        <Title>Проводите практики?</Title>
-        <Description>
-          Добавьте свой профиль, чтобы тысячи учеников смогли найти вас{' '}
-          <strong>прямо здесь и сейчас</strong>
-        </Description>
-        <Button
-          color="primary"
-          size="small"
-          component={Link}
-          to="/registration"
-          style={{ textTransform: 'none' }}
-        >
-          <AddCircleIcon style={{ marginRight: '14px' }} />
-          Добавьте лишь свой профиль
-        </Button>
-      </Container>
-    </Base>
-  );
-};
+const RegisterPromo = () => (
+  <Base>
+    <Container>
+      <Title>Проводите практики?</Title>
+      <Description>
+        Добавьте свой профиль, чтобы тысячи учеников смогли найти вас{' '}
+        <strong>прямо здесь и сейчас</strong>
+      </Description>
+      <Button
+        color="primary"
+        size="small"
+        component={Link}
+        to="/registration"
+        style={{ textTransform: 'none' }}
+      >
+        <AddCircleIcon style={{ marginRight: '14px' }} />
+        Добавьте лишь свой профиль
+      </Button>
+    </Container>
+  </Base>
+);
 
 export default RegisterPromo;

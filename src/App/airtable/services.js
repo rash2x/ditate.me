@@ -2,7 +2,7 @@ import { airtableBase } from '../App';
 
 export const getTeacherById = (teacherId, teachers) => {
   if (!teachers) {
-    return;
+    return false;
   }
 
   return teachers.find(t => t.id === teacherId);
@@ -10,7 +10,7 @@ export const getTeacherById = (teacherId, teachers) => {
 
 export const getPracticeById = (practiceId, practices) => {
   if (!practices) {
-    return;
+    return false;
   }
 
   return practices.find(t => t.id === practiceId);
@@ -18,7 +18,7 @@ export const getPracticeById = (practiceId, practices) => {
 
 export const getEventById = (eventId, events) => {
   if (!events) {
-    return;
+    return false;
   }
 
   return events.find(t => t.id === eventId);

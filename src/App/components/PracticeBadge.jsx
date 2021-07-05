@@ -11,8 +11,6 @@ const Base = styled(Typography).attrs({ variant: 'subtitle2', component: 'div' }
   border-radius: 4px;
 `;
 
-const PracticeBadge = ({ name }) => {
-  return <Base>{name}</Base>;
-};
+const PracticeBadge = ({ name }) => <Base>{name}</Base>;
 
 export default PracticeBadge;

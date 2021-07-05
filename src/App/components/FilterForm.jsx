@@ -1,11 +1,11 @@
 import React, { useCallback, useContext } from 'react';
 import styled from 'styled-components';
-import Calendar from './Calendar';
+import { useForm } from 'react-hook-form';
 import { Autocomplete } from '@material-ui/lab';
 import { FilterList } from '@material-ui/icons';
 import { TextField, Drawer, Typography, Button } from '@material-ui/core';
 import { AirtableContext } from '../airtable/context';
-import { useForm } from 'react-hook-form';
+import Calendar from './Calendar';
 
 const Base = styled(Drawer)`
   .MuiDrawer-paper {
