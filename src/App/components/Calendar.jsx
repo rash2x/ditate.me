@@ -1,6 +1,5 @@
 import 'date-fns';
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import React  from 'react';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import styled from 'styled-components';
 import { TextField } from '@material-ui/core';
@@ -50,31 +49,20 @@ const Input = styled(TextField).attrs({
   }
 `;
 
-const Calendar = ({ setValue }) => {
-  const [selectedDate, setSelectedDate] = React.useState(null);
-
-  const handleDateChange = date => {
-    setSelectedDate(new Date(date).toDateString());
-    setValue('date', new Date(date).toDateString());
-  };
-
+const Calendar = (props) => {
   return (
-    <Grid container justify="space-around">
-      <Base
-        TextFieldComponent={props => <Input {...props} />}
-        autoOk={true}
-        emptyLabel="Выберите дату"
-        invalidDateMessage="Не верная дата"
-        minDateMessage="Нельзя выбрать дату до минимального значения"
-        format="dd/MM/yyyy"
-        id="date-picker-dialog"
-        value={selectedDate}
-        onChange={handleDateChange}
-        KeyboardButtonProps={{
-          'aria-label': 'change date',
-        }}
-      />
-    </Grid>
+    <Base
+      TextFieldComponent={inputProps => <Input {...inputProps} />}
+      autoOk={true}
+      emptyLabel="Выберите дату"
+      invalidDateMessage="Не верная дата"
+      minDateMessage="Нельзя выбрать дату до минимального значения"
+      format="dd/MM/yyyy"
+      KeyboardButtonProps={{
+        'aria-label': 'change date',
+      }}
+      {...props}
+    />
   );
 };
 

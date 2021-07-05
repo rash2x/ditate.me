@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useCallback, useContext } from 'react';
 import styled from 'styled-components';
 import Calendar from './Calendar';
 import { Autocomplete } from '@material-ui/lab';
@@ -43,11 +43,15 @@ const Submit = styled(Button).attrs({ size: 'medium', color: 'secondary', varian
 
 const FilterForm = ({ anchor, open, onClose, setFilters }) => {
   const [state] = useContext(AirtableContext);
-  const { handleSubmit, setValue } = useForm();
+  const { handleSubmit, setValue, register } = useForm();
 
   const applyFilter = form => {
     setFilters(form);
   };
+
+  const handleDateChange = useCallback((value) => {
+    setValue('date', value)
+  }, [setValue])
 
   return (
     <Base key={anchor} anchor={anchor} open={open} onClose={onClose}>
@@ -56,23 +60,21 @@ const FilterForm = ({ anchor, open, onClose, setFilters }) => {
         Фильтры
       </Header>
       <form onSubmit={handleSubmit(applyFilter)}>
-        <Calendar setValue={setValue} />
+        <Calendar onChange={handleDateChange} inputRef={register} name="date" />
         <Autocomplete
           multiple
+          name="practices"
+          inputRef={register}
           options={state.events ? state.events : []}
           getOptionLabel={option => option.name}
-          onChange={(_, values) => {
-            setValue('practices', [...values]);
-          }}
           renderInput={params => <Input {...params} label="Все практики" />}
         />
         <Autocomplete
           multiple
+          name="teachers"
+          inputRef={register}
           options={state.teachers ? state.teachers : []}
           getOptionLabel={option => option.name}
-          onChange={(_, values) => {
-            setValue('teachers', [...values]);
-          }}
           renderInput={params => <Input {...params} label="Все минибудды" />}
         />
         <Actions>
