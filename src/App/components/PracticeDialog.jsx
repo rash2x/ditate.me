@@ -1,17 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useRouter } from '../hooks/useRouter';
-import { AirtableContext } from '../airtable/context';
-import { getEventById } from '../airtable/services';
-
 import { Place, EventAvailable, Close, Paid } from '@material-ui/icons';
 import { Dialog, IconButton, Typography } from '@material-ui/core';
+import useRouter from '../hooks/useRouter';
+import { AirtableContext } from '../airtable/context';
+import { getEventById } from '../airtable/services';
 
 import Contact from './Contact';
 import PracticeBadge from './PracticeBadge';
 
 import Hands from '../../assets/hands/Hands.svg';
-import { getPriceValue } from "../helpers/getPriceValue";
+import getPriceValue from '../helpers/getPriceValue';
 
 const Base = styled(Dialog)`
   .MuiPaper-root {
@@ -23,9 +22,8 @@ const Base = styled(Dialog)`
   }
 `;
 
-
 const CloseButton = styled(IconButton).attrs({
-  color: 'inherit'
+  color: 'inherit',
 })`
   background: transparent;
   position: absolute;
@@ -42,10 +40,14 @@ const Title = styled(Typography).attrs({ variant: 'h2', component: 'h1' })`
   padding: 0 16px;
 `;
 
-const Date = styled(Typography).attrs({ variant: 'subtitle1', component: 'div', color: 'primary' })``;
-const Price = styled(Typography).attrs({ variant: 'subtitle1', component: 'div', })``;
-const Teacher = styled(Typography).attrs({ variant: 'subtitle1', component: 'div', })``;
-const Location = styled(Typography).attrs({ variant: 'subtitle1', component: 'div', })``
+const Date = styled(Typography).attrs({
+  variant: 'subtitle1',
+  component: 'div',
+  color: 'primary',
+})``;
+const Price = styled(Typography).attrs({ variant: 'subtitle1', component: 'div' })``;
+const Teacher = styled(Typography).attrs({ variant: 'subtitle1', component: 'div' })``;
+const Location = styled(Typography).attrs({ variant: 'subtitle1', component: 'div' })``;
 
 const Avatar = styled.img`
   border-radius: 50%;
@@ -61,12 +63,12 @@ const Info = styled.div`
 
   > div {
     display: flex;
-    
+
     + div {
       margin-top: 16px;
     }
   }
-  
+
   .MuiSvgIcon-root,
   ${Avatar} {
     margin-right: 20px;
@@ -83,10 +85,10 @@ const PracticeDialog = ({ ...rest }) => {
   const [state] = useContext(AirtableContext);
   const [currentEvent, setCurrentEvent] = useState(null);
 
-  const eventId = router.query.eventId;
+  const { eventId } = router.query;
 
   useEffect(() => {
-    setCurrentEvent(getEventById(eventId, state.events))
+    setCurrentEvent(getEventById(eventId, state.events));
   }, [state.events, eventId]);
 
   const handleClick = () => {

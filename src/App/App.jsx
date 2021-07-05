@@ -13,29 +13,27 @@ export const airtableBase = new Airtable({
   apiKey: process.env.REACT_APP_AIRTABLE_PRIVATE_KEY,
 }).base('appAB6mLnImrAFBWa');
 
-const App = () => {
-  return (
-    <>
-      <Switch>
-        <Route exact path="/">
-          <Teachers />
-        </Route>
-        <Route exact path="/registration">
-          <Registration />
-        </Route>
-        <Route path="/practices">
-          <Practices />
-        </Route>
-        <Route path="/:teacherId?">
-          <Profile />
-        </Route>
-      </Switch>
-
-      <Route path="/practices/:eventId?">
-        <PracticeDialog open={true} />
+const App = () => (
+  <>
+    <Switch>
+      <Route exact path="/">
+        <Teachers />
       </Route>
-    </>
-  );
-};
+      <Route exact path="/registration">
+        <Registration />
+      </Route>
+      <Route path="/practices">
+        <Practices />
+      </Route>
+      <Route path="/:teacherId?">
+        <Profile />
+      </Route>
+    </Switch>
+
+    <Route path="/practices/:eventId?">
+      <PracticeDialog open />
+    </Route>
+  </>
+);
 
 export default App;

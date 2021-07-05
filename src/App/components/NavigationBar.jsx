@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { RecentActors, SelfImprovement } from '@material-ui/icons';
 import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 
-import { useRouter } from '../hooks/useRouter';
+import useRouter from '../hooks/useRouter';
 
 const Base = styled.div`
   position: fixed;
@@ -22,19 +22,19 @@ const NavigationBar = ({ children }) => {
 
   return (
     <Base>
-      <BottomNavigation showLabels={true} value={value} onChange={handleChange}>
+      <BottomNavigation showLabels value={value} onChange={handleChange}>
         <BottomNavigationAction
           label="Минибудды"
           component={Link}
           to="/"
-          value={'/'}
+          value="/"
           icon={<RecentActors />}
         />
         <BottomNavigationAction
           label="Практики"
           component={Link}
           to="/practices"
-          value={'/practices'}
+          value="/practices"
           icon={<SelfImprovement />}
         />
       </BottomNavigation>

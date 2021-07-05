@@ -62,7 +62,7 @@ const Calendar = ({ setValue }) => {
     <Grid container justify="space-around">
       <Base
         TextFieldComponent={props => <Input {...props} />}
-        autoOk={true}
+        autoOk
         emptyLabel="Выберите дату"
         invalidDateMessage="Не верная дата"
         minDateMessage="Нельзя выбрать дату до минимального значения"

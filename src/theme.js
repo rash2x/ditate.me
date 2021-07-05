@@ -1,6 +1,6 @@
 import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core';
 
-export const theme = createMuiTheme({
+const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#FFF59D',
@@ -44,7 +44,7 @@ export const theme = createMuiTheme({
 
     subtitle2: {
       fontWeight: 700,
-      lineHeight: 1.45
+      lineHeight: 1.45,
     },
 
     button: {
@@ -141,8 +141,10 @@ export const theme = createMuiTheme({
     },
     MuiDialog: {
       paper: {
-        margin: 8
-      }
-    }
+        margin: 8,
+      },
+    },
   },
 });
+
+export default theme;

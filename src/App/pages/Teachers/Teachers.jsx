@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import { Container, Typography } from '@material-ui/core';
 import ReactLoading from 'react-loading';
 
+import Helmet from 'react-helmet';
 import { AirtableContext } from '../../airtable/context';
 import Teacher from './Teacher';
 import { getTeacherById } from '../../airtable/services';
-import Helmet from 'react-helmet';
-import HomeToolbar from "../../components/HomeToolbar";
-import NavigationBar from "../../components/NavigationBar";
+import HomeToolbar from '../../components/HomeToolbar';
+import NavigationBar from '../../components/NavigationBar';
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
@@ -34,7 +34,7 @@ const GroupList = styled.div`
 `;
 
 const GroupTitle = styled(Typography).attrs({
-  variant: 'h2'
+  variant: 'h2',
 })`
   color: ${props => props.color};
 `;
@@ -50,39 +50,51 @@ const Teachers = () => {
   const isLoading = !(state.practices && state.teachers);
 
   if (!state.practices && !state.teachers) {
-    return <LoadingBar>
-      <ReactLoading type={'bubbles'} color="#fff" />
-    </LoadingBar>;
+    return (
+      <LoadingBar>
+        <ReactLoading type="bubbles" color="#fff" />
+      </LoadingBar>
+    );
   }
 
-  return !isLoading && (
-    <>
-      <HomeToolbar />
-      <Base>
-        {state.practices && state.practices.map((practice) => (
-          <Group key={practice.id}>
-            <GroupTitle color="inherit" style={{ color: practice.color }}>{practice.name}</GroupTitle>
-            <GroupList>
-              {practice.hasTeachers && practice.teacherIds.map(teacherId => {
-                const teacher = getTeacherById(teacherId, state.teachers);
+  return (
+    !isLoading && (
+      <>
+        <HomeToolbar />
+        <Base>
+          {state.practices &&
+            state.practices.map(practice => (
+              <Group key={practice.id}>
+                <GroupTitle color="inherit" style={{ color: practice.color }}>
+                  {practice.name}
+                </GroupTitle>
+                <GroupList>
+                  {practice.hasTeachers &&
+                    practice.teacherIds.map(teacherId => {
+                      const teacher = getTeacherById(teacherId, state.teachers);
 
-                return teacher && (
-                  <Teacher key={teacherId}
-                           id={teacherId}
-                           name={teacher.name}
-                           thumbnail={teacher.image} />
-                );
-              })}
-            </GroupList>
-          </Group>
-        ))}
-      </Base>
-      <NavigationBar />
-      <Helmet>
-        <meta name="description" content="Поиск практик и медитаций" />
-        <title>Ditate.me</title>
-      </Helmet>
-    </>
+                      return (
+                        teacher && (
+                          <Teacher
+                            key={teacherId}
+                            id={teacherId}
+                            name={teacher.name}
+                            thumbnail={teacher.image}
+                          />
+                        )
+                      );
+                    })}
+                </GroupList>
+              </Group>
+            ))}
+        </Base>
+        <NavigationBar />
+        <Helmet>
+          <meta name="description" content="Поиск практик и медитаций" />
+          <title>Ditate.me</title>
+        </Helmet>
+      </>
+    )
   );
 };
 

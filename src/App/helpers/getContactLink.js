@@ -1,4 +1,4 @@
-export const getContactLink = (type, value) => {
+const getContactLink = (type, value) => {
   switch (type) {
     case 'telegram':
       return `https://t.me/${value}`;
@@ -10,3 +10,5 @@ export const getContactLink = (type, value) => {
       return '';
   }
 };
+
+export default getContactLink;

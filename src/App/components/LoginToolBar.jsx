@@ -5,7 +5,7 @@ import { ArrowBack } from '@material-ui/icons';
 import styled from 'styled-components';
 
 import Logo from './Logo';
-import { useRouter } from "../hooks/useRouter";
+import useRouter from '../hooks/useRouter';
 
 const StyledLogo = styled(Logo)`
   margin-right: auto;
@@ -29,10 +29,10 @@ const LoginToolBar = () => {
         <IconButton onClick={handleClick}>
           <ArrowBack />
         </IconButton>
-        <StyledLogo/>
+        <StyledLogo />
       </Toolbar>
     </AppBar>
-  )
-}
+  );
+};
 
-export default LoginToolBar
+export default LoginToolBar;

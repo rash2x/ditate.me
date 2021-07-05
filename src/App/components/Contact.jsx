@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { Button, Paper, Typography } from '@material-ui/core';
-import { getContactLink } from '../helpers';
+import getContactLink from '../helpers/getContactLink';
 
 const Base = styled(Paper)`
   max-width: 480px;

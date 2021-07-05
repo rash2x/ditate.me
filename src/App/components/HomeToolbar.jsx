@@ -43,7 +43,7 @@ const HomeToolbar = () => {
         <StyledLogo />
       </Base>
 
-      <AboutDrawer anchor="left" open={drawers['about']} onClose={toggleDrawer('about', false)}>
+      <AboutDrawer anchor="left" open={drawers.about} onClose={toggleDrawer('about', false)}>
         <About />
       </AboutDrawer>
     </AppBar>

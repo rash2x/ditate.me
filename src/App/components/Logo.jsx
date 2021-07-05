@@ -8,9 +8,8 @@ const Base = styled.div`
 `;
 
 const Beta = styled.div`
-  background: ${props => props.inverse ?
-          props.theme.palette.common.black :
-          props.theme.palette.primary.main};
+  background: ${props =>
+    props.inverse ? props.theme.palette.common.black : props.theme.palette.primary.main};
   border-radius: 2px;
 
   display: inline-block;
@@ -21,7 +20,8 @@ const Beta = styled.div`
 
   font-size: 1.3rem;
   font-weight: ${props => props.theme.typography.fontWeightBold};
-  color: ${props => props.inverse ? props.theme.palette.common.white : props.theme.palette.primary.contrastText};
+  color: ${props =>
+    props.inverse ? props.theme.palette.common.white : props.theme.palette.primary.contrastText};
 `;
 
 const Case = styled.div`
@@ -29,14 +29,12 @@ const Case = styled.div`
   ${props => props.inverse && 'margin-left: 0'}
 `;
 
-const Logo = (props) => {
-  return (
-    <Base {...props}>
-      <Case inverse={props.inverse}>
-        ditate.Me <Beta inverse={props.inverse}>Beta</Beta>
-      </Case>
-    </Base>
-  );
-};
+const Logo = props => (
+  <Base {...props}>
+    <Case inverse={props.inverse}>
+      ditate.Me <Beta inverse={props.inverse}>Beta</Beta>
+    </Case>
+  </Base>
+);
 
 export default Logo;

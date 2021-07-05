@@ -1,4 +1,4 @@
-export const getInstagramName = (url) => {
+const getInstagramName = url => {
   const re = /^(?:@|(?:https?:\/\/)?(?:www\.)?instagr(?:\.am|am\.com)\/)?([a-zA-Z0-9_.]+)\/?$/;
   const match = re.exec(url);
 
@@ -7,4 +7,6 @@ export const getInstagramName = (url) => {
   }
 
   return url;
-}
+};
+
+export default getInstagramName;

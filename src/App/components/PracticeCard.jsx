@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import PracticeBadge from './PracticeBadge';
-
 import { Card, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { getPriceValue } from '../helpers/getPriceValue';
+import PracticeBadge from './PracticeBadge';
+import getPriceValue from '../helpers/getPriceValue';
 
 const Base = styled(Card)`
   margin-bottom: ${props => props.theme.spacing(2)}px;
@@ -65,23 +64,21 @@ const PracticeDate = styled(Typography).attrs({
   color: ${props => props.theme.palette.primary.main};
 `;
 
-const PracticeCard = ({ id, name, practiceName, price, startDate, location, teacherImage }) => {
-  return (
-    <Base component={Link} to={`/practices/${id}`}>
-      <TopInfo>
-        <PracticeBadge name={practiceName} />
-        <Price>{getPriceValue(price)} </Price>
-      </TopInfo>
-      <MainInfo>
-        <Title component="h2">{name}</Title>
-        {teacherImage && <Avatar src={teacherImage} />}
-      </MainInfo>
-      <BottomInfo>
-        <PracticeDate component="span">{startDate}</PracticeDate>
-        <Location>{location}</Location>
-      </BottomInfo>
-    </Base>
-  );
-};
+const PracticeCard = ({ id, name, practiceName, price, startDate, location, teacherImage }) => (
+  <Base component={Link} to={`/practices/${id}`}>
+    <TopInfo>
+      <PracticeBadge name={practiceName} />
+      <Price>{getPriceValue(price)} </Price>
+    </TopInfo>
+    <MainInfo>
+      <Title component="h2">{name}</Title>
+      {teacherImage && <Avatar src={teacherImage} />}
+    </MainInfo>
+    <BottomInfo>
+      <PracticeDate component="span">{startDate}</PracticeDate>
+      <Location>{location}</Location>
+    </BottomInfo>
+  </Base>
+);
 
 export default PracticeCard;

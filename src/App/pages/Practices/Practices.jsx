@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { Container, Fab } from '@material-ui/core';
-import PracticeCard from '../../components/PracticeCard.jsx';
-import { AirtableContext } from '../../airtable/context.jsx';
+import { FilterList } from '@material-ui/icons';
+import PracticeCard from '../../components/PracticeCard';
+import { AirtableContext } from '../../airtable/context';
 import HomeToolbar from '../../components/HomeToolbar';
 import NavigationBar from '../../components/NavigationBar';
-import { useRouter } from '../../hooks/useRouter.jsx';
-import { FilterList } from '@material-ui/icons';
-import FilterForm from '../../components/FilterForm.jsx';
+import useRouter from '../../hooks/useRouter';
+import FilterForm from '../../components/FilterForm';
 
 const Base = styled(Container)`
   display: flex;
