@@ -5,6 +5,7 @@ import { Card, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import PracticeBadge from './PracticeBadge';
 import getPriceValue from '../helpers/getPriceValue';
+import useRouter from '../hooks/useRouter';
 
 const Base = styled(Card)`
   margin-bottom: ${props => props.theme.spacing(2)}px;
@@ -50,7 +51,7 @@ const MainInfo = styled.main`
 `;
 
 const BottomInfo = styled.footer`
-  margin-top: 12px;
+  margin-top: ${props => props.theme.spacing(1)}px;
 `;
 
 const Location = styled(Typography).attrs({
@@ -65,21 +66,35 @@ const PracticeDate = styled(Typography).attrs({
   color: ${props => props.theme.palette.primary.main};
 `;
 
-const PracticeCard = ({ id, name, practiceName, price, startDate, location, teacherImage }) => (
-  <Base component={Link} to={`/practices/${id}`}>
-    <TopInfo>
-      <PracticeBadge name={practiceName} />
-      <Price>{getPriceValue(price)} </Price>
-    </TopInfo>
-    <MainInfo>
-      <Title component="h2">{name}</Title>
-      {teacherImage && <Avatar src={teacherImage} />}
-    </MainInfo>
-    <BottomInfo>
-      <PracticeDate component="span">{startDate}</PracticeDate>
-      <Location>{location}</Location>
-    </BottomInfo>
-  </Base>
-);
+const PracticeCard = ({
+  id,
+  name,
+  practiceName,
+  price,
+  startDate,
+  location,
+  teacherImage,
+  margin,
+}) => {
+  const router = useRouter();
+  return (
+    <Base component={Link} to={`/practices/${id}`}>
+      <TopInfo>
+        <PracticeBadge name={practiceName} />
+        <Price>{getPriceValue(price)} </Price>
+      </TopInfo>
+      {!router.query.teacherId && (
+        <MainInfo>
+          <Title component="h2">{name}</Title>
+          {teacherImage && <Avatar src={teacherImage} />}
+        </MainInfo>
+      )}
+      <BottomInfo>
+        <PracticeDate component="span">{startDate}</PracticeDate>
+        <Location>{location}</Location>
+      </BottomInfo>
+    </Base>
+  );
+};
 
 export default PracticeCard;
