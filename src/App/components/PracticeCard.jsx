@@ -9,6 +9,7 @@ import getPriceValue from '../helpers/getPriceValue';
 const Base = styled(Card)`
   margin-bottom: ${props => props.theme.spacing(2)}px;
   max-width: 480px;
+  width: 100%;
   display: block;
   text-decoration: none;
   padding: ${props => props.theme.spacing(2, 2)};

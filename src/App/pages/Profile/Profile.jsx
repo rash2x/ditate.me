@@ -10,9 +10,10 @@ import { AirtableContext } from '../../airtable/context';
 import InstagramIcon from '../../../assets/instagram-icon.svg';
 import HoldingHands from '../../../assets/hands/holding-hands.svg';
 
-import { getPracticeById, getTeacherById } from '../../airtable/services';
+import { getEventById, getPracticeById, getTeacherById } from '../../airtable/services';
 import useRouter from '../../hooks/useRouter';
 import Contact from '../../components/Contact';
+import PracticeCard from '../../components/PracticeCard';
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
@@ -48,6 +49,18 @@ const PracticeList = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+`;
+
+const EventsList = styled.div`
+  margin-top: ${props => props.theme.spacing(2)}px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+`;
+
+const CommingEvents = styled(Typography).attrs({ variant: 'h2' })`
+  margin-top: ${props => props.theme.spacing(4)}px;
 `;
 
 const BackButton = styled(Fab).attrs({
@@ -150,7 +163,16 @@ const Profile = () => {
           );
         })}
       </PracticeList>
+      {currentTeacher.events && <CommingEvents>Ближайшие практики</CommingEvents>}
+      <EventsList>
+        {currentTeacher.events
+          ? currentTeacher.events.map(eventId => {
+              const events = getEventById(eventId, state.events);
 
+              return <PracticeCard {...events} />;
+            })
+          : null}
+      </EventsList>
       <StyledContact
         hands={HoldingHands}
         contact={{

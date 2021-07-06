@@ -11,6 +11,7 @@ export const mapTeachers = response =>
     instagram: getInstagramName(item.fields.Instagram),
     telegram: item.fields.Telegram,
     practiceIds: item.fields.Practices,
+    events: item.fields.Events,
   }));
 
 export const mapPractices = response =>
