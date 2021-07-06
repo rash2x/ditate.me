@@ -44,5 +44,5 @@ export const mapEvents = response =>
     practiceId: item.fields.Practice[0],
     practiceName: item.fields['Practice Name'] && item.fields['Practice Name'][0],
     practiceColor: item.fields['Practice Color'] && item.fields['Practice Color'][0],
-    startDate: new Date(item.fields.StartDate).toDateString(),
+    startDate: item.fields.StartDate,
   }));

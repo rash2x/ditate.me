@@ -110,6 +110,7 @@ const StyledContact = styled(Contact)`
 const Profile = () => {
   const [state, dispatch] = useContext(AirtableContext);
   const [currentTeacher, setCurrentTeacher] = useState(null);
+  const [events, setEvents] = useState([]);
   const router = useRouter();
 
   const { teacherId } = router.query;
@@ -117,6 +118,12 @@ const Profile = () => {
   useEffect(() => {
     setCurrentTeacher(getTeacherById(teacherId, state.teachers));
   }, [dispatch, state.teachers, teacherId]);
+
+  useEffect(() => {
+    if (currentTeacher !== null) {
+      currentTeacher.events.map(eventId => setEvents(getEventById(eventId, state.events)));
+    }
+  }, [dispatch]);
 
   const handleClick = () => {
     if (router.history.length === 1) {
@@ -163,16 +170,14 @@ const Profile = () => {
           );
         })}
       </PracticeList>
-      {currentTeacher.events && <CommingEvents>Ближайшие практики</CommingEvents>}
-      <EventsList>
-        {currentTeacher.events
-          ? currentTeacher.events.map(eventId => {
-              const events = getEventById(eventId, state.events);
 
-              return <PracticeCard {...events} />;
-            })
-          : null}
-      </EventsList>
+      {currentTeacher.events && <CommingEvents>Ближайшие практики</CommingEvents> && (
+        <EventsList>
+          {new Date(events.startDate).getTime() > new Date().getTime() && (
+            <PracticeCard key={eventId} {...events} />
+          )}
+        </EventsList>
+      )}
       <StyledContact
         hands={HoldingHands}
         contact={{

@@ -27,7 +27,12 @@ const Practices = () => {
       <HomeToolbar />
       <Base>
         {state.events ? (
-          state.events.map(event => <PracticeCard key={event.id} {...event} />)
+          state.events.map(
+            event =>
+              new Date(event.startDate).getTime() > new Date().getTime() && (
+                <PracticeCard key={event.id} {...event} />
+              ),
+          )
         ) : (
           <></>
         )}

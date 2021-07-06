@@ -66,17 +66,9 @@ const PracticeDate = styled(Typography).attrs({
   color: ${props => props.theme.palette.primary.main};
 `;
 
-const PracticeCard = ({
-  id,
-  name,
-  practiceName,
-  price,
-  startDate,
-  location,
-  teacherImage,
-  margin,
-}) => {
+const PracticeCard = ({ id, name, practiceName, price, startDate, location, teacherImage }) => {
   const router = useRouter();
+
   return (
     <Base component={Link} to={`/practices/${id}`}>
       <TopInfo>
@@ -90,7 +82,7 @@ const PracticeCard = ({
         </MainInfo>
       )}
       <BottomInfo>
-        <PracticeDate component="span">{startDate}</PracticeDate>
+        <PracticeDate component="span">{new Date(startDate).toLocaleString()}</PracticeDate>
         <Location>{location}</Location>
       </BottomInfo>
     </Base>
