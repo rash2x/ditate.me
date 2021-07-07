@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Place, EventAvailable, Close, Paid } from '@material-ui/icons';
 import { Dialog, IconButton, Typography } from '@material-ui/core';
+import parseHtml from 'react-html-parser';
 import useRouter from '../hooks/useRouter';
 import { AirtableContext } from '../airtable/context';
 import { getEventById } from '../airtable/services';
@@ -39,6 +40,8 @@ const Title = styled(Typography).attrs({ variant: 'h2', component: 'h1' })`
   margin-top: ${props => props.theme.spacing(2)}px;
   padding: 0 16px;
 `;
+
+const Description = styled.div``;
 
 const Date = styled(Typography).attrs({
   variant: 'subtitle1',
@@ -105,8 +108,11 @@ const PracticeDialog = ({ ...rest }) => {
         <Close />
       </CloseButton>
       <Header>
-        <PracticeBadge name={currentEvent.practiceName} />
+        <PracticeBadge name={currentEvent.practiceName} color={currentEvent.practiceColor} />
         <Title>{currentEvent.name}</Title>
+        {currentEvent.description && (
+          <Description>{parseHtml(currentEvent.description)}</Description>
+        )}
       </Header>
       <Info>
         <Teacher>

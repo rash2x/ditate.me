@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import styled from 'styled-components';
-import { Chip, Container, Fab, fade, Typography } from '@material-ui/core';
+import { Chip, Container, Fab, alpha, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 import { ArrowBack } from '@material-ui/icons';
@@ -142,7 +142,7 @@ const Profile = () => {
                 key={practiceId}
                 style={{
                   color: practice.color,
-                  backgroundColor: fade(practice.color, 0.12),
+                  backgroundColor: alpha(practice.color, 0.12),
                 }}
                 label={practice.name}
               />
