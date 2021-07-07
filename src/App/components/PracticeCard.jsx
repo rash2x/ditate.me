@@ -64,10 +64,19 @@ const PracticeDate = styled(Typography).attrs({
   color: ${props => props.theme.palette.primary.main};
 `;
 
-const PracticeCard = ({ id, name, practiceName, price, startDate, location, teacherImage }) => (
+const PracticeCard = ({
+  id,
+  name,
+  practiceName,
+  practiceColor,
+  price,
+  startDate,
+  location,
+  teacherImage,
+}) => (
   <Base component={Link} to={`/practices/${id}`}>
     <TopInfo>
-      <PracticeBadge name={practiceName} />
+      <PracticeBadge name={practiceName} color={practiceColor} />
       <Price>{getPriceValue(price)} </Price>
     </TopInfo>
     <MainInfo>

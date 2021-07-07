@@ -30,6 +30,8 @@ export const mapEvents = response =>
   response.map(item => ({
     id: item.id,
     name: item.fields.Name,
+    description:
+      item.fields.Description && item.fields.Description.replace(/(?:\r\n|\r|\n)/g, '<br>'),
     price: item.fields.Price,
     teacherId: item.fields.Teacher[0],
     teacherName: item.fields['Teacher Name'][0],
