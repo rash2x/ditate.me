@@ -78,7 +78,7 @@ const PracticeCard = ({
 }) => (
   <Base component={Link} to={`/practices/${id}`}>
     <TopInfo>
-      <PracticeBadge name={practiceName} color={practiceColor} />
+      <PracticeBadge name={practiceName} color={practiceColor || '#FFF59D'} />
       <Price>{getPriceValue(price)} </Price>
     </TopInfo>
     {!hideMainInfo && (
