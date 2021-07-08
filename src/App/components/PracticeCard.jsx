@@ -74,16 +74,19 @@ const PracticeCard = ({
   startDate,
   location,
   teacherImage,
+  hideMainInfo,
 }) => (
   <Base component={Link} to={`/practices/${id}`}>
     <TopInfo>
       <PracticeBadge name={practiceName} color={practiceColor} />
       <Price>{getPriceValue(price)} </Price>
     </TopInfo>
-    <MainInfo>
-      <Title component="h2">{name}</Title>
-      {teacherImage && <Avatar src={teacherImage} />}
-    </MainInfo>
+    {!hideMainInfo && (
+      <MainInfo>
+        <Title component="h2">{name}</Title>
+        <Avatar src={teacherImage} />
+      </MainInfo>
+    )}
     <BottomInfo>
       <PracticeDate component="span">{startDate}</PracticeDate>
       <Location>{location}</Location>
