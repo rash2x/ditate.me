@@ -12,6 +12,12 @@ export const mapTeachers = response =>
     telegram: item.fields.Telegram,
     practiceIds: item.fields.Practices,
     events: item.fields.Events,
+    eventName: item.fields['Event Name'],
+    eventLocation: item.fields['Event Location'],
+    eventPractice: item.fields['Event Practice'],
+    eventPrice: item.fields['Event Price'],
+    eventStartDate: item.fields['Event StartDate'],
+    eventEndDate: item.fields['Event EndDate'],
   }));
 
 export const mapPractices = response =>
