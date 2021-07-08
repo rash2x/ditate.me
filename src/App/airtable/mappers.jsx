@@ -13,11 +13,12 @@ export const mapTeachers = response =>
     practiceIds: item.fields.Practices,
     events: item.fields.Events,
     eventName: item.fields['Event Name'],
-    eventLocation: item.fields['Event Location'],
-    eventPractice: item.fields['Event Practice'],
-    eventPrice: item.fields['Event Price'],
-    eventStartDate: item.fields['Event StartDate'],
-    eventEndDate: item.fields['Event EndDate'],
+    location: item.fields['Event Location'],
+    practice: item.fields['Event Practice'],
+    price: item.fields['Event Price'],
+    startDate: item.fields['Event StartDate'],
+    practiceColor: item.fields['Event Practice Color'] && item.fields['Event Practice Color'][0],
+    endDate: item.fields['Event EndDate'],
   }));
 
 export const mapPractices = response =>

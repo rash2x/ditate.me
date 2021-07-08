@@ -10,7 +10,7 @@ import { AirtableContext } from '../../airtable/context';
 import InstagramIcon from '../../../assets/instagram-icon.svg';
 import HoldingHands from '../../../assets/hands/holding-hands.svg';
 
-import { getEventById, getPracticeById, getTeacherById } from '../../airtable/services';
+import { getPracticeById, getTeacherById } from '../../airtable/services';
 import useRouter from '../../hooks/useRouter';
 import Contact from '../../components/Contact';
 import PracticeCard from '../../components/PracticeCard';
@@ -61,6 +61,7 @@ const EventsList = styled.div`
 
 const CommingEvents = styled(Typography).attrs({ variant: 'h2' })`
   margin-top: ${props => props.theme.spacing(4)}px;
+  text-align: center;
 `;
 
 const BackButton = styled(ArrowBack).attrs({
@@ -113,16 +114,12 @@ const Copyright = styled.div`
 const Profile = () => {
   const [state, dispatch] = useContext(AirtableContext);
   const [currentTeacher, setCurrentTeacher] = useState(null);
-  const [events, setEvents] = useState([]);
   const router = useRouter();
 
   const { teacherId } = router.query;
 
   useEffect(() => {
     setCurrentTeacher(getTeacherById(teacherId, state.teachers));
-    if (currentTeacher) {
-      currentTeacher.events.map(eventId => setEvents(getEventById(eventId, state.events)));
-    }
   }, [dispatch, state.teachers, teacherId]);
 
   const handleClick = () => {
@@ -136,48 +133,50 @@ const Profile = () => {
   return currentTeacher ? (
     <Base>
       <BackButton onClick={handleClick} />
-      <div>
-        <Info>
-          <Image src={currentTeacher.image} alt="" />
-          <Name>{currentTeacher.name}</Name>
-          <Instagram
-            component="a"
-            href={currentTeacher.instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={InstagramIcon} width="24px" alt="In" />
-            {currentTeacher.instagram}
-          </Instagram>
-          <Description>{currentTeacher.description}</Description>
-        </Info>
 
-        <PracticeList>
-          {currentTeacher.practiceIds.map(practiceId => {
-            const practice = getPracticeById(practiceId, state.practices);
+      <Info>
+        <Image src={currentTeacher.image} alt="" />
+        <Name>{currentTeacher.name}</Name>
+        <Instagram
+          component="a"
+          href={currentTeacher.instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={InstagramIcon} width="24px" alt="In" />
+          {currentTeacher.instagram}
+        </Instagram>
+        <Description>{currentTeacher.description}</Description>
+      </Info>
+      <PracticeList>
+        {currentTeacher.practiceIds.map(practiceId => {
+          const practice = getPracticeById(practiceId, state.practices);
 
-            return (
-              practice && (
-                <PracticeChip
-                  key={practiceId}
-                  style={{
-                    color: practice.color,
-                    backgroundColor: fade(practice.color, 0.12),
-                  }}
-                  label={practice.name}
-                />
-              )
-            );
-          })}
-        </PracticeList>
+          return (
+            practice && (
+              <PracticeChip
+                key={practiceId}
+                style={{
+                  color: practice.color,
+                  backgroundColor: fade(practice.color, 0.12),
+                }}
+                label={practice.name}
+              />
+            )
+          );
+        })}
+      </PracticeList>
 
-        {currentTeacher.events && <CommingEvents>Ближайшие практики</CommingEvents> && (
+      {currentTeacher.events && (
+        <>
+          <CommingEvents>Ближайшие практики</CommingEvents>
           <EventsList>
-            {new Date(events.startDate).getTime() > new Date().getTime() && (
-              <PracticeCard key={eventId} {...events} />
-            )}
+            <PracticeCard hideMainInfo key={currentTeacher.id} {...currentTeacher} />
           </EventsList>
-        )}
+        </>
+      )}
+
+      {!currentTeacher.events && (
         <StyledContact
           hands={HoldingHands}
           contact={{
@@ -190,7 +189,8 @@ const Profile = () => {
             </>
           }
         />
-      </div>
+      )}
+
       <Copyright>
         2021 &copy; <strong>#Минибудды</strong> обучают 👌
       </Copyright>
