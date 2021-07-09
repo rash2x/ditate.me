@@ -1,5 +1,5 @@
 import defaultThumbnailSvg from '../../assets/default-thumbnail.svg';
-import getInstagramName from './utils';
+import { getInstagramName, getVkName } from './utils';
 
 export const mapTeachers = response =>
   response.map(item => ({
@@ -9,6 +9,8 @@ export const mapTeachers = response =>
     image: item.fields.Avatar ? item.fields.Avatar[0].thumbnails.large.url : defaultThumbnailSvg,
     instagramUrl: item.fields.Instagram,
     instagram: getInstagramName(item.fields.Instagram),
+    vkUrl: item.fields.Vk,
+    vk: getVkName(item.fields.Vk),
     telegram: item.fields.Telegram,
     practiceIds: item.fields.Practices,
   }));

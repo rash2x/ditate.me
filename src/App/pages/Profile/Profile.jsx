@@ -8,11 +8,10 @@ import { ArrowBack } from '@material-ui/icons';
 import { Helmet } from 'react-helmet';
 import { AirtableContext } from '../../airtable/context';
 import InstagramIcon from '../../../assets/instagram-icon.svg';
-import HoldingHands from '../../../assets/hands/holding-hands.svg';
+import VkIcon from '../../../assets/vk-icon.svg';
 
 import { getPracticeById, getTeacherById } from '../../airtable/services';
 import useRouter from '../../hooks/useRouter';
-import Contact from '../../components/Contact';
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
@@ -79,7 +78,7 @@ const Description = styled(Typography).attrs({
   padding-right: 16px;
 `;
 
-const Instagram = styled(Button).attrs({
+const SocialLink = styled(Button).attrs({
   size: 'small',
 })`
   font-size: 1.4rem;
@@ -88,10 +87,6 @@ const Instagram = styled(Button).attrs({
   img {
     margin-right: 4px;
   }
-`;
-
-const StyledContact = styled(Contact)`
-  margin-top: 32px;
 `;
 
 const Profile = () => {
@@ -112,6 +107,7 @@ const Profile = () => {
       router.history.goBack();
     }
   };
+
   return currentTeacher ? (
     <Base>
       <BackButton onClick={handleClick}>
@@ -120,15 +116,29 @@ const Profile = () => {
       <Info>
         <Image src={currentTeacher.image} alt="" />
         <Name>{currentTeacher.name}</Name>
-        <Instagram
-          component="a"
-          href={currentTeacher.instagramUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src={InstagramIcon} width="24px" alt="In" />
-          {currentTeacher.instagram}
-        </Instagram>
+        {currentTeacher.instagramUrl && (
+          <SocialLink
+            component="a"
+            href={currentTeacher.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={InstagramIcon} width="24px" alt="In" />
+            {currentTeacher.instagram}
+          </SocialLink>
+        )}
+        {currentTeacher.vkUrl && (
+          <SocialLink
+            component="a"
+            href={currentTeacher.vkUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={VkIcon} width="24px" alt="Vk" />
+            {currentTeacher.vk}
+          </SocialLink>
+        )}
+
         <Description>{currentTeacher.description}</Description>
       </Info>
 
@@ -150,19 +160,6 @@ const Profile = () => {
           );
         })}
       </PracticeList>
-
-      <StyledContact
-        hands={HoldingHands}
-        contact={{
-          type: currentTeacher.telegram ? 'telegram' : 'instagram',
-          value: currentTeacher.telegram || currentTeacher.instagram,
-        }}
-        description={
-          <>
-            Сообщите, пожалуйста, что вы нашли меня на <span>ditate.me 🙏</span>
-          </>
-        }
-      />
 
       <Helmet>
         <meta name="description" content={currentTeacher.description} />
