@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DateFnsUtils from '@date-io/date-fns';
 import { BrowserRouter } from 'react-router-dom';
+import DayjsUtils from '@date-io/dayjs';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ru';
+import isToday from 'dayjs/plugin/isToday';
+import isTomorrow from 'dayjs/plugin/isTomorrow';
+import isoWeek from 'dayjs/plugin/isoWeek';
 
 import { Collapse, CssBaseline, ThemeProvider } from '@material-ui/core';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
@@ -12,6 +17,11 @@ import theme from './theme';
 
 import App from './App/App';
 import reportWebVitals from './reportWebVitals';
+
+dayjs.locale('ru');
+dayjs.extend(isToday);
+dayjs.extend(isTomorrow);
+dayjs.extend(isoWeek);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -28,7 +38,7 @@ ReactDOM.render(
           >
             <StyledThemeProvider theme={theme}>
               <CssBaseline />
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <MuiPickersUtilsProvider utils={DayjsUtils}>
                 <App />
               </MuiPickersUtilsProvider>
             </StyledThemeProvider>

@@ -1,4 +1,3 @@
-import 'date-fns';
 import React from 'react';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import styled from 'styled-components';

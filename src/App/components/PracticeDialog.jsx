@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Place, EventAvailable, Close, Paid } from '@material-ui/icons';
 import { Dialog, IconButton, Typography } from '@material-ui/core';
 import parseHtml from 'react-html-parser';
-import { format } from 'date-fns';
 import useRouter from '../hooks/useRouter';
 import { AirtableContext } from '../airtable/context';
 import { getEventById } from '../airtable/services';
@@ -126,7 +125,7 @@ const PracticeDialog = ({ ...rest }) => {
         </Price>
         <DateInfo>
           <EventAvailable />
-          {format(new Date(currentEvent.startDate), 'dd MMM yyyy H:mm')}
+          {currentEvent.dateTime}
         </DateInfo>
         <Location>
           <Place />

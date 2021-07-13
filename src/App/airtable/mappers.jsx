@@ -1,5 +1,6 @@
 import defaultThumbnailSvg from '../../assets/default-thumbnail.svg';
 import { getInstagramName, getVkName } from './utils';
+import getDateTime from '../helpers/getDateTime';
 
 export const mapTeachers = response =>
   response.map(item => ({
@@ -56,4 +57,5 @@ export const mapEvents = response =>
     practiceName: item.fields['Practice Name'] && item.fields['Practice Name'][0],
     practiceColor: item.fields['Practice Color'] && item.fields['Practice Color'][0],
     startDate: item.fields.StartDate,
+    dateTime: getDateTime(item.fields.StartDate, item.fields.EndDate),
   }));
