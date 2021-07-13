@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Container } from '@material-ui/core';
 import PracticeCard from '../../components/PracticeCard';
@@ -23,13 +23,18 @@ const Base = styled(Container)`
 
 const Practices = () => {
   const [state] = useContext(AirtableContext);
+  const [actualEvents, setActualEvents] = useState([]);
+
+  useEffect(() => {
+    setActualEvents(getActualEvents(state.events));
+  }, [state.events]);
 
   return (
     <>
       <HomeToolbar />
       <Base>
-        {getActualEvents(state.events) ? (
-          getActualEvents(state.events).map(event => <PracticeCard key={event.id} {...event} />)
+        {actualEvents ? (
+          actualEvents.map(event => <PracticeCard key={event.id} {...event} />)
         ) : (
           <NoPractices />
         )}

@@ -11,7 +11,12 @@ import InstagramIcon from '../../../assets/instagram-icon.svg';
 import VkIcon from '../../../assets/vk-icon.svg';
 import HoldingHands from '../../../assets/hands/holding-hands.svg';
 
-import { getPracticeById, getTeacherById } from '../../airtable/services';
+import {
+  getActualEvents,
+  getPracticeById,
+  getTeacherById,
+  getTeacherEvents,
+} from '../../airtable/services';
 import useRouter from '../../hooks/useRouter';
 import Contact from '../../components/Contact';
 import PracticeCard from '../../components/PracticeCard';
@@ -123,6 +128,9 @@ const Profile = () => {
 
   const { teacherId } = router.query;
 
+  const teacherEvents =
+    currentTeacher && getActualEvents(getTeacherEvents(state.events, currentTeacher.events));
+
   useEffect(() => {
     setCurrentTeacher(getTeacherById(teacherId, state.teachers));
   }, [dispatch, state.teachers, teacherId]);
@@ -134,6 +142,8 @@ const Profile = () => {
       router.history.goBack();
     }
   };
+
+  console.log(teacherEvents);
 
   return currentTeacher ? (
     <Base>
@@ -186,16 +196,18 @@ const Profile = () => {
             );
           })}
         </PracticeList>
-        {currentTeacher.events && (
+        {teacherEvents.length !== 0 && (
           <>
             <CommingEvents>Ближайшие практики</CommingEvents>
             <EventsList>
-              <PracticeCard hideMainInfo key={currentTeacher.id} {...currentTeacher} />
+              {teacherEvents.map(teacherEvent => (
+                <PracticeCard hideMainInfo key={teacherEvent.id} {...teacherEvent} />
+              ))}
             </EventsList>
           </>
         )}
 
-        {currentTeacher.events && currentTeacher.events.length && (
+        {!teacherEvents && (
           <StyledContact
             hands={HoldingHands}
             contact={{

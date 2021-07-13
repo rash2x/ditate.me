@@ -28,8 +28,16 @@ export const getActualEvents = events => {
   if (!events) {
     return false;
   }
-  const actualEvents = events.filter(t => new Date(t.startDate).getTime() > new Date().getTime());
-  return actualEvents;
+
+  return events.filter(t => new Date(t.startDate).getTime() > new Date().getTime());
+};
+
+export const getTeacherEvents = (events, teacherEvents) => {
+  if (!events || !teacherEvents) {
+    return false;
+  }
+
+  return teacherEvents.map(teacherEvent => events.find(t => t.id === teacherEvent));
 };
 
 export const createProfileRecord = async form => {
