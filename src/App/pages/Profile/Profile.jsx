@@ -186,7 +186,7 @@ const Profile = () => {
             );
           })}
         </PracticeList>
-        {currentTeacher.events && currentTeacher.startDate && (
+        {currentTeacher.events && (
           <>
             <CommingEvents>Ближайшие практики</CommingEvents>
             <EventsList>
@@ -195,18 +195,20 @@ const Profile = () => {
           </>
         )}
 
-        <StyledContact
-          hands={HoldingHands}
-          contact={{
-            type: currentTeacher.telegram ? 'telegram' : 'instagram',
-            value: currentTeacher.telegram || currentTeacher.instagram,
-          }}
-          description={
-            <>
-              Сообщите, пожалуйста, что вы нашли меня на <span>ditate.me 🙏</span>
-            </>
-          }
-        />
+        {currentTeacher.events && currentTeacher.events.length && (
+          <StyledContact
+            hands={HoldingHands}
+            contact={{
+              type: currentTeacher.telegram ? 'telegram' : 'instagram',
+              value: currentTeacher.telegram || currentTeacher.instagram,
+            }}
+            description={
+              <>
+                Сообщите, пожалуйста, что вы нашли меня на <span>ditate.me 🙏</span>
+              </>
+            }
+          />
+        )}
       </Content>
 
       <Copyright>

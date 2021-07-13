@@ -89,9 +89,11 @@ const PracticeCard = ({
       </MainInfo>
     )}
     <BottomInfo>
-      <PracticeDate component="span">
-        {format(new Date(startDate), 'dd MMM yyyy H:mm')}
-      </PracticeDate>
+      {startDate && (
+        <PracticeDate component="span">
+          {format(new Date(startDate), 'dd MMM yyyy H:mm')}
+        </PracticeDate>
+      )}
       <Location>{location}</Location>
     </BottomInfo>
   </Base>
