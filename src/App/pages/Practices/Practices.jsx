@@ -33,7 +33,6 @@ const Practices = () => {
         ) : (
           <NoPractices />
         )}
-        <NoPractices />
       </Base>
 
       <NavigationBar />
