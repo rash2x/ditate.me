@@ -18,11 +18,14 @@ import PracticeCard from '../../components/PracticeCard';
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
   display: flex;
+  height: 100vh;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   max-width: 100%;
 `;
+
+const Content = styled.div``;
 
 const Image = styled.img`
   width: 120px;
@@ -108,7 +111,7 @@ const StyledContact = styled(Contact)`
 `;
 
 const Copyright = styled.div`
-  margin: ${props => props.theme.spacing(2)}px auto;
+  padding: ${props => props.theme.spacing(2)}px 0;
 `;
 
 const Profile = () => {
@@ -132,65 +135,66 @@ const Profile = () => {
 
   return currentTeacher ? (
     <Base>
-      <BackButton onClick={handleClick} />
+      <Content>
+        <BackButton onClick={handleClick} />
 
-      <Info>
-        <Image src={currentTeacher.image} alt="" />
-        <Name>{currentTeacher.name}</Name>
-        <Instagram
-          component="a"
-          href={currentTeacher.instagramUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src={InstagramIcon} width="24px" alt="In" />
-          {currentTeacher.instagram}
-        </Instagram>
-        <Description>{currentTeacher.description}</Description>
-      </Info>
-      <PracticeList>
-        {currentTeacher.practiceIds.map(practiceId => {
-          const practice = getPracticeById(practiceId, state.practices);
+        <Info>
+          <Image src={currentTeacher.image} alt="" />
+          <Name>{currentTeacher.name}</Name>
+          <Instagram
+            component="a"
+            href={currentTeacher.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={InstagramIcon} width="24px" alt="In" />
+            {currentTeacher.instagram}
+          </Instagram>
+          <Description>{currentTeacher.description}</Description>
+        </Info>
+        <PracticeList>
+          {currentTeacher.practiceIds.map(practiceId => {
+            const practice = getPracticeById(practiceId, state.practices);
 
-          return (
-            practice && (
-              <PracticeChip
-                key={practiceId}
-                style={{
-                  color: practice.color,
-                  backgroundColor: fade(practice.color, 0.12),
-                }}
-                label={practice.name}
-              />
-            )
-          );
-        })}
-      </PracticeList>
+            return (
+              practice && (
+                <PracticeChip
+                  key={practiceId}
+                  style={{
+                    color: practice.color,
+                    backgroundColor: fade(practice.color, 0.12),
+                  }}
+                  label={practice.name}
+                />
+              )
+            );
+          })}
+        </PracticeList>
 
-      {currentTeacher.events && (
-        <>
-          <CommingEvents>Ближайшие практики</CommingEvents>
-          {/* <EventsList>
+        {currentTeacher.events && (
+          <>
+            <CommingEvents>Ближайшие практики</CommingEvents>
+            {/* <EventsList>
             <PracticeCard hideMainInfo key={currentTeacher.id} {...currentTeacher} />
           </EventsList> */}
-        </>
-      )}
+          </>
+        )}
 
-      {currentTeacher.events === 0 && (
-        <StyledContact
-          hands={HoldingHands}
-          contact={{
-            type: currentTeacher.telegram ? 'telegram' : 'instagram',
-            value: currentTeacher.telegram || currentTeacher.instagram,
-          }}
-          description={
-            <>
-              Сообщите, пожалуйста, что вы нашли меня на <span>ditate.me 🙏</span>
-            </>
-          }
-        />
-      )}
-
+        {currentTeacher.events === 0 && (
+          <StyledContact
+            hands={HoldingHands}
+            contact={{
+              type: currentTeacher.telegram ? 'telegram' : 'instagram',
+              value: currentTeacher.telegram || currentTeacher.instagram,
+            }}
+            description={
+              <>
+                Сообщите, пожалуйста, что вы нашли меня на <span>ditate.me 🙏</span>
+              </>
+            }
+          />
+        )}
+      </Content>
       <Copyright>
         2021 &copy; <strong>#Минибудды</strong> обучают 👌
       </Copyright>
