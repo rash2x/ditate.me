@@ -47,6 +47,12 @@ const theme = createMuiTheme({
       lineHeight: 1.45,
     },
 
+    subtitle3: {
+      fontWeight: 600,
+      fontSize: 16,
+      lineHeight: 24,
+    },
+
     button: {
       fontSize: 16,
     },
