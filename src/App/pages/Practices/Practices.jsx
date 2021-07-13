@@ -6,6 +6,7 @@ import { AirtableContext } from '../../airtable/context';
 import HomeToolbar from '../../components/HomeToolbar';
 import NavigationBar from '../../components/NavigationBar';
 import { getActualEvents } from '../../airtable/services';
+import NoPractices from '../NoPractices/NoPractices';
 
 const Base = styled(Container)`
   display: flex;
@@ -30,8 +31,9 @@ const Practices = () => {
         {getActualEvents(state.events) ? (
           getActualEvents(state.events).map(event => <PracticeCard key={event.id} {...event} />)
         ) : (
-          <></>
+          <NoPractices />
         )}
+        <NoPractices />
       </Base>
 
       <NavigationBar />
