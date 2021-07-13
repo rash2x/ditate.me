@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Place, EventAvailable, Close, Paid } from '@material-ui/icons';
 import { Dialog, IconButton, Typography } from '@material-ui/core';
 import parseHtml from 'react-html-parser';
+import { format } from 'date-fns';
 import useRouter from '../hooks/useRouter';
 import { AirtableContext } from '../airtable/context';
 import { getEventById } from '../airtable/services';
@@ -43,7 +44,7 @@ const Title = styled(Typography).attrs({ variant: 'h2', component: 'h1' })`
 
 const Description = styled.div``;
 
-const Date = styled(Typography).attrs({
+const DateInfo = styled(Typography).attrs({
   variant: 'subtitle1',
   component: 'div',
   color: 'primary',
@@ -123,10 +124,10 @@ const PracticeDialog = ({ ...rest }) => {
           <Paid />
           {getPriceValue(currentEvent.price)}
         </Price>
-        <Date>
+        <DateInfo>
           <EventAvailable />
-          {currentEvent.startDate}
-        </Date>
+          {format(new Date(currentEvent.startDate), 'dd MMM yyyy H:mm')}
+        </DateInfo>
         <Location>
           <Place />
           {currentEvent.location}

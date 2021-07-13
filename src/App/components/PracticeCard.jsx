@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Card, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
 import PracticeBadge from './PracticeBadge';
 import getPriceValue from '../helpers/getPriceValue';
 
@@ -88,7 +89,9 @@ const PracticeCard = ({
       </MainInfo>
     )}
     <BottomInfo>
-      <PracticeDate component="span">{startDate}</PracticeDate>
+      <PracticeDate component="span">
+        {format(new Date(startDate), 'dd MMM yyyy H:mm')}
+      </PracticeDate>
       <Location>{location}</Location>
     </BottomInfo>
   </Base>
