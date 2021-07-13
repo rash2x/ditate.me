@@ -8,6 +8,7 @@ import { ArrowBack } from '@material-ui/icons';
 import { Helmet } from 'react-helmet';
 import { AirtableContext } from '../../airtable/context';
 import InstagramIcon from '../../../assets/instagram-icon.svg';
+import VkIcon from '../../../assets/vk-icon.svg';
 import HoldingHands from '../../../assets/hands/holding-hands.svg';
 
 import { getPracticeById, getTeacherById } from '../../airtable/services';
@@ -87,6 +88,7 @@ const Name = styled(Typography).attrs({
   font-size: 2rem;
   margin-top: 20px;
 `;
+
 const Description = styled(Typography).attrs({
   variant: 'body2',
 })`
@@ -95,7 +97,7 @@ const Description = styled(Typography).attrs({
   padding-right: 16px;
 `;
 
-const Instagram = styled(Button).attrs({
+const SocialLink = styled(Button).attrs({
   size: 'small',
 })`
   font-size: 1.4rem;
@@ -141,7 +143,8 @@ const Profile = () => {
         <Info>
           <Image src={currentTeacher.image} alt="" />
           <Name>{currentTeacher.name}</Name>
-          <Instagram
+
+          <SocialLink
             component="a"
             href={currentTeacher.instagramUrl}
             target="_blank"
@@ -149,9 +152,22 @@ const Profile = () => {
           >
             <img src={InstagramIcon} width="24px" alt="In" />
             {currentTeacher.instagram}
-          </Instagram>
+          </SocialLink>
+
+          {currentTeacher.vkUrl && (
+            <SocialLink
+              component="a"
+              href={currentTeacher.vkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={VkIcon} width="24px" alt="Vk" />
+              {currentTeacher.vk}
+            </SocialLink>
+          )}
           <Description>{currentTeacher.description}</Description>
         </Info>
+
         <PracticeList>
           {currentTeacher.practiceIds.map(practiceId => {
             const practice = getPracticeById(practiceId, state.practices);
@@ -170,31 +186,29 @@ const Profile = () => {
             );
           })}
         </PracticeList>
-
-        {currentTeacher.events && (
+        {currentTeacher.events && currentTeacher.startDate && (
           <>
             <CommingEvents>Ближайшие практики</CommingEvents>
-            {/* <EventsList>
-            <PracticeCard hideMainInfo key={currentTeacher.id} {...currentTeacher} />
-          </EventsList> */}
+            <EventsList>
+              <PracticeCard hideMainInfo key={currentTeacher.id} {...currentTeacher} />
+            </EventsList>
           </>
         )}
 
-        {currentTeacher.events === 0 && (
-          <StyledContact
-            hands={HoldingHands}
-            contact={{
-              type: currentTeacher.telegram ? 'telegram' : 'instagram',
-              value: currentTeacher.telegram || currentTeacher.instagram,
-            }}
-            description={
-              <>
-                Сообщите, пожалуйста, что вы нашли меня на <span>ditate.me 🙏</span>
-              </>
-            }
-          />
-        )}
+        <StyledContact
+          hands={HoldingHands}
+          contact={{
+            type: currentTeacher.telegram ? 'telegram' : 'instagram',
+            value: currentTeacher.telegram || currentTeacher.instagram,
+          }}
+          description={
+            <>
+              Сообщите, пожалуйста, что вы нашли меня на <span>ditate.me 🙏</span>
+            </>
+          }
+        />
       </Content>
+
       <Copyright>
         2021 &copy; <strong>#Минибудды</strong> обучают 👌
       </Copyright>
