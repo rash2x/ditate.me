@@ -49,9 +49,12 @@ const FilterForm = ({ anchor, open, onClose, setFilters }) => {
     setFilters(form);
   };
 
-  const handleDateChange = useCallback((value) => {
-    setValue('date', value)
-  }, [setValue])
+  const handleDateChange = useCallback(
+    value => {
+      setValue('date', value);
+    },
+    [setValue],
+  );
 
   return (
     <Base key={anchor} anchor={anchor} open={open} onClose={onClose}>

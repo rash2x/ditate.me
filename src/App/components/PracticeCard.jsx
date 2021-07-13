@@ -3,12 +3,14 @@ import styled from 'styled-components';
 
 import { Card, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
 import PracticeBadge from './PracticeBadge';
 import getPriceValue from '../helpers/getPriceValue';
 
 const Base = styled(Card)`
   margin-bottom: ${props => props.theme.spacing(2)}px;
   max-width: 480px;
+  width: 100%;
   display: block;
   text-decoration: none;
   padding: ${props => props.theme.spacing(2, 2)};
@@ -49,7 +51,7 @@ const MainInfo = styled.main`
 `;
 
 const BottomInfo = styled.footer`
-  margin-top: 12px;
+  margin-top: ${props => props.theme.spacing(1)}px;
 `;
 
 const Location = styled(Typography).attrs({
@@ -73,18 +75,25 @@ const PracticeCard = ({
   startDate,
   location,
   teacherImage,
+  hideMainInfo,
 }) => (
   <Base component={Link} to={`/practices/${id}`}>
     <TopInfo>
-      <PracticeBadge name={practiceName} color={practiceColor} />
+      <PracticeBadge name={practiceName} color={practiceColor || '#FFF59D'} />
       <Price>{getPriceValue(price)} </Price>
     </TopInfo>
-    <MainInfo>
-      <Title component="h2">{name}</Title>
-      {teacherImage && <Avatar src={teacherImage} />}
-    </MainInfo>
+    {!hideMainInfo && (
+      <MainInfo>
+        <Title component="h2">{name}</Title>
+        <Avatar src={teacherImage} />
+      </MainInfo>
+    )}
     <BottomInfo>
-      <PracticeDate component="span">{startDate}</PracticeDate>
+      {startDate && (
+        <PracticeDate component="span">
+          {format(new Date(startDate), 'dd MMM yyyy H:mm')}
+        </PracticeDate>
+      )}
       <Location>{location}</Location>
     </BottomInfo>
   </Base>
