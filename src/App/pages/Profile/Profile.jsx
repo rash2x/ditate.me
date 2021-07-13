@@ -170,13 +170,13 @@ const Profile = () => {
       {currentTeacher.events && (
         <>
           <CommingEvents>Ближайшие практики</CommingEvents>
-          <EventsList>
+          {/* <EventsList>
             <PracticeCard hideMainInfo key={currentTeacher.id} {...currentTeacher} />
-          </EventsList>
+          </EventsList> */}
         </>
       )}
 
-      {!currentTeacher.events && (
+      {currentTeacher.events === 0 && (
         <StyledContact
           hands={HoldingHands}
           contact={{
