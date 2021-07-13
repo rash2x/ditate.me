@@ -6,7 +6,7 @@ import { AirtableContext } from '../../airtable/context';
 import HomeToolbar from '../../components/HomeToolbar';
 import NavigationBar from '../../components/NavigationBar';
 import { getActualEvents } from '../../airtable/services';
-import NoPractices from '../NoPractices/NoPractices';
+import NoPractices from './NoPractices';
 
 const Base = styled(Container)`
   display: flex;

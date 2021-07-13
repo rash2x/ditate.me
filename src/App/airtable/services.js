@@ -26,7 +26,7 @@ export const getEventById = (eventId, events) => {
 
 export const getActualEvents = events => {
   if (!events) {
-    return false;
+    return [];
   }
 
   return events.filter(t => new Date(t.startDate).getTime() > new Date().getTime());

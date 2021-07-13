@@ -143,8 +143,6 @@ const Profile = () => {
     }
   };
 
-  console.log(teacherEvents);
-
   return currentTeacher ? (
     <Base>
       <Content>

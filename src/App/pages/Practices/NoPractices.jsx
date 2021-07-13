@@ -38,12 +38,12 @@ const NoPractices = () => (
       <Content>
         <img src={Hands} alt="Hands" />
         <Title>Практики закончились</Title>
-        <SubTitle>Но мы работаем над их добавлением ☺️</SubTitle>
+        <SubTitle>Но мы работаем над их добавлением ☺️️️</SubTitle>
       </Content>
       <StyledContact
         contact={{
           type: 'telegram',
-          value: 'https://t.me/rash2x',
+          value: 'rash2x',
         }}
         description="Если вы ждете что-то конкретное, напишите нам и мы постараемся найти тичеров"
       />
