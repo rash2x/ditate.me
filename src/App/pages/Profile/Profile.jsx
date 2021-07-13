@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import styled from 'styled-components';
-import { Chip, Container, Fab, alpha, Typography } from '@material-ui/core';
+import { Chip, Container, fade, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 import { ArrowBack } from '@material-ui/icons';
@@ -9,18 +9,29 @@ import { Helmet } from 'react-helmet';
 import { AirtableContext } from '../../airtable/context';
 import InstagramIcon from '../../../assets/instagram-icon.svg';
 import VkIcon from '../../../assets/vk-icon.svg';
+import HoldingHands from '../../../assets/hands/holding-hands.svg';
 
-import { getPracticeById, getTeacherById } from '../../airtable/services';
+import {
+  getActualEvents,
+  getPracticeById,
+  getTeacherById,
+  getTeacherEvents,
+} from '../../airtable/services';
 import useRouter from '../../hooks/useRouter';
+import Contact from '../../components/Contact';
+import PracticeCard from '../../components/PracticeCard';
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
   display: flex;
+  height: 100vh;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   max-width: 100%;
 `;
+
+const Content = styled.div``;
 
 const Image = styled.img`
   width: 120px;
@@ -49,8 +60,20 @@ const PracticeList = styled.div`
   flex-wrap: wrap;
 `;
 
-const BackButton = styled(Fab).attrs({
-  color: 'primary',
+const EventsList = styled.div`
+  margin-top: ${props => props.theme.spacing(2)}px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+`;
+
+const CommingEvents = styled(Typography).attrs({ variant: 'h2' })`
+  margin-top: ${props => props.theme.spacing(4)}px;
+  text-align: center;
+`;
+
+const BackButton = styled(ArrowBack).attrs({
   size: 'medium',
 })`
   position: absolute;
@@ -70,6 +93,7 @@ const Name = styled(Typography).attrs({
   font-size: 2rem;
   margin-top: 20px;
 `;
+
 const Description = styled(Typography).attrs({
   variant: 'body2',
 })`
@@ -89,12 +113,23 @@ const SocialLink = styled(Button).attrs({
   }
 `;
 
+const StyledContact = styled(Contact)`
+  margin-top: 32px;
+`;
+
+const Copyright = styled.div`
+  padding: ${props => props.theme.spacing(2)}px 0;
+`;
+
 const Profile = () => {
   const [state, dispatch] = useContext(AirtableContext);
   const [currentTeacher, setCurrentTeacher] = useState(null);
   const router = useRouter();
 
   const { teacherId } = router.query;
+
+  const teacherEvents =
+    currentTeacher && getActualEvents(getTeacherEvents(state.events, currentTeacher.events));
 
   useEffect(() => {
     setCurrentTeacher(getTeacherById(teacherId, state.teachers));
@@ -110,13 +145,13 @@ const Profile = () => {
 
   return currentTeacher ? (
     <Base>
-      <BackButton onClick={handleClick}>
-        <ArrowBack />
-      </BackButton>
-      <Info>
-        <Image src={currentTeacher.image} alt="" />
-        <Name>{currentTeacher.name}</Name>
-        {currentTeacher.instagramUrl && (
+      <Content>
+        <BackButton onClick={handleClick} />
+
+        <Info>
+          <Image src={currentTeacher.image} alt="" />
+          <Name>{currentTeacher.name}</Name>
+
           <SocialLink
             component="a"
             href={currentTeacher.instagramUrl}
@@ -126,41 +161,69 @@ const Profile = () => {
             <img src={InstagramIcon} width="24px" alt="In" />
             {currentTeacher.instagram}
           </SocialLink>
+
+          {currentTeacher.vkUrl && (
+            <SocialLink
+              component="a"
+              href={currentTeacher.vkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={VkIcon} width="24px" alt="Vk" />
+              {currentTeacher.vk}
+            </SocialLink>
+          )}
+          <Description>{currentTeacher.description}</Description>
+        </Info>
+
+        <PracticeList>
+          {currentTeacher.practiceIds.map(practiceId => {
+            const practice = getPracticeById(practiceId, state.practices);
+
+            return (
+              practice && (
+                <PracticeChip
+                  key={practiceId}
+                  style={{
+                    color: practice.color,
+                    backgroundColor: fade(practice.color, 0.12),
+                  }}
+                  label={practice.name}
+                />
+              )
+            );
+          })}
+        </PracticeList>
+        {teacherEvents.length !== 0 && (
+          <>
+            <CommingEvents>Ближайшие практики</CommingEvents>
+            <EventsList>
+              {teacherEvents.map(teacherEvent => (
+                <PracticeCard hideMainInfo key={teacherEvent.id} {...teacherEvent} />
+              ))}
+            </EventsList>
+          </>
         )}
-        {currentTeacher.vkUrl && (
-          <SocialLink
-            component="a"
-            href={currentTeacher.vkUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={VkIcon} width="24px" alt="Vk" />
-            {currentTeacher.vk}
-          </SocialLink>
+
+        {!teacherEvents && (
+          <StyledContact
+            hands={HoldingHands}
+            contact={{
+              type: currentTeacher.telegram ? 'telegram' : 'instagram',
+              value: currentTeacher.telegram || currentTeacher.instagram,
+            }}
+            description={
+              <>
+                Сообщите, пожалуйста, что вы нашли меня на <span>ditate.me 🙏</span>
+              </>
+            }
+          />
         )}
+      </Content>
 
-        <Description>{currentTeacher.description}</Description>
-      </Info>
-
-      <PracticeList>
-        {currentTeacher.practiceIds.map(practiceId => {
-          const practice = getPracticeById(practiceId, state.practices);
-
-          return (
-            practice && (
-              <PracticeChip
-                key={practiceId}
-                style={{
-                  color: practice.color,
-                  backgroundColor: alpha(practice.color, 0.12),
-                }}
-                label={practice.name}
-              />
-            )
-          );
-        })}
-      </PracticeList>
-
+      <Copyright>
+        2021 &copy; <strong>#Минибудды</strong> обучают 👌
+      </Copyright>
       <Helmet>
         <meta name="description" content={currentTeacher.description} />
         <title>

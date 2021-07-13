@@ -13,6 +13,7 @@ import NavigationBar from '../../components/NavigationBar';
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;
+  padding-bottom: ${props => props.theme.mixins.toolbar.minHeight + 24}px;
 `;
 
 const Group = styled.div`

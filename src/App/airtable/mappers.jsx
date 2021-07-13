@@ -13,6 +13,14 @@ export const mapTeachers = response =>
     vk: getVkName(item.fields.Vk),
     telegram: item.fields.Telegram,
     practiceIds: item.fields.Practices,
+    events: item.fields.Events,
+    eventName: item.fields['Event Name'],
+    location: item.fields['Event Location'],
+    practice: item.fields['Event Practice'],
+    price: item.fields['Event Price'],
+    startDate: item.fields['Event StartDate'],
+    practiceColor: item.fields['Event Practice Color'] && item.fields['Event Practice Color'][0],
+    endDate: item.fields['Event EndDate'],
   }));
 
 export const mapPractices = response =>
@@ -47,5 +55,5 @@ export const mapEvents = response =>
     practiceId: item.fields.Practice[0],
     practiceName: item.fields['Practice Name'] && item.fields['Practice Name'][0],
     practiceColor: item.fields['Practice Color'] && item.fields['Practice Color'][0],
-    startDate: new Date(item.fields.StartDate).toDateString(),
+    startDate: item.fields.StartDate,
   }));

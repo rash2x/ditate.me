@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { alpha, Typography } from '@material-ui/core';
+import { fade, Typography } from '@material-ui/core';
 
 const Base = styled(Typography).attrs({ variant: 'subtitle2', component: 'div' })`
   display: inline-flex;
@@ -14,7 +14,7 @@ const Base = styled(Typography).attrs({ variant: 'subtitle2', component: 'div' }
 const PracticeBadge = ({ name, color }) => (
   <Base
     style={{
-      backgroundColor: alpha(color, 0.2),
+      backgroundColor: fade(color, 0.2),
       color,
     }}
   >
