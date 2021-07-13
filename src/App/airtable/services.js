@@ -24,6 +24,14 @@ export const getEventById = (eventId, events) => {
   return events.find(t => t.id === eventId);
 };
 
+export const getActualEvents = events => {
+  if (!events) {
+    return false;
+  }
+  const actualEvents = events.filter(t => new Date(t.startDate).getTime() > new Date().getTime());
+  return actualEvents;
+};
+
 export const createProfileRecord = async form => {
   const practices = form.practices.map(item => item.id);
 
