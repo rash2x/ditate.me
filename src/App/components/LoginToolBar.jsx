@@ -4,8 +4,8 @@ import { AppBar, IconButton, Toolbar } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 import styled from 'styled-components';
 
+import { useRouter } from 'next/router';
 import Logo from './Logo';
-import useRouter from '../hooks/useRouter';
 
 const StyledLogo = styled(Logo)`
   margin-right: auto;

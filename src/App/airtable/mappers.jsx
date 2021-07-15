@@ -1,4 +1,4 @@
-import defaultThumbnailSvg from '../../assets/default-thumbnail.svg';
+import defaultThumbnailSvg from '../../../public/assets/default-thumbnail.svg';
 import { getInstagramName, getVkName } from './utils';
 
 export const mapTeachers = response =>

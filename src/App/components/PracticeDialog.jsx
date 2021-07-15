@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import { Place, EventAvailable, Close, Paid } from '@material-ui/icons';
 import { Dialog, IconButton, Typography } from '@material-ui/core';
 import parseHtml from 'react-html-parser';
-import useRouter from '../hooks/useRouter';
+import { useRouter } from 'next/router';
 import { AirtableContext } from '../airtable/context';
 import { getEventById } from '../airtable/services';
 
 import Contact from './Contact';
 import PracticeBadge from './PracticeBadge';
 
-import Hands from '../../assets/hands/Hands.svg';
+import Hands from '../../../public/assets/hands/Hands.svg';
 import getPriceValue from '../helpers/getPriceValue';
 
 const Base = styled(Dialog)`

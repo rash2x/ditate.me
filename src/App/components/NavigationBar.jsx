@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link } from 'next/link';
 import { RecentActors, SelfImprovement } from '@material-ui/icons';
 import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 
-import useRouter from '../hooks/useRouter';
+import { useRouter } from 'next/router';
 
 const Base = styled.div`
   position: fixed;
