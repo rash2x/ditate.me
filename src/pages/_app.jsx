@@ -5,8 +5,8 @@ import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import Airtable from 'airtable';
-import AirtableProvider from '../src/App/airtable/provider';
-import theme from '../src/theme';
+import AirtableProvider from '../App/airtable/provider';
+import theme from '../theme';
 
 export const airtableBase = new Airtable({
   apiKey: 'keyEXP4qnVysxeAWt',

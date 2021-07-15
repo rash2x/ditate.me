@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 import reducer, { setEvents, setPractices, setTeachers } from './reducer';
 import { mapEvents, mapPractices, mapTeachers } from './mappers';
 import { AirtableContext, initialState } from './context';
-import { airtableBase } from '../../../pages/_app';
+import { airtableBase } from '../../pages/_app';
 
 const AirtableProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
