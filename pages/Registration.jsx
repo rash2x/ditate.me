@@ -5,11 +5,11 @@ import { Container, Typography } from '@material-ui/core';
 
 import { useSnackbar } from 'notistack';
 import Helmet from 'react-helmet';
-import Vector from '../../../assets/VectorForRegistration.svg';
-import Form from './Form';
-import { createProfileRecord } from '../../airtable/services';
-import useRouter from '../../hooks/useRouter';
-import LoginToolBar from '../../components/LoginToolBar';
+import { useRouter } from 'next/router';
+import Vector from '../public/assets/VectorForRegistration.svg';
+import Form from '../src/App/components/Form';
+import { createProfileRecord } from '../src/App/airtable/services';
+import LoginToolBar from '../src/App/components/LoginToolBar';
 
 const Base = styled.div`
   display: flex;

@@ -6,12 +6,12 @@ import Button from '@material-ui/core/Button';
 
 import { ArrowBack } from '@material-ui/icons';
 import { Helmet } from 'react-helmet';
-import { AirtableContext } from '../../airtable/context';
-import InstagramIcon from '../../../assets/instagram-icon.svg';
-import VkIcon from '../../../assets/vk-icon.svg';
+import { useRouter } from 'next/router';
+import { AirtableContext } from '../src/App/airtable/context';
+import InstagramIcon from '../public/assets/instagram-icon.svg';
+import VkIcon from '../public/assets/vk-icon.svg';
 
-import { getPracticeById, getTeacherById } from '../../airtable/services';
-import useRouter from '../../hooks/useRouter';
+import { getPracticeById, getTeacherById } from '../src/App/airtable/services';
 
 const Base = styled(Container)`
   padding-top: ${props => props.theme.mixins.toolbar.minHeight}px;

@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 
 import { TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
-import { AirtableContext } from '../../airtable/context';
+import { AirtableContext } from '../airtable/context';
 
 const StyledForm = styled.form`
   text-align: center;

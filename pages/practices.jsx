@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Container } from '@material-ui/core';
-import PracticeCard from '../../components/PracticeCard';
-import { AirtableContext } from '../../airtable/context';
-import HomeToolbar from '../../components/HomeToolbar';
-import NavigationBar from '../../components/NavigationBar';
+import PracticeCard from '../src/App/components/PracticeCard';
+import { AirtableContext } from '../src/App/airtable/context';
+import HomeToolbar from '../src/App/components/HomeToolbar';
+import NavigationBar from '../src/App/components/NavigationBar';
 
 const Base = styled(Container)`
   display: flex;
