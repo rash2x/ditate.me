@@ -25,7 +25,7 @@ const Image = styled.img`
 `;
 
 const Teacher = ({ name, thumbnail, id, ...rest }) => (
-  <Link style={{ textDecoration: 'none' }} to={`/${id}`}>
+  <Link style={{ textDecoration: 'none' }} href={`/${id}`}>
     <Base {...rest}>
       <Image src={thumbnail} alt={name} />
       <Name>{name}</Name>

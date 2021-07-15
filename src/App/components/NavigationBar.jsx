@@ -26,14 +26,14 @@ const NavigationBar = ({ children }) => {
         <BottomNavigationAction
           label="Минибудды"
           component={Link}
-          to="/"
+          href="/"
           value="/"
           icon={<RecentActors />}
         />
         <BottomNavigationAction
           label="Практики"
           component={Link}
-          to="/practices"
+          href="/practices"
           value="/practices"
           icon={<SelfImprovement />}
         />

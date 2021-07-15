@@ -1,4 +1,4 @@
-import { airtableBase } from '../App';
+import { airtableBase } from '../../pages/_app';
 
 export const getTeacherById = (teacherId, teachers) => {
   if (!teachers) {

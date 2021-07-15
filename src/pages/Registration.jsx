@@ -6,10 +6,10 @@ import { Container, Typography } from '@material-ui/core';
 import { useSnackbar } from 'notistack';
 import Helmet from 'react-helmet';
 import { useRouter } from 'next/router';
-import Vector from '../public/assets/VectorForRegistration.svg';
-import Form from '../src/App/components/Form';
-import { createProfileRecord } from '../src/App/airtable/services';
-import LoginToolBar from '../src/App/components/LoginToolBar';
+import Vector from '../../public/assets/VectorForRegistration.svg';
+import Form from '../App/components/Form';
+import { createProfileRecord } from '../App/airtable/services';
+import LoginToolBar from '../App/components/LoginToolBar';
 
 const Base = styled.div`
   display: flex;

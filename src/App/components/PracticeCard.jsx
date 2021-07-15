@@ -74,7 +74,7 @@ const PracticeCard = ({
   location,
   teacherImage,
 }) => (
-  <Base component={Link} to={`/practices/${id}`}>
+  <Base component={Link} href={`/practices/${id}`}>
     <TopInfo>
       <PracticeBadge name={practiceName} color={practiceColor} />
       <Price>{getPriceValue(price)} </Price>

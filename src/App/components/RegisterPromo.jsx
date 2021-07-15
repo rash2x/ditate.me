@@ -37,7 +37,7 @@ const RegisterPromo = () => (
         color="primary"
         size="small"
         component={Link}
-        to="/registration"
+        href="/registration"
         style={{ textTransform: 'none' }}
       >
         <AddCircleIcon style={{ marginRight: '14px' }} />
