@@ -49,9 +49,7 @@ const LoadingBar = styled.div`
 const Teachers = () => {
   const [state] = useContext(AirtableContext);
   const isLoading = !(state.practices && state.teachers);
-  const router = useRouter();
 
-  console.log(router);
   if (!state.practices && !state.teachers) {
     return (
       <LoadingBar>
