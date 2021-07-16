@@ -16,11 +16,7 @@ const LoginToolBar = () => {
   const router = useRouter();
 
   const handleClick = () => {
-    if (router.history.length === 1) {
-      router.push('/');
-    } else {
-      router.history.goBack();
-    }
+    router.back();
   };
 
   return (
