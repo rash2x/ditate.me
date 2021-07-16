@@ -94,18 +94,20 @@ const Profile = () => {
   const [currentTeacher, setCurrentTeacher] = useState(null);
   const router = useRouter();
 
-  const { teacherId } = router.query;
+  const teacherId = router.query.profile;
 
+  console.log(router);
   useEffect(() => {
     setCurrentTeacher(getTeacherById(teacherId, state.teachers));
   }, [dispatch, state.teachers, teacherId]);
 
   const handleClick = () => {
-    if (router.history.length === 1) {
-      router.push('/');
-    } else {
-      router.history.goBack();
-    }
+    router.back();
+    // if (router.history.length === 1) {
+    //   router.push('/');
+    // } else {
+    //   router.back();
+    // }
   };
 
   return currentTeacher ? (
